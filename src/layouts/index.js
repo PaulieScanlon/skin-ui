@@ -16,7 +16,13 @@ const IndexPage = ({ children }) => {
       <Box sx={{ width: ["100%", "50%"] }}>
         <Preview themeObject={themeObject} children={children} />
       </Box>
-      <Box sx={{ width: ["100%", "50%"] }}>
+      <Box
+        sx={{
+          position: "fixed",
+          left: ["100%", "50%"],
+          width: ["100%", "50%"],
+        }}
+      >
         <Editor
           themeObject={themeObject}
           onChange={event => setThemeObject(JSON.parse(event))}

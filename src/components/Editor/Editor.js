@@ -16,13 +16,13 @@ export const Editor = ({ themeObject, onChange }) => (
       sx={{
         ["> .ReactCodeMirror"]: {
           ["> .CodeMirror"]: {
-            height: "100%",
+            height: "100vh",
           },
         },
       }}
     >
-      <Box sx={{ p: 2 }}>
-        <h4 sx={{ pl: 4, color: "primary" }}>Editor</h4>
+      <Box sx={{ backgroundColor: "background", p: 2 }}>
+        <h4 sx={{ color: "primary" }}>Editor</h4>
       </Box>
       <CodeMirror
         value={JSON.stringify(themeObject, null, 2)}
