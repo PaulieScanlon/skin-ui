@@ -1,34 +1,45 @@
 /** @jsx jsx */
-import { useState } from "react"
+import { useState, Fragment } from "react"
 import PropTypes from "prop-types"
-import { jsx } from "theme-ui"
+import { ThemeProvider, jsx } from "theme-ui"
 import { Flex, Box } from "@theme-ui/components"
 
+import { Header } from "../components/Header"
 import { Editor } from "../components/Editor"
 import { Preview } from "../components/Preview"
+
+import theme from "../theme"
 import defaultThemeObject from "../utils/defaultThemeObject"
 
 const IndexPage = ({ children }) => {
   const [themeObject, setThemeObject] = useState(defaultThemeObject)
 
   return (
-    <Flex sx={{ flexWrap: "wrap" }}>
-      <Box sx={{ width: ["100%", "50%"] }}>
-        <Preview themeObject={themeObject} children={children} />
-      </Box>
-      <Box
-        sx={{
-          position: "fixed",
-          left: ["100%", "50%"],
-          width: ["100%", "50%"],
-        }}
-      >
-        <Editor
-          themeObject={themeObject}
-          onChange={event => setThemeObject(JSON.parse(event))}
-        />
-      </Box>
-    </Flex>
+    <Fragment>
+      <ThemeProvider theme={theme}>
+        <Header>header</Header>
+        <div sx={{ height: 1 }} />
+      </ThemeProvider>
+      <Flex sx={{ flexWrap: "wrap" }}>
+        <Box sx={{ width: ["100%", "60%"] }}>
+          <Preview themeObject={themeObject} children={children} />
+        </Box>
+        <Box
+          sx={{
+            position: "fixed",
+            left: ["100%", "60%"],
+            width: ["100%", "40%"],
+          }}
+        >
+          <ThemeProvider theme={theme}>
+            <Editor
+              themeObject={themeObject}
+              onChange={event => setThemeObject(JSON.parse(event))}
+            />
+          </ThemeProvider>
+        </Box>
+      </Flex>
+    </Fragment>
   )
 }
 
