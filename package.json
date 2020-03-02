@@ -1,14 +1,21 @@
 {
-  "name": "skin-ui",
+  "name": "nude-ui",
   "private": true,
   "description": "...",
   "version": "0.1.0",
   "author": "Paul Scanlon <pauliescanlon@gmail.com>",
   "dependencies": {
+    "@mdx-js/mdx": "^1.5.7",
+    "@theme-ui/components": "^0.3.1",
+    "@theme-ui/prism": "^0.3.0",
     "gatsby": "^2.19.7",
+    "gatsby-plugin-google-fonts": "^1.0.1",
+    "gatsby-plugin-mdx": "^1.0.74",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-codemirror": "^1.0.0",
+    "react-dom": "^16.12.0",
+    "theme-ui": "^0.3.1"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
@@ -28,9 +35,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/PaulieScanlon/skin-ui"
+    "url": "https://github.com/PaulieScanlon/nude-ui"
   },
   "bugs": {
-    "url": "https://github.com/PaulieScanlon/skin-ui/issues"
+    "url": "https://github.com/PaulieScanlon/nude-ui/issues"
   }
 }
