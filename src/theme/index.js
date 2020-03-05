@@ -3,7 +3,7 @@ export default {
   borderStyles: ["solid"],
   colors: {
     primary: "#37474F",
-    surface: "#F7F7F7",
+    surface: "#F2F2F2",
     text: "#607D8B",
     background: "#FFFFFF",
   },

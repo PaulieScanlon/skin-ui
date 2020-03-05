@@ -26,8 +26,8 @@ const IndexPage = ({ children }) => {
         </Box>
         <Box
           sx={{
-            position: "fixed",
-            left: ["100%", "60%"],
+            position: ["relative", "fixed"],
+            left: ["0%", "60%"],
             width: ["100%", "40%"],
           }}
         >
