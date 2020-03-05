@@ -14,6 +14,8 @@ import defaultThemeObject from "../utils/defaultThemeObject"
 const IndexPage = ({ children }) => {
   const [themeObject, setThemeObject] = useState(defaultThemeObject)
 
+  // console.log(themeObject)
+
   return (
     <Fragment>
       <ThemeProvider theme={theme}>
@@ -34,7 +36,7 @@ const IndexPage = ({ children }) => {
           <ThemeProvider theme={theme}>
             <Editor
               themeObject={themeObject}
-              onChange={event => setThemeObject(JSON.parse(event))}
+              onChange={event => setThemeObject(event)}
             />
           </ThemeProvider>
         </Box>

@@ -10,6 +10,17 @@ import "codemirror/mode/javascript/javascript"
 import "codemirror/theme/nord.css"
 
 export const Editor = ({ themeObject, onChange }) => {
+  const handleChange = event => {
+    try {
+      return onChange(
+        JSON.parse(event.replace(/(['"])?([a-zA-Z0-9_]+)(['"])?:/g, '"$2": '))
+      )
+    } catch (e) {
+      // if (e instanceof SyntaxError) {
+      //   console.error("SyntaxError")
+      // }
+    }
+  }
   return (
     <Box
       sx={{
@@ -21,8 +32,11 @@ export const Editor = ({ themeObject, onChange }) => {
       }}
     >
       <CodeMirror
-        value={JSON.stringify(themeObject, null, 2)}
-        onChange={event => onChange(event)}
+        value={JSON.stringify(themeObject, null, 2).replace(
+          /"(\w+)"\s*:/g,
+          "$1:"
+        )}
+        onChange={event => handleChange(event)}
         options={{
           mode: { name: "javascript", json: true },
           theme: "nord",
