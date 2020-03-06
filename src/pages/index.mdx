@@ -1,356 +1,1026 @@
-# [markdown](#markdown)
+import { MARKDOWN, COMPONENTS } from '../layouts'
 
-[https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+<Box className={MARKDOWN}>
 
-<hr />
+  ## [markdown](#markdown)
 
-## [Heading](#heading)
+  [Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
-```markdown
-# h1
-## h2
-### h3
-#### h4
-##### h5
-###### h6
+  <Divider />
 
-Alternatively, for h1 and h2, an underline-ish style:
+  ##### [Heading](#heading)
 
-Alt-h1
-======
+  ```markdown
+  # h1
+  ## h2
+  ### h3
+  #### h4
+  ##### h5
+  ###### h6
 
-Alt-h2
-```
+  Alternatively, for h1 and h2, an underline-ish style:
 
-# h1
+  Alt-h1
+  ======
 
-## h2
+  Alt-h2
+  ```
 
-### h3
+  # h1
 
-#### h4
+  ## h2
 
-##### h5
+  ### h3
 
-###### h6
+  #### h4
 
-Alternatively, for h1 and h2, an underline-ish style:
+  ##### h5
 
+  ###### h6
 
-## [Alt-h1](#alt-h1)
+  Alternatively, for h1 and h2, an underline-ish style:
 
-Alt-h2
+  <Divider />
 
+  ##### [Alt-h1](#alt-h1)
 
-## [Emphasis](#emphasis)
+  Alt-h2
 
-```markdown
-Emphasis, aka italics, with *asterisks* or _underscores_.
+  <Divider />
 
-Strong emphasis, aka bold, with **asterisks** or __underscores__.
+  ##### [Emphasis](#emphasis)
 
-Combined emphasis with **asterisks and _underscores_**.
+  ```markdown
+  Emphasis, aka italics, with *asterisks* or _underscores_.
 
-Strikethrough uses two tildes. ~~Scratch this.~~
-```
+  Strong emphasis, aka bold, with **asterisks** or __underscores__.
 
-Emphasis, aka italics, with *asterisks* or _underscores_.
+  Combined emphasis with **asterisks and _underscores_**.
 
-Strong emphasis, aka bold, with **asterisks** or __underscores__.
+  Strikethrough uses two tildes. ~~Scratch this.~~
+  ```
 
-Combined emphasis with **asterisks and _underscores_**.
+  Emphasis, aka italics, with *asterisks* or _underscores_.
 
-Strikethrough uses two tildes. ~~Scratch this.~~
+  Strong emphasis, aka bold, with **asterisks** or __underscores__.
 
-<hr />
+  Combined emphasis with **asterisks and _underscores_**.
 
-## [Lists](#lists)
+  Strikethrough uses two tildes. ~~Scratch this.~~
 
-(In this example, leading and trailing spaces are shown with with dots: ⋅)
 
-```markdown
-1. First ordered list item
-2. Another item
-1. Actual numbers don't matter, just that it's a number
-4. And another item.
+  <Divider />
 
+  ##### [Lists](#lists)
 
-* Unordered list can use asterisks
-- Or minuses
-+ Or pluses
-```
+  (In this example, leading and trailing spaces are shown with with dots: ⋅)
 
-1. First ordered list item
-2. Another item
-3. Actual numbers don't matter, just that it's a number
-4. And another item.
+  ```markdown
+  1. First ordered list item
+  2. Another item
+  1. Actual numbers don't matter, just that it's a number
+  4. And another item.
 
-- Unordered list can use asterisks
 
-* Or minuses
+  * Unordered list can use asterisks
+  - Or minuses
+  + Or pluses
+  ```
 
-- Or pluses
+  1. First ordered list item
+  2. Another item
+  3. Actual numbers don't matter, just that it's a number
+  4. And another item.
 
-<hr />
+  - Unordered list can use asterisks
 
-## [Links](#links)
+  * Or minuses
 
-There are two ways to create links.
+  - Or pluses
 
-```markdown
-[I'm an inline-style link](https://www.google.com)
+  <Divider />
 
-[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
+  ##### [Links](#links)
 
-[I'm a reference-style link][Arbitrary case-insensitive reference text]
+  There are two ways to create links.
 
-[I'm a relative reference to a repository file](../blob/master/LICENSE)
+  ```markdown
+  [I'm an inline-style link](https://www.google.com)
 
-[You can use numbers for reference-style link definitions][1]
+  [I'm an inline-style link with title](https://www.google.com "Google's Homepage")
 
-Or leave it empty and use the [link text itself].
+  [I'm a reference-style link][Arbitrary case-insensitive reference text]
 
-URLs and URLs in angle brackets will automatically get turned into links.
-http://www.example.com or <http://www.example.com> and sometimes
-example.com (but not on Github, for example).
+  [I'm a relative reference to a repository file](../blob/master/LICENSE)
 
-Some text to show that the reference links can follow later.
+  [You can use numbers for reference-style link definitions][1]
 
-[arbitrary case-insensitive reference text]: https://www.mozilla.org
-[1]: http://slashdot.org
-[link text itself]: http://www.reddit.com
-```
+  Or leave it empty and use the [link text itself].
 
-[I'm an inline-style link](https://www.google.com)
+  URLs and URLs in angle brackets will automatically get turned into links.
+  http://www.example.com or <http://www.example.com> and sometimes
+  example.com (but not on Github, for example).
 
-[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
+  Some text to show that the reference links can follow later.
 
-[I'm a reference-style link][arbitrary case-insensitive reference text]
+  [arbitrary case-insensitive reference text]: https://www.mozilla.org
+  [1]: http://slashdot.org
+  [link text itself]: http://www.reddit.com
+  ```
 
-[I'm a relative reference to a repository file](../blob/master/LICENSE)
+  [I'm an inline-style link](https://www.google.com)
 
-[You can use numbers for reference-style link definitions][1]
+  [I'm an inline-style link with title](https://www.google.com "Google's Homepage")
 
-Or leave it empty and use the [link text itself].
+  [I'm a reference-style link][arbitrary case-insensitive reference text]
 
-URLs and URLs in angle brackets will automatically get turned into links.
-http://www.example.com or <http://www.example.com> and sometimes
-example.com (but not on Github, for example).
+  [I'm a relative reference to a repository file](../blob/master/LICENSE)
 
-Some text to show that the reference links can follow later.
+  [You can use numbers for reference-style link definitions][1]
 
-[arbitrary case-insensitive reference text]: https://www.mozilla.org
-[1]: http://slashdot.org
-[link text itself]: http://www.reddit.com
+  Or leave it empty and use the [link text itself].
 
-## [Images](#images)
+  URLs and URLs in angle brackets will automatically get turned into links.
+  http://www.example.com or <http://www.example.com> and sometimes
+  example.com (but not on Github, for example).
 
-```markdown
-Here's our logo (hover to see the title text):
+  Some text to show that the reference links can follow later.
 
-Inline-style:
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+  [arbitrary case-insensitive reference text]: https://www.mozilla.org
+  [1]: http://slashdot.org
+  [link text itself]: http://www.reddit.com
 
-Reference-style:
-![alt text][logo]
+  <Divider />
 
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
-```
+  ##### [Images](#images)
 
-Here's our logo (hover to see the title text):
+  ```markdown
+  Here's a kitten (hover to see the title text):
 
-Inline-style:
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+  Inline-style:
+  ![alt text](https://placekitten.com/g/50/50 "Meow")
 
-Reference-style:
-![alt text][logo]
+  Reference-style:
+  ![alt text][logo]
 
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
+  [logo]: https://placekitten.com/g/50/50 "Purr"
+  ```
 
-## [Code and Syntax Highlighting](#code-and-syntax-highlighting)
+  Here's our logo (hover to see the title text):
 
-Code blocks are part of the Markdown spec, but syntax highlighting isn't.
+  Inline-style:
+  ![alt text](https://placekitten.com/g/50/50 "Meow")
 
-```markdown
-Inline `code` has `back-ticks around` it.
-```
+  Reference-style:
+  ![alt text][logo]
 
-Inline `code` has `back-ticks around` it.
+  [logo]: https://placekitten.com/g/50/50 "Purr"
 
-Blocks of code are either fenced by lines with three back-ticks ```, or are indented with four spaces. I recommend only using the fenced code blocks -- they're easier and only they support syntax highlighting, but you must provide a language or none
+  <Divider />
 
-````markdown
+  ##### [Code and Syntax Highlighting](#code-and-syntax-highlighting)
 
-```javascript
-var s = "JavaScript syntax highlighting"
-alert(s);
-```
+  Code blocks are part of the Markdown spec, but syntax highlighting isn't.
 
-```python
-s = "Python syntax highlighting"
-print s
-```
+  ```markdown
+  Inline `code` has `back-ticks around` it.
+  ```
 
-```html
-<div> HTML syntax highlighting </div>
-```
+  Inline `code` has `back-ticks around` it.
 
-```none
-var s = "JavaScript syntax highlighting"
-alert(s)
-```
-````
+  Blocks of code are either fenced by lines with three back-ticks ```, or are indented with four spaces. I recommend only using the fenced code blocks -- they're easier and only they support syntax highlighting, but you must provide a language or none
 
-```javascript
-var s = "JavaScript syntax highlighting"
-alert(s)
-```
+  ````markdown
 
-```python
-s = "Python syntax highlighting"
-print s
-```
+  ```javascript
+  var s = "JavaScript syntax highlighting"
+  alert(s);
+  ```
 
-```html
-<div> HTML syntax highlighting </div>
-```
+  ```python
+  s = "Python syntax highlighting"
+  print s
+  ```
 
-```none
-var s = "JavaScript syntax highlighting"
-alert(s)
-```
+  ```html
+  <div> HTML syntax highlighting </div>
+  ```
 
+  ```none
+  var s = "JavaScript syntax highlighting"
+  alert(s)
+  ```
+  ````
 
-## [Tables](#tables)
+  ```javascript
+  var s = "JavaScript syntax highlighting"
+  alert(s)
+  ```
 
-Tables aren't part of the core Markdown spec, but they are part of GFM and Markdown Here supports them. They are an easy way of adding tables to your email -- a task that would otherwise require copy-pasting from another application.
+  ```python
+  s = "Python syntax highlighting"
+  print s
+  ```
 
-```markdown
-Colons can be used to align columns.
+  ```html
+  <div> HTML syntax highlighting </div>
+  ```
 
-| Tables        |      Are      |   Cool |
-| ------------- | :-----------: | ------:|
-| col 3 is      | right-aligned |  \$1600 |
-| col 2 is      |   centered    |    \$12 |
-| zebra stripes |   are neat    |     \$1 |
+  ```none
+  var s = "JavaScript syntax highlighting"
+  alert(s)
+  ```
 
-There must be at least 3 dashes separating each header cell.
-The outer pipes (|) are optional, and you don't need to make the
-raw Markdown line up prettily. You can also use inline Markdown.
+  <Divider />
 
-| Markdown | Less      | Pretty     |
-| -------- | --------- | ---------- |
-| _Still_  | `renders` | **nicely** |
-| 1        | 2         | 3          |
+  ##### [Tables](#tables)
 
-```
+  Tables aren't part of the core Markdown spec, but they are part of GFM and Markdown Here supports them. They are an easy way of adding tables to your email -- a task that would otherwise require copy-pasting from another application.
 
-Colons can be used to align columns.
+  ```markdown
+  Colons can be used to align columns.
 
-| Tables        |      Are      |   Cool |
-| ------------- | :-----------: | -----: |
-| col 3 is      | right-aligned | \$1600 |
-| col 2 is      |   centered    |   \$12 |
-| zebra stripes |   are neat    |    \$1 |
+  | Tables        |      Are      |   Cool |
+  | ------------- | :-----------: | ------:|
+  | col 3 is      | right-aligned |  \$1600 |
+  | col 2 is      |   centered    |    \$12 |
+  | zebra stripes |   are neat    |     \$1 |
 
-There must be at least 3 dashes separating each header cell.
-The outer pipes (|) are optional, and you don't need to make the
-raw Markdown line up prettily. You can also use inline Markdown.
+  There must be at least 3 dashes separating each header cell.
+  The outer pipes (|) are optional, and you don't need to make the
+  raw Markdown line up prettily. You can also use inline Markdown.
 
-| Markdown | Less      | Pretty     |
-| -------- | --------- | ---------- |
-| _Still_  | `renders` | **nicely** |
-| 1        | 2         | 3          |
+  | Markdown | Less      | Pretty     |
+  | -------- | --------- | ---------- |
+  | _Still_  | `renders` | **nicely** |
+  | 1        | 2         | 3          |
 
-<hr />
+  ```
 
-## [Blockquotes](#blockquotes)
+  Colons can be used to align columns.
 
-```markdown
-> Blockquotes are very handy in email to emulate reply text.
-> This line is part of the same quote.
+  | Tables        |      Are      |   Cool |
+  | ------------- | :-----------: | -----: |
+  | col 3 is      | right-aligned | \$1600 |
+  | col 2 is      |   centered    |   \$12 |
+  | zebra stripes |   are neat    |    \$1 |
 
-Quote break.
+  There must be at least 3 dashes separating each header cell.
+  The outer pipes (|) are optional, and you don't need to make the
+  raw Markdown line up prettily. You can also use inline Markdown.
 
-> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.
-```
+  | Markdown | Less      | Pretty     |
+  | -------- | --------- | ---------- |
+  | _Still_  | `renders` | **nicely** |
+  | 1        | 2         | 3          |
 
-> Blockquotes are very handy in email to emulate reply text.
-> This line is part of the same quote.
+  <Divider />
 
-Quote break.
+  ##### [Blockquotes](#blockquotes)
 
-> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can _put_ **Markdown** into a blockquote.
+  ```markdown
+  > Blockquotes are very handy in email to emulate reply text.
+  > This line is part of the same quote.
 
+  Quote break.
 
-## [Inline HTML](#inline-html)
+  > This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.
+  ```
 
-You can also use raw HTML in your Markdown, and it'll mostly work pretty well.
+  > Blockquotes are very handy in email to emulate reply text.
+  > This line is part of the same quote.
 
-```markdown
-<dl>
-  <dt>Definition list</dt>
-  <dd>Is something people use sometimes.</dd>
+  Quote break.
 
-  <dt>Markdown in HTML</dt>
-  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
-</dl>
-```
+  > This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can _put_ **Markdown** into a blockquote.
 
-<dl>
-  <dt>Definition list</dt>
-  <dd>Is something people use sometimes.</dd>
+  <Divider />
 
-  <dt>Markdown in HTML</dt>
-  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
-</dl>
 
-<hr />
+  ##### [Horizontal Rule](#horizontal-rule)
 
-## [Horizontal Rule](#horizontal-rule)
+  ```markdown
+  Three or more...
 
-```markdown
-Three or more...
+  ---
 
----
+  Hyphens
 
-Hyphens
+  ***
 
-***
+  Asterisks
 
-Asterisks
+  ___
 
-___
+  Underscores
+  ```
 
-Underscores
-```
+  Three or more...
 
-Three or more...
+  ---
 
----
+  Hyphens
 
-Hyphens
+  ***
 
-***
+  Asterisks
 
-Asterisks
+  ___
 
-___
+  Underscores
 
-Underscores
+  <Divider />
 
+  ##### [Line Breaks](#line-breaks)
 
-## [Line Breaks](#line-breaks)
+  My basic recommendation for learning how line breaks work is to experiment and discover -- hit `<Enter>` once (i.e., insert one newline), then hit it twice (i.e., insert two new lines), see what happens. You'll soon learn to get what you want. "Markdown Toggle" is your friend.
 
-My basic recommendation for learning how line breaks work is to experiment and discover -- hit `<Enter>` once (i.e., insert one newline), then hit it twice (i.e., insert two new lines), see what happens. You'll soon learn to get what you want. "Markdown Toggle" is your friend.
+  ```markdown
 
-```markdown
+  Here's a line for us to start with.
 
-Here's a line for us to start with.
+  This line is separated from the one above by two newlines, so it will be a *separate paragraph*.
 
-This line is separated from the one above by two newlines, so it will be a *separate paragraph*.
+  This line is also a separate paragraph, but...
+  This line is only separated by a single newline, so it's a separate line in the *same paragraph*.
 
-This line is also a separate paragraph, but...
-This line is only separated by a single newline, so it's a separate line in the *same paragraph*.
+  ```
 
-```
+  <Divider />
+
+</Box>
+
+
+<Box className={COMPONENTS}>
+
+  ## [theme-ui/components](#theme-ui-components)
+
+  [theme-ui/components](https://theme-ui.com/components)
+
+
+  <Divider />
+
+  ##### [Box](#box)
+
+  ```javascript
+  <Box p={4} color="white" bg="primary">
+    Beep
+  </Box>
+  ```
+
+  <Box p={4} color="white" bg="primary">
+    Beep
+  </Box>
+
+  <Divider />
+
+  ##### [Flex](#flex)
+
+  ```javascript
+  <Flex>
+    <Box p={2} bg='primary' color="white" sx={{ flex: '1 1 auto' }}>
+      Flex
+    </Box>
+    <Box p={2} bg='highlight'>
+      Box
+    </Box>
+  </Flex>
+  ```
+  <Flex>
+    <Box p={2} bg='primary' color="white" sx={{ flex: '1 1 auto' }}>
+      Flex
+    </Box>
+    <Box p={2} bg='highlight'>
+      Box
+    </Box>
+  </Flex>
+
+  <Divider />
+
+  ##### [Grid](#grid)
+
+  ```javascript
+  <Grid
+    gap={2}
+    columns={[2, '1fr 2fr']}>
+    <Box p={2} bg='primary' color="white">Box</Box>
+    <Box p={2} bg='highlight'>Box</Box>
+  </Grid>
+  ```
+
+  <Grid
+    gap={2}
+    columns={[2, '1fr 2fr']}>
+    <Box p={2} bg='primary' color="white">Box</Box>
+    <Box p={2} bg='highlight'>Box</Box>
+  </Grid>
+
+  <Divider />
+
+  ##### [Buttons](#buttons)
+
+  ```javascript
+  <Button mr={2}>primary</Button>
+  <Button mr={2} variant='secondary'>secondary</Button>
+  ```
+  <Button mr={2}>primary</Button>
+  <Button mr={2} variant='secondary'>secondary</Button>
+
+  <Divider />
+
+  ##### [Text](#text)
+
+  ```javascript
+  <Text>Hello</Text>
+  <Text variant='styles.p'>Hello</Text>
+  <Text variant='styles.small'>Hello</Text>
+  ```
+
+  <Text>Hello</Text>
+  <Text variant='styles.p'>Hello</Text>
+  <Text variant='styles.small'>Hello</Text>
+
+  <Divider />
+
+  ##### [Heading](#heading)
+
+  ```javascript
+  <Heading variant='styles.h1'>h1</Heading>
+  <Heading variant='styles.h2'>h2</Heading>
+  <Heading variant='styles.h3'>h3</Heading>
+  <Heading variant='styles.h4'>h4</Heading>
+  <Heading variant='styles.h5'>h5</Heading>
+  <Heading variant='styles.h6'>h6</Heading>
+  ```
+
+  <Heading variant='styles.h1'>h1</Heading>
+  <Heading variant='styles.h2'>h2</Heading>
+  <Heading variant='styles.h3'>h3</Heading>
+  <Heading variant='styles.h4'>h4</Heading>
+  <Heading variant='styles.h5'>h5</Heading>
+  <Heading variant='styles.h6'>h6</Heading>
+
+  <Divider />
+
+  ##### [Link](#link)
+
+  ```javascript
+  <Link href='#!'>Hello</Link>
+  ```
+
+  <Link href='#!'>Hello</Link>
+
+  <Divider />
+
+  ##### [Image](#image)
+
+  ```javascript
+  <Image
+    src='https://placekitten.com/g/400/400'
+  />
+  ```
+
+  <Image
+    src='https://placekitten.com/g/400/400'
+  />
+
+  <Divider />
+
+  ##### [Card](#card)
+
+  ```javascript
+  <Card
+    sx={{
+      maxWidth: 400,
+    }}>
+    <Image src='https://placekitten.com/g/800/600' />
+    <Box p={3}>
+    <Heading variant='styles.h4'>Heading</Heading>
+    <Text>Text</Text>
+    </Box>
+  </Card>
+  ```
+
+  <Card
+    sx={{
+      maxWidth: 400,
+    }}>
+    <Image src='https://placekitten.com/g/800/600' />
+    <Box p={3}>
+    <Heading variant='styles.h4'>Heading</Heading>
+    <Text>Text</Text>
+    </Box>
+  </Card>
+
+
+  <Divider />
+
+  ##### [Forms](#forms)
+
+  ```javascript
+  <Box
+    as='form'
+  >
+  <Label htmlFor='input'>Input</Label>
+  <Input
+    name='username'
+    mb={3}
+  />
+
+  <Label mb={3}>
+    <Checkbox />
+    Checkbox
+  </Label>
+
+  <Label mb={3}>
+    <Radio name='radio' /> Radio A
+  </Label>
+  <Label mb={3}>
+    <Radio name='radio' /> Radio B
+  </Label>
+
+  <Label htmlFor='select'>Select</Label>
+  <Select name='select' mb={3}>
+    <option>Beep</option>
+    <option>Boop</option>
+    <option>Blip</option>
+  </Select>
+
+  <Label htmlFor='textarea'>Text Area</Label>
+  <Textarea
+    name='textarea'
+    rows='6'
+    mb={3}
+  />
+  </Box>
+  ```
+  <Box as='form' >
+  <Label htmlFor='input'>Input</Label>
+  <Input
+    name='username'
+    mb={3}
+  />
+
+  <Label mb={3}>
+    <Checkbox />
+    Checkbox
+  </Label>
+
+  <Label mb={3}>
+    <Radio name='radio' /> Radio A
+  </Label>
+  <Label mb={3}>
+    <Radio name='radio' /> Radio B
+  </Label>
+
+  <Label htmlFor='select'>Select</Label>
+  <Select name='select' mb={3}>
+    <option>Beep</option>
+    <option>Boop</option>
+    <option>Blip</option>
+  </Select>
+
+  <Label htmlFor='textarea'>Text Area</Label>
+  <Textarea
+    name='textarea'
+    rows='6'
+    mb={3}
+  />
+  </Box>
+
+  <Divider />
+
+  ##### [Label](#label) 
+
+  ```javascript
+  <Label htmlFor='input'>Label</Label>
+  ```
+
+  <Label htmlFor='input'>Label</Label>
+
+  <Divider />
+
+  ##### [Input](#input)
+
+  ```javascript
+  <Input name='username'/>
+  ```
+
+  <Input name='username'/>
+
+  <Divider />
+
+  ##### [Select](#select)
+
+  ```javascript
+  <Select
+    defaultValue='Hello'>
+    <option>Hello</option>
+    <option>Hi</option>
+    <option>Beep</option>
+    <option>Boop</option>
+  </Select>
+  ```
+
+  <Select
+    defaultValue='Hello'>
+    <option>Hello</option>
+    <option>Hi</option>
+    <option>Beep</option>
+    <option>Boop</option>
+  </Select>
+
+  <Divider />
+
+  ##### [Textarea](#text-area)
+
+  ```javascript
+  <Textarea
+    defaultValue='Hello'
+    rows={8}
+  />
+  ```
+
+  <Textarea
+    defaultValue='Hello'
+    rows={8}
+  />
+
+  <Divider />
+
+  ##### [Radio](#radio)
+
+  ```javascript
+  <Label mb={1}>
+    <Radio
+      name='dark-mode'
+      value='true'
+      defaultChecked={true}
+    />
+    Dark Mode
+  </Label>
+  <Label mb={1}>
+    <Radio
+      name='dark-mode'
+      value='false'
+    />
+    Light Mode
+  </Label>
+  ```
+
+  <Label mb={1}>
+    <Radio
+      name='dark-mode'
+      value='true'
+      defaultChecked={true}
+    />
+    Dark Mode
+  </Label>
+  <Label mb={1}>
+    <Radio
+      name='dark-mode'
+      value='false'
+    />
+    Light Mode
+  </Label>
+
+  <Divider />
+
+  ##### [Checkbox](#checkbox)
+
+  ```javascript
+  <Label>
+    <Checkbox />
+    Checkbox
+  </Label>
+  ```
+
+  <Label>
+    <Checkbox />
+    Checkbox
+  </Label>
+
+  <Divider />
+
+  ##### [Slider](#slider)
+
+  ```javascript
+  <Slider defaultValue={25} />
+  ```
+
+  <Slider defaultValue={25} />
+
+  <Divider />
+
+  ##### [Field](#field)
+
+  ```javascript
+  <Field label='Email' name='email' defaultValue='' />
+  ```
+
+  <Field label='Email' name='email' defaultValue='' />
+
+  <Divider />
+
+  ##### [Progress](#progress)
+
+  ```javascript
+  <Progress max={1} value={1/2}> 50% </Progress>
+  <Progress max={1} value={1/2} variant='styles.progress.secondary'> 50% </Progress>
+  ```
+
+  <Progress max={1} value={1/2} sx={{mb: 4}}> 50% </Progress>
+  <Progress max={1} value={1/2} variant='styles.progress.secondary' sx={{mb: 4}}> 50% </Progress>
+
+  <Divider />
+
+  ##### [Donut](#donut)
+
+  ```javascript
+  <Donut value={1/2}/>
+  <Donut value={1/2} variant='styles.donut.secondary'/>
+  ```
+
+  <Donut value={1/2} />
+  <Donut value={1/2} variant='styles.donut.secondary'/>
+
+  <Divider />
+
+  ##### [Spinner](#spinner)
+
+  ```javascript
+  <Spinner />
+  <Spinner variant='styles.spinner.secondary'/>
+  ```
+
+  <Spinner />
+  <Spinner variant='styles.spinner.secondary'/>
+
+  <Divider />
+
+  ##### [Avatar](#avatar)
+
+  ```javascript
+  <Avatar
+    src='https://placekitten.com/g/50/50'
+  />
+  ```
+
+  <Avatar
+    src='https://placekitten.com/g/50/50'
+  />
+
+  <Divider />
+
+  ##### [Badge](#badge)
+  Badges need a variant, the default can't be styled at the moment
+
+  ```javascript
+  <Badge variant='primary' mb={2} mr={2}>
+    Beep boop, this is an badge!
+  </Badge>
+
+  <Badge variant='secondary' mb={2} mr={2}>
+    Beep boop, this is an badge!
+  </Badge>
+
+  ```
+
+  <Badge variant='primary' mb={2} mr={2}>
+    Beep boop, this is an badge!
+  </Badge>
+
+  <Badge variant='secondary' mb={2} mr={2}>
+    Beep boop, this is an badge!
+  </Badge>
+
+
+  <Divider />
+
+  ##### [Close](#close)
+
+  ```javascript
+  <Close />
+  ```
+
+  <Close />
+
+  <Divider />
+
+  ##### [Alert](#alert)
+
+  ```javascript
+  <Alert variant='primary' mb={2}>
+    Beep boop, this is an alert!
+  </Alert>
+
+  <Alert variant='secondary' mb={2}>
+    Beep boop, this is an alert!
+  </Alert>
+  ```
+
+  <Alert variant='primary' mb={2}>
+    Beep boop, this is an alert!
+  </Alert>
+
+  <Alert variant='secondary' mb={2}>
+    Beep boop, this is an alert!
+  </Alert>
+
+
+  <Divider />
+
+  ##### [Divider](#divider)
+
+  ```javascript
+  <Divider />
+  ```
+
+  <Divider />
+
+  <Divider />
+
+  ##### Embed
+
+  ```javascript
+  <Embed
+    src="https://www.youtube.com/embed/GNCd_ERZvZM"
+  />
+  ```
+
+  <Embed
+    src="https://www.youtube.com/embed/GNCd_ERZvZM"
+  />
+
+  <Divider />
+
+  ##### [AspectRatio](#aspect-ratio)
+
+  ```javascript
+  <AspectRatio ratio={16/9}>
+    <Image
+      src='https://placekitten.com/g/1200/1200'
+      sx={{
+        objectFit: 'cover',
+      }}
+    />
+  </AspectRatio>
+  ```
+
+  <AspectRatio ratio={16/9}>
+    <Image
+      src='https://placekitten.com/g/1200/1200'
+      sx={{
+        objectFit: 'cover',
+      }}
+    />
+  </AspectRatio>
+
+  <Divider />
+
+  ##### [AspectImage](#aspect-image)
+
+  ```javascript
+  <AspectImage
+    ratio={4/3}
+    src='https://placekitten.com/g/1200/1200'
+  />
+  ```
+
+  <AspectImage
+    ratio={4/3}
+    src='https://placekitten.com/g/1200/1200'
+  />
+
+  <Divider />
+
+  ##### [Container](#container)
+
+  ```javascript
+  <Container
+    p={4}
+    bg='muted'>
+    Centered container
+  </Container>
+  ```
+
+  <Container
+    p={4}
+    bg='muted'>
+    Centered container
+  </Container>
+
+  <Divider />
+
+  ##### [NavLink](#nav-link)
+
+  ```javascript
+  <Flex as='nav'>
+    <NavLink href='#!' p={2}>
+      Home
+    </NavLink>
+    <NavLink href='#!' p={2}>
+      Blog
+    </NavLink>
+    <NavLink href='#!' p={2}>
+      About
+    </NavLink>
+  </Flex>
+  ```
+
+  <Flex as='nav'>
+    <NavLink href='#!' p={2}>
+      Home
+    </NavLink>
+    <NavLink href='#!' p={2}>
+      Blog
+    </NavLink>
+    <NavLink href='#!' p={2}>
+      About
+    </NavLink>
+  </Flex>
+
+  <Divider />
+
+  ##### [Message](#message)
+
+  ```javascript
+  <Message variant='primary' mb={2}>
+    This is just a message for someone to read
+  </Message>
+
+  <Message variant='secondary' mb={2}>
+    This is just a message for someone to read
+  </Message>
+  ```
+
+
+  <Message variant='primary' mb={2}>
+    This is just a message for someone to read
+  </Message>
+
+  <Message variant='secondary' mb={2}>
+    This is just a message for someone to read
+  </Message>
+
+  <Divider />
+
+  ##### [IconButton](#icon-button)
+
+  ```javascript
+  <IconButton
+    aria-label='Toggle dark mode'>
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 24 24'
+      width='24'
+      height='24'
+      fill='currentcolor'>
+      <circle
+        r={11}
+        cx={12}
+        cy={12}
+        fill='none'
+        stroke='currentcolor'
+        strokeWidth={2}
+      />
+    </svg>
+  </IconButton>
+  ```
+
+  <IconButton
+    aria-label='Toggle dark mode'>
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 24 24'
+      width='24'
+      height='24'
+      fill='currentcolor'>
+      <circle
+        r={11}
+        cx={12}
+        cy={12}
+        fill='none'
+        stroke='currentcolor'
+        strokeWidth={2}
+      />
+    </svg>
+  </IconButton>
+
+  <Divider />
+
+  ##### [MenuButton](#menu-button)
+
+  ```javascript
+  <MenuButton
+    aria-label='Toggle Menu'
+  />
+  ```
+
+  <MenuButton
+    aria-label='Toggle Menu'
+  />
+
+  <Divider />
+
+</Box> 

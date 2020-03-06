@@ -4,6 +4,10 @@ import { jsx } from "theme-ui"
 import { Box } from "@theme-ui/components"
 import CodeMirror from "react-codemirror"
 
+import { ThemeWrapper } from "../ThemeWrapper"
+import { stringifyReplaceQuotes } from "../../utils/stringifyReplaceQuotes"
+import { parseAddQuotes } from "../../utils/parseAddQuotes"
+
 import "codemirror/lib/codemirror"
 import "codemirror/lib/codemirror.css"
 import "codemirror/mode/javascript/javascript"
@@ -12,9 +16,7 @@ import "codemirror/theme/nord.css"
 export const Editor = ({ themeObject, onChange }) => {
   const handleChange = event => {
     try {
-      return onChange(
-        JSON.parse(event.replace(/(['"])?([a-zA-Z0-9_]+)(['"])?:/g, '"$2": '))
-      )
+      return onChange(parseAddQuotes(event))
     } catch (e) {
       // if (e instanceof SyntaxError) {
       //   console.error("SyntaxError")
@@ -22,28 +24,27 @@ export const Editor = ({ themeObject, onChange }) => {
     }
   }
   return (
-    <Box
-      sx={{
-        ["> .ReactCodeMirror"]: {
-          ["> .CodeMirror"]: {
-            height: theme => `calc(100vh - ${theme.sizes[1]})`,
+    <ThemeWrapper>
+      <Box
+        sx={{
+          ["> .ReactCodeMirror"]: {
+            ["> .CodeMirror"]: {
+              height: theme => `calc(100vh - ${theme.sizes[1]})`,
+            },
           },
-        },
-      }}
-    >
-      <CodeMirror
-        value={JSON.stringify(themeObject, null, 2).replace(
-          /"(\w+)"\s*:/g,
-          "$1:"
-        )}
-        onChange={event => handleChange(event)}
-        options={{
-          mode: { name: "javascript", json: true },
-          theme: "nord",
-          lineNumbers: true,
         }}
-      />
-    </Box>
+      >
+        <CodeMirror
+          value={stringifyReplaceQuotes(themeObject)}
+          onChange={event => handleChange(event)}
+          options={{
+            mode: { name: "javascript", json: true },
+            theme: "nord",
+            lineNumbers: true,
+          }}
+        />
+      </Box>
+    </ThemeWrapper>
   )
 }
 

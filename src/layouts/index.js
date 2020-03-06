@@ -1,31 +1,46 @@
 /** @jsx jsx */
 import { useState, Fragment } from "react"
 import PropTypes from "prop-types"
-import { ThemeProvider, jsx } from "theme-ui"
-import { Flex, Box } from "@theme-ui/components"
+import { jsx } from "theme-ui"
+import { Flex, Box, Label, Checkbox, Button } from "@theme-ui/components"
+import copy from "clipboard-copy"
 
+import { Logo } from "../components/Logo"
 import { Header } from "../components/Header"
+import { Toolbar } from "../components/Toolbar"
 import { Editor } from "../components/Editor"
 import { Preview } from "../components/Preview"
 
-import theme from "../theme"
+import { stringifyReplaceQuotes } from "../utils/stringifyReplaceQuotes"
+
 import defaultThemeObject from "../utils/defaultThemeObject"
+
+export const MARKDOWN = "markdown"
+export const COMPONENTS = "components"
 
 const IndexPage = ({ children }) => {
   const [themeObject, setThemeObject] = useState(defaultThemeObject)
 
-  // console.log(themeObject)
+  const [filterChildren, setFilterChildren] = useState({
+    [MARKDOWN]: true,
+    [COMPONENTS]: true,
+  })
+
+  const handleChange = event => {
+    setFilterChildren({
+      ...filterChildren,
+      [event.target.name]: !filterChildren[event.target.name],
+    })
+  }
+
+  const mdx = children.filter(child => filterChildren[child.props.className])
 
   return (
     <Fragment>
-      <ThemeProvider theme={theme}>
-        <Header>header</Header>
-        <div sx={{ height: 1 }} />
-      </ThemeProvider>
+      <Header>
+        <Logo />
+      </Header>
       <Flex sx={{ flexWrap: "wrap" }}>
-        <Box sx={{ width: ["100%", "60%"] }}>
-          <Preview themeObject={themeObject} children={children} />
-        </Box>
         <Box
           sx={{
             position: ["relative", "fixed"],
@@ -33,12 +48,45 @@ const IndexPage = ({ children }) => {
             width: ["100%", "40%"],
           }}
         >
-          <ThemeProvider theme={theme}>
-            <Editor
-              themeObject={themeObject}
-              onChange={event => setThemeObject(event)}
-            />
-          </ThemeProvider>
+          <Toolbar>
+            <Flex
+              sx={{
+                flex: "1 1 auto",
+                justifyContent: "flex-end",
+              }}
+            >
+              <Button onClick={() => copy(stringifyReplaceQuotes(themeObject))}>
+                Copy
+              </Button>
+            </Flex>
+          </Toolbar>
+          <Editor
+            themeObject={themeObject}
+            onChange={event => setThemeObject(event)}
+          />
+        </Box>
+        <Box sx={{ width: ["100%", "60%"] }}>
+          <Toolbar>
+            <Flex>
+              <Label mb={3}>
+                <Checkbox
+                  name={MARKDOWN}
+                  defaultChecked
+                  onChange={event => handleChange(event)}
+                />
+                Markdown
+              </Label>
+              <Label mb={3}>
+                <Checkbox
+                  name={COMPONENTS}
+                  defaultChecked
+                  onChange={event => handleChange(event)}
+                />
+                Components
+              </Label>
+            </Flex>
+          </Toolbar>
+          <Preview themeObject={themeObject} children={mdx} />
         </Box>
       </Flex>
     </Fragment>
