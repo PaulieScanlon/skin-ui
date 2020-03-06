@@ -11,7 +11,7 @@ import { parseAddQuotes } from "../../utils/parseAddQuotes"
 import "codemirror/lib/codemirror"
 import "codemirror/lib/codemirror.css"
 import "codemirror/mode/javascript/javascript"
-import "codemirror/theme/nord.css"
+import "codemirror/theme/isotope.css"
 
 export const Editor = ({ themeObject, onChange }) => {
   const handleChange = event => {
@@ -39,7 +39,7 @@ export const Editor = ({ themeObject, onChange }) => {
           onChange={event => handleChange(event)}
           options={{
             mode: { name: "javascript", json: true },
-            theme: "nord",
+            theme: "isotope",
             lineNumbers: true,
           }}
         />

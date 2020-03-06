@@ -8,11 +8,12 @@ export default {
   borderWidths: [0, 1],
   borderStyles: ["solid"],
   colors: {
-    text: "#607D8B",
+    text: "#000000",
     background: "#FFFFFF",
-    primary: "#37474F",
+    primary: "#ff0099",
+    secondary: "#33ff00",
     surface: "#EEEEEE",
-    muted: "#9cb8c6",
+    muted: "#cc00ff",
     black: "#000000",
   },
   sizes: ["100%", "64px"],
@@ -24,6 +25,7 @@ export default {
   buttons: {
     // default
     primary: {
+      borderRadius: 0,
       cursor: "pointer",
       ":focus": {
         ...commonFocus,
@@ -36,6 +38,7 @@ export default {
       mb: "0px !important",
     },
     checkbox: {
+      borderRadius: 0,
       cursor: "pointer",
     },
   },

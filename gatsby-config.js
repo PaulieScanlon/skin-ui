@@ -1,7 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `...`,
-    description: `...`,
+    title: `nude-ui`,
+    description: `A theme-ui object editor`,
+    keywords: [`gatsby`, `gatsbyjs`, `theme-ui`],
+    siteUrl: `https://nude-ui.netlify.com`,
+    siteImage: `images/nude-ui-open-graph-image.jpg`,
+    lang: `en`,
     author: `@pauliescanlon`,
   },
   plugins: [
