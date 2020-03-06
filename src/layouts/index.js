@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { useState, Fragment } from "react"
 import PropTypes from "prop-types"
+
 import { jsx } from "theme-ui"
 import { Flex, Box, Label, Checkbox, Button } from "@theme-ui/components"
 import copy from "clipboard-copy"
 
-import { Logo } from "../components/Logo"
 import { Header } from "../components/Header"
 import { Toolbar } from "../components/Toolbar"
 import { Editor } from "../components/Editor"
@@ -37,9 +37,7 @@ const IndexPage = ({ children }) => {
 
   return (
     <Fragment>
-      <Header>
-        <Logo />
-      </Header>
+      <Header />
       <Flex sx={{ flexWrap: "wrap" }}>
         <Box
           sx={{

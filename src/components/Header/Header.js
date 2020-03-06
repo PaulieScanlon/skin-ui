@@ -1,9 +1,10 @@
 /** @jsx jsx */
-import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 import { ThemeWrapper } from "../ThemeWrapper"
+import { Link } from "gatsby"
+import { Logo } from "../Logo"
 
-export const Header = ({ children }) => (
+export const Header = () => (
   <ThemeWrapper>
     <header
       sx={{
@@ -19,15 +20,17 @@ export const Header = ({ children }) => (
         position: "fixed",
         width: 0,
         zIndex: 0,
+        a: {
+          ":focus": {
+            outline: "none",
+          },
+        },
       }}
     >
-      {children}
+      <Link to="/">
+        <Logo />
+      </Link>
     </header>
     <div sx={{ height: 1 }} />
   </ThemeWrapper>
 )
-
-Header.propTypes = {
-  /** React children */
-  children: PropTypes.any,
-}
