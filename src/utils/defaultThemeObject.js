@@ -20,8 +20,8 @@ export default {
     monospace: "Menlo, monospace",
   },
   fontSizes: [
-    "0.25",
     "0.75rem",
+    "1rem",
     "1.25rem",
     "1.5rem",
     "2.125rem",
@@ -55,7 +55,9 @@ export default {
   // styles
   styles: {
     root: {
+      fontSize: 1,
       fontFamily: "body",
+      lineHeight: "body",
     },
     p: {
       color: "text",
@@ -65,6 +67,9 @@ export default {
         color: "black",
         padding: 1,
       },
+    },
+    small: {
+      fontSize: 0,
     },
     a: {
       color: "secondary",

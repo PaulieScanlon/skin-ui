@@ -1,9 +1,13 @@
 const anchorScroll = location => {
-  const anchor = document.querySelectorAll(`a[href="${location.hash}"]`)[0]
+  // only get the anchors that aren't part of the nav. h5 is importatnt here, check the linked headings in mdx
+  const anchor = document.querySelectorAll(`h5 > a[href="${location.hash}"]`)[0]
+
   if (location && location.hash && anchor) {
-    const item = document.querySelectorAll(`a[href="${location.hash}"]`)[0]
+    // as above
+    const item = document.querySelectorAll(`h5 > a[href="${location.hash}"]`)[0]
       .offsetTop
-    const mainNavHeight = document.querySelector(`header`).offsetHeight
+
+    const mainNavHeight = document.querySelector(`header`).offsetHeight * 2.2
 
     setTimeout(() => {
       window.scrollTo({

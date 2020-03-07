@@ -18,16 +18,17 @@ export const Toolbar = ({ children }) => (
         backgroundColor: "background",
         color: "text",
         display: "flex",
-        height: 1,
+        height: 2,
         p: theme => `${theme.space[2]}px ${theme.space[3]}px`,
-        position: ["relative", "fixed"],
+        position: ["relative", "relative", "fixed"],
         width: "inherit",
-        zIndex: 0,
+
+        zIndex: theme => ["", "", theme.zIndices.toolbar],
       }}
     >
       {children}
     </div>
-    <div sx={{ height: ["0px", 1] }} />
+    <div sx={{ height: ["0px", "0px", 2] }} />
   </ThemeWrapper>
 )
 

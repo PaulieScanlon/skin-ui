@@ -29,7 +29,11 @@ export const Editor = ({ themeObject, onChange }) => {
         sx={{
           ["> .ReactCodeMirror"]: {
             ["> .CodeMirror"]: {
-              height: theme => `calc(100vh - ${theme.sizes[1]})`,
+              height: theme => [
+                "100%",
+                "100%",
+                `calc(100vh - ${theme.sizes[2]})`,
+              ],
             },
           },
         }}

@@ -1,24 +1,41 @@
-const commonFocus = {
+export const commonFocus = {
   outline: "none",
   transition: ".2s linear box-shadow",
-  boxShadow: theme => `0 0 0 2px ${theme.colors.muted}`,
+  boxShadow: theme => `0 0 0 2px ${theme.colors.accent}`,
+}
+
+export const navFocus = {
+  outline: "none",
+  textDecoration: "none",
+  "::before": {
+    content: `'·'`,
+    color: "primary",
+    mr: 2,
+  },
 }
 
 export default {
   borderWidths: [0, 1],
   borderStyles: ["solid"],
   colors: {
-    text: "#000000",
-    background: "#FFFFFF",
+    text: "#FFFFFF",
+    background: "#000000",
     primary: "#ff0099",
     secondary: "#33ff00",
-    surface: "#EEEEEE",
-    muted: "#cc00ff",
+    surface: "#212121",
+    accent: "#9d015e",
+    muted: "#666666",
     black: "#000000",
   },
-  sizes: ["100%", "64px"],
+  fontSizes: ["0.75rem", "1rem", "1.25rem"],
+  sizes: ["100%", "24px", "64px", "128px"],
   space: [0, 4, 8, 16, 24, 32, 48],
-  zIndices: [999, 998, 997],
+  zIndices: {
+    sidebar: 999,
+    lightbox: 998,
+    header: 997,
+    toolbar: 996,
+  },
   styles: {
     root: {},
   },
@@ -38,7 +55,6 @@ export default {
       mb: "0px !important",
     },
     checkbox: {
-      borderRadius: 0,
       cursor: "pointer",
     },
   },
