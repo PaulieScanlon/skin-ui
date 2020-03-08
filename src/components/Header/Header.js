@@ -6,7 +6,7 @@ import { MenuButton, IconButton, Link, Text } from "@theme-ui/components"
 import { ThemeWrapper } from "../ThemeWrapper"
 import { Logo } from "../Logo"
 import { commonFocus } from "../../theme"
-import { SvgIcon } from "../SvgIcon/svgIcon"
+import { SvgIcon } from "../SvgIcon"
 
 import * as packageJSON from "../../../package.json"
 
