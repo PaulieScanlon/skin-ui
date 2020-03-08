@@ -21,9 +21,11 @@ import { Preview } from "../components/Preview"
 import { Source } from "../components/Source"
 import { SvgIcon } from "../components/SvgIcon"
 import { ThemeWrapper } from "../components/ThemeWrapper"
+import { Seo } from "../components/Seo"
 
 import { commonFocus } from "../theme"
 import { stringifyReplaceQuotes } from "../utils/stringifyReplaceQuotes"
+import { useSiteMetadata } from "../data/useSiteMetadata"
 
 import defaultThemeObject from "../utils/defaultThemeObject"
 
@@ -33,6 +35,20 @@ const sidebarWidth = 230
 const editorCollapseOffset = 60
 
 const EditorLayout = ({ children }) => {
+  const {
+    site: {
+      siteMetadata: {
+        author,
+        title,
+        description,
+        url,
+        ogImage,
+        keywords,
+        lang,
+      },
+    },
+  } = useSiteMetadata()
+
   const [themeObject, setThemeObject] = useState(defaultThemeObject)
   const [isNavOpen, setIsNavOpen] = useState(false)
   const [isEditorCollapsed, setIsEditorCollapsed] = useState(false)
@@ -54,6 +70,17 @@ const EditorLayout = ({ children }) => {
 
   return (
     <Fragment>
+      <Seo
+        author={author}
+        title={title}
+        titleTemplate="Editor"
+        description={description}
+        url={url}
+        ogImage={ogImage}
+        path="/"
+        keywords={keywords}
+        lang={lang}
+      />
       <Sidebar sidebarWidth={sidebarWidth} mdx={mdx} isNavOpen={isNavOpen} />
       <Lightbox
         onClick={() => setIsNavOpen(!isNavOpen)}

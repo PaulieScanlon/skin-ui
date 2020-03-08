@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `nude-ui`,
+    title: `Nude-UI`,
     description: `A theme-ui object editor`,
     keywords: [`gatsby`, `gatsbyjs`, `theme-ui`],
     url: `https://nude-ui.netlify.com`,
@@ -10,10 +10,17 @@ module.exports = {
     author: `@pauliescanlon`,
   },
   plugins: [
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-google-analytics",
+      options: {
+        trackingId: "UA-76055934-9",
       },
     },
   ],

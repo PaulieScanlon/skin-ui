@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
-import { graphql } from "gatsby"
 import { MDXProvider } from "@mdx-js/react"
 import * as themeUiComponents from "@theme-ui/components"
 
 import { ThemeWrapper } from "../components/ThemeWrapper"
+import { Seo } from "../components/Seo"
 import { Header } from "../components/Header"
 
 import { useSiteMetadata } from "../data/useSiteMetadata"
@@ -13,12 +13,32 @@ import { useSiteMetadata } from "../data/useSiteMetadata"
 const IndexLayout = ({ children }) => {
   const {
     site: {
-      siteMetadata: { url, bgImage },
+      siteMetadata: {
+        author,
+        title,
+        description,
+        url,
+        ogImage,
+        keywords,
+        lang,
+        bgImage,
+      },
     },
   } = useSiteMetadata()
 
   return (
     <ThemeWrapper>
+      <Seo
+        author={author}
+        title={title}
+        titleTemplate="Home"
+        description={description}
+        url={url}
+        ogImage={ogImage}
+        path="/"
+        keywords={keywords}
+        lang={lang}
+      />
       <img
         alt={url}
         sx={{
