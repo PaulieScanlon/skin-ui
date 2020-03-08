@@ -55,12 +55,12 @@ export default {
     h1: {
       lineHeight: "heading",
       marginTop: 0,
-      marginBottom: 1,
+      marginBottom: 2,
     },
     p: {
       lineHeight: "body",
       marginTop: 0,
-      marginBottom: 1,
+      marginBottom: 4,
     },
   },
   buttons: {

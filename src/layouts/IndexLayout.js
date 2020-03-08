@@ -19,6 +19,18 @@ const IndexLayout = ({ children }) => {
 
   return (
     <ThemeWrapper>
+      <img
+        alt={url}
+        sx={{
+          backgroundImage: `url(${url}/${bgImage})`,
+          backgroundSize: "cover",
+          border: "none",
+          position: "fixed",
+          height: "100vh",
+          width: 0,
+          zIndex: -1,
+        }}
+      />
       <Header isNavOpen={true} />
       <main
         sx={{

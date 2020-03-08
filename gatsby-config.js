@@ -5,7 +5,7 @@ module.exports = {
     keywords: [`gatsby`, `gatsbyjs`, `theme-ui`],
     url: `https://nude-ui.netlify.com`,
     ogImage: `images/nude-ui-open-graph-image.jpg`,
-    bgImage: `nude-ui-background-image.jpg`,
+    bgImage: `images/nude-ui-background-image.jpg`,
     lang: `en`,
     author: `@pauliescanlon`,
   },
