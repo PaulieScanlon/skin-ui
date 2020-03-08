@@ -3,7 +3,25 @@ import IndexLayout from "../layouts/IndexLayout"
 export default IndexLayout
 
 
-<Container sx={{maxWidth: 900}}>
+<Container sx={{mt: 6}}>
+
+  <Flex sx={{ flexWrap: "wrap" }}>
+
+  <Box sx={{ width: ["100%", "100%", "50%", "50%"] }}>
+  
+  <Image sx={{ mb: [5, 5, 5, 0] }}src='https://www.nude-ui.com/images/nude-ui-open-graph-image.jpg' />
+  
+  </Box>
+
+  <Box
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      p: theme => `0px ${theme.space[5]}px`,
+      width: ["100%", "100%", "50%", "50%"],
+    }}
+  >
 
   # Nude-UI 
 
@@ -13,5 +31,11 @@ export default IndexLayout
   <Link href="/editor">
     <Button>Get started</Button>
   </Link>
+
+  </Box>
+
+
+
+  </Flex>
 
 </Container>

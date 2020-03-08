@@ -47,7 +47,7 @@ const IndexLayout = ({ children }) => {
           border: "none",
           position: "fixed",
           height: "100vh",
-          width: 0,
+          width: "max",
           zIndex: -1,
         }}
       />

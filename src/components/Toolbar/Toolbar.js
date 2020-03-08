@@ -18,7 +18,7 @@ export const Toolbar = ({ children }) => (
         backgroundColor: "background",
         color: "text",
         display: "flex",
-        height: 2,
+        height: "header",
         p: theme => `${theme.space[2]}px ${theme.space[3]}px`,
         position: ["relative", "relative", "relative", "fixed"],
         width: "inherit",
@@ -28,7 +28,7 @@ export const Toolbar = ({ children }) => (
     >
       {children}
     </div>
-    <div sx={{ height: ["0px", "0px", "0px", 2] }} />
+    <div sx={{ height: ["0px", "0px", "0px", "header"] }} />
   </ThemeWrapper>
 )
 

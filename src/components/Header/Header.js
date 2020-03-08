@@ -23,10 +23,10 @@ export const Header = ({ onClick, isNavOpen, sidebarWidth }) => (
         color: "text",
         display: "flex",
         justifyContent: "space-between",
-        height: 2,
+        height: "header",
         p: theme => `${theme.space[2]}px ${theme.space[4]}px`,
         position: "fixed",
-        width: 0,
+        width: "max",
         zIndex: theme => theme.zIndices.header,
         a: {
           ":focus": {
@@ -39,7 +39,7 @@ export const Header = ({ onClick, isNavOpen, sidebarWidth }) => (
         sx={{
           alignItems: "center",
           display: "flex",
-          height: 2,
+          height: "header",
         }}
       >
         {!isNavOpen && (
@@ -97,7 +97,7 @@ export const Header = ({ onClick, isNavOpen, sidebarWidth }) => (
         </Link>
       </div>
     </header>
-    <div sx={{ height: 2 }} />
+    <div sx={{ height: "header" }} />
   </ThemeWrapper>
 )
 

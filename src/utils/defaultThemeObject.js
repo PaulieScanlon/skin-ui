@@ -47,7 +47,9 @@ export default {
     `0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)`,
     `0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)`,
   ],
-  sizes: [],
+  sizes: {
+    container: 1140,
+  },
   space: [0, 4, 8, 16, 24, 32],
   zIndices: [],
   breakpoints: [],

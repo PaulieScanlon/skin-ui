@@ -33,7 +33,7 @@ export const Sidebar = ({ sidebarWidth, mdx, isNavOpen }) => {
           borderRightStyle: 0,
           borderRightColor: "darken",
           borderRightWidth: 1,
-          height: "100%",
+          height: "max",
           left: [
             `-${conditionalLeft}px`,
             `-${conditionalLeft}px`,
@@ -55,7 +55,7 @@ export const Sidebar = ({ sidebarWidth, mdx, isNavOpen }) => {
             backgroundColor: "black",
             boxSizing: "border-box",
             display: "flex",
-            height: 2,
+            height: "header",
             justifyContent: "flex-start",
             p: theme => `0px ${theme.space[4]}px`,
           }}
@@ -64,7 +64,7 @@ export const Sidebar = ({ sidebarWidth, mdx, isNavOpen }) => {
         </div>
         <nav
           sx={{
-            height: theme => `calc(100% - ${theme.sizes[2]})`,
+            height: theme => `calc(100% - ${theme.sizes.header}px)`,
             overflow: "auto",
             p: theme => `0px ${theme.space[4]}px`,
           }}

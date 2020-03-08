@@ -38,7 +38,11 @@ export default {
     heading: 1,
     body: 1.5,
   },
-  sizes: ["100%", "24px", "64px", "128px"],
+  sizes: {
+    max: "100%",
+    header: 64,
+    container: 1140,
+  },
   space: [0, 4, 8, 16, 24, 32, 48],
   zIndices: {
     sidebar: 999,
