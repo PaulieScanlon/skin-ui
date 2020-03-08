@@ -9,6 +9,7 @@ export const Logo = () => {
     <ThemeWrapper>
       <a
         href="/"
+        title="nude-ui.com"
         sx={{
           alignItems: "center",
           display: "flex",

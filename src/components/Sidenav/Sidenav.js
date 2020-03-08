@@ -39,6 +39,7 @@ export const Sidenav = ({ navItems }) => {
                       return (
                         <li key={index} sx={{ mb: 1 }}>
                           <a
+                            title={children}
                             href={href}
                             sx={{
                               ":focus": {
