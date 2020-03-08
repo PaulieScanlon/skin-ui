@@ -53,7 +53,6 @@ export default {
     },
   },
   buttons: {
-    // default
     primary: {
       borderRadius: 0,
       cursor: "pointer",

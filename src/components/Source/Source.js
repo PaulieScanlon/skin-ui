@@ -8,6 +8,7 @@ import { ThemeWrapper } from "../ThemeWrapper"
 import "codemirror/lib/codemirror"
 import "codemirror/lib/codemirror.css"
 import "codemirror/mode/markdown/markdown"
+import "codemirror/theme/xq-light.css"
 
 import mdxString from "!!raw-loader!../../pages/index.mdx"
 
@@ -32,6 +33,7 @@ export const Source = () => {
           value={mdxString}
           options={{
             mode: { name: "markdown", json: true },
+            theme: "xq-light",
           }}
         />
       </Box>
