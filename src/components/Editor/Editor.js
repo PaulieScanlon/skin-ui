@@ -8,10 +8,12 @@ import { ThemeWrapper } from "../ThemeWrapper"
 import { stringifyReplaceQuotes } from "../../utils/stringifyReplaceQuotes"
 import { parseAddQuotes } from "../../utils/parseAddQuotes"
 
-import "codemirror/lib/codemirror"
-import "codemirror/lib/codemirror.css"
-import "codemirror/mode/javascript/javascript"
-import "codemirror/theme/isotope.css"
+if (typeof window !== `undefined`) {
+  require("codemirror/lib/codemirror")
+  require("codemirror/lib/codemirror.css")
+  require("codemirror/mode/javascript/javascript")
+  require("codemirror/theme/isotope.css")
+}
 
 export const Editor = ({ themeObject, onChange }) => {
   const handleChange = event => {

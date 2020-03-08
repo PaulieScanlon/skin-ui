@@ -5,10 +5,12 @@ import CodeMirror from "react-codemirror"
 
 import { ThemeWrapper } from "../ThemeWrapper"
 
-import "codemirror/lib/codemirror"
-import "codemirror/lib/codemirror.css"
-import "codemirror/mode/markdown/markdown"
-import "codemirror/theme/xq-light.css"
+if (typeof window !== `undefined`) {
+  require("codemirror/lib/codemirror")
+  require("codemirror/lib/codemirror.css")
+  require("codemirror/mode/markdown/markdown")
+  require("codemirror/theme/xq-light.css")
+}
 
 import mdxString from "!!raw-loader!../../pages/index.mdx"
 
