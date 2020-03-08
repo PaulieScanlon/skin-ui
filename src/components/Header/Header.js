@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
-import { ThemeWrapper } from "../ThemeWrapper"
 import { MenuButton, IconButton, Link, Text } from "@theme-ui/components"
 
+import { ThemeWrapper } from "../ThemeWrapper"
 import { Logo } from "../Logo"
 import { commonFocus } from "../../theme"
 import { SvgIcon } from "../SvgIcon/svgIcon"
@@ -19,11 +19,12 @@ export const Header = ({ onClick, isNavOpen, sidebarWidth }) => (
         borderBottomColor: "darken",
         borderBottomWidth: 1,
         backgroundColor: "background",
+        boxSizing: "border-box",
         color: "text",
         display: "flex",
         justifyContent: "space-between",
         height: 2,
-        p: theme => `${theme.space[2]}px ${theme.space[3]}px`,
+        p: theme => `${theme.space[2]}px ${theme.space[4]}px`,
         position: "fixed",
         width: 0,
         zIndex: theme => theme.zIndices.header,
@@ -38,6 +39,7 @@ export const Header = ({ onClick, isNavOpen, sidebarWidth }) => (
         sx={{
           alignItems: "center",
           display: "flex",
+          height: 2,
         }}
       >
         {!isNavOpen && (
@@ -62,16 +64,18 @@ export const Header = ({ onClick, isNavOpen, sidebarWidth }) => (
           alignItems: "center",
           display: "flex",
           flexBasis: `calc(100% - ${sidebarWidth}px)`,
-          justifyContent: ["flex-end", "flex-end", "space-between"],
+          justifyContent: ["flex-end", "flex-end", "flex-end", "space-between"],
         }}
       >
-        <Text
-          sx={{
-            display: ["none", "none", "block", "block"],
-          }}
-        >
-          theme-iu: {packageJSON.dependencies["theme-ui"]}
-        </Text>
+        {sidebarWidth && (
+          <Text
+            sx={{
+              display: ["none", "none", "none", "block"],
+            }}
+          >
+            theme-iu: {packageJSON.dependencies["theme-ui"]}
+          </Text>
+        )}
         <Link
           href="https://github.com/PaulieScanlon/nude-ui"
           target="_blank"

@@ -52,6 +52,16 @@ export default {
       fontFamily: "body",
       lineHeight: "body",
     },
+    h1: {
+      lineHeight: "heading",
+      marginTop: 0,
+      marginBottom: 1,
+    },
+    p: {
+      lineHeight: "body",
+      marginTop: 0,
+      marginBottom: 1,
+    },
   },
   buttons: {
     primary: {

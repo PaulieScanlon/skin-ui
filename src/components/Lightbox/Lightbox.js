@@ -20,6 +20,7 @@ export const Lightbox = ({ onClick, isNavOpen }) => {
           display: [
             isNavOpen ? "flex" : "none",
             isNavOpen ? "flex" : "none",
+            isNavOpen ? "flex" : "none",
             "none",
           ],
           height: "100%",

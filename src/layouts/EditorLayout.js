@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { useState, Fragment } from "react"
 import PropTypes from "prop-types"
-
 import { jsx } from "theme-ui"
 import {
   Flex,
@@ -33,7 +32,7 @@ export const COMPONENTS = "components"
 const sidebarWidth = 230
 const editorCollapseOffset = 60
 
-const IndexPage = ({ children }) => {
+const EditorLayout = ({ children }) => {
   const [themeObject, setThemeObject] = useState(defaultThemeObject)
   const [isNavOpen, setIsNavOpen] = useState(false)
   const [isEditorCollapsed, setIsEditorCollapsed] = useState(false)
@@ -133,7 +132,6 @@ const IndexPage = ({ children }) => {
         <Box
           sx={{
             marginLeft: [0, 0, 0, sidebarWidth],
-            transition: ".3s ease-in-out margin-left",
             width: [
               "100%",
               "100%",
@@ -144,6 +142,7 @@ const IndexPage = ({ children }) => {
                   : "60%"
               } - ${sidebarWidth}px)`,
             ],
+            transition: ".3s ease-in-out margin-left",
             transition: ".3s ease-in-out width",
           }}
         >
@@ -201,9 +200,9 @@ const IndexPage = ({ children }) => {
   )
 }
 
-IndexPage.propTypes = {
+EditorLayout.propTypes = {
   /** React children passed from mdx */
   children: PropTypes.any,
 }
 
-export default IndexPage
+export default EditorLayout

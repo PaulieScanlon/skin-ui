@@ -49,11 +49,15 @@ export const Sidebar = ({ sidebarWidth, mdx, isNavOpen }) => {
         <div
           sx={{
             alignItems: "center",
+            borderBottomStyle: 0,
+            borderBottomColor: "black",
+            borderBottomWidth: 1,
             backgroundColor: "black",
+            boxSizing: "border-box",
             display: "flex",
             height: 2,
             justifyContent: "flex-start",
-            p: theme => `0px ${theme.space[5]}px`,
+            p: theme => `0px ${theme.space[4]}px`,
           }}
         >
           <Logo />
@@ -62,7 +66,7 @@ export const Sidebar = ({ sidebarWidth, mdx, isNavOpen }) => {
           sx={{
             height: theme => `calc(100% - ${theme.sizes[2]})`,
             overflow: "auto",
-            p: theme => `0px ${theme.space[5]}px`,
+            p: theme => `0px ${theme.space[4]}px`,
           }}
         >
           <Sidenav navItems={navItems} />

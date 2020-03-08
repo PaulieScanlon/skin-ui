@@ -12,7 +12,7 @@ if (typeof window !== `undefined`) {
   require("codemirror/theme/xq-light.css")
 }
 
-import mdxString from "!!raw-loader!../../pages/index.mdx"
+import mdxString from "!!raw-loader!../../pages/editor.mdx"
 
 export const Source = () => {
   return (
