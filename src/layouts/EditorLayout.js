@@ -19,7 +19,7 @@ import { Toolbar } from "../components/Toolbar"
 import { Editor } from "../components/Editor"
 import { Preview } from "../components/Preview"
 import { Source } from "../components/Source"
-import { SvgIcon } from "../components/SvgIcon/svgIcon"
+import { SvgIcon } from "../components/SvgIcon"
 import { ThemeWrapper } from "../components/ThemeWrapper"
 
 import { commonFocus } from "../theme"
