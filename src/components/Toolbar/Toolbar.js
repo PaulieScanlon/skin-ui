@@ -20,7 +20,7 @@ export const Toolbar = ({ children }) => (
         display: "flex",
         height: 2,
         p: theme => `${theme.space[2]}px ${theme.space[3]}px`,
-        position: ["relative", "relative", "fixed"],
+        position: ["relative", "relative", "relative", "fixed"],
         width: "inherit",
 
         zIndex: theme => ["", "", theme.zIndices.toolbar],
@@ -28,7 +28,7 @@ export const Toolbar = ({ children }) => (
     >
       {children}
     </div>
-    <div sx={{ height: ["0px", "0px", 2] }} />
+    <div sx={{ height: ["0px", "0px", "0px", 2] }} />
   </ThemeWrapper>
 )
 

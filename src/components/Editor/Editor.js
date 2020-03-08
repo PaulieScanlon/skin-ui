@@ -32,7 +32,8 @@ export const Editor = ({ themeObject, onChange }) => {
               height: theme => [
                 "100%",
                 "100%",
-                `calc(100vh - ${theme.sizes[2]})`,
+                "100%",
+                `calc(100vh - ${theme.sizes[3]})`,
               ],
             },
           },

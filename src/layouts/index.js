@@ -19,7 +19,9 @@ import { Lightbox } from "../components/Lightbox"
 import { Toolbar } from "../components/Toolbar"
 import { Editor } from "../components/Editor"
 import { Preview } from "../components/Preview"
+import { Source } from "../components/Source"
 import { SvgIcon } from "../components/SvgIcon/svgIcon"
+import { ThemeWrapper } from "../components/ThemeWrapper"
 
 import { commonFocus } from "../theme"
 import { stringifyReplaceQuotes } from "../utils/stringifyReplaceQuotes"
@@ -35,6 +37,7 @@ const IndexPage = ({ children }) => {
   const [themeObject, setThemeObject] = useState(defaultThemeObject)
   const [isNavOpen, setIsNavOpen] = useState(false)
   const [isEditorCollapsed, setIsEditorCollapsed] = useState(false)
+  const [isSourceVisible, setIsSourceVisible] = useState(false)
 
   const [filterChildren, setFilterChildren] = useState({
     [MARKDOWN]: true,
@@ -65,8 +68,9 @@ const IndexPage = ({ children }) => {
       <Flex sx={{ flexWrap: "wrap" }}>
         <Box
           sx={{
-            position: ["relative", "relative", "fixed"],
+            position: ["relative", "relative", "relative", "fixed"],
             left: [
+              "0%",
               "0%",
               "0%",
               `${
@@ -75,7 +79,7 @@ const IndexPage = ({ children }) => {
                   : "60%"
               }`,
             ],
-            width: ["100%", "100%", "40%"],
+            width: ["100%", "100%", "100%", "40%"],
             transition: ".3s ease-in-out left",
           }}
         >
@@ -84,7 +88,12 @@ const IndexPage = ({ children }) => {
               sx={{
                 alignItems: "center",
                 flex: "1 1 auto",
-                justifyContent: ["flex-end", "flex-end", "space-between"],
+                justifyContent: [
+                  "flex-end",
+                  "flex-end",
+                  "flex-end",
+                  "space-between",
+                ],
               }}
             >
               <IconButton
@@ -93,7 +102,7 @@ const IndexPage = ({ children }) => {
                   borderRadius: 0,
                   color: "text",
                   cursor: "pointer",
-                  display: ["none", "none", "block"],
+                  display: ["none", "none", "none", "block"],
                   ":focus": {
                     ...commonFocus,
                   },
@@ -123,9 +132,10 @@ const IndexPage = ({ children }) => {
         </Box>
         <Box
           sx={{
-            marginLeft: [0, 0, sidebarWidth],
+            marginLeft: [0, 0, 0, sidebarWidth],
             transition: ".3s ease-in-out margin-left",
             width: [
+              "100%",
               "100%",
               "100%",
               `calc(${
@@ -138,30 +148,53 @@ const IndexPage = ({ children }) => {
           }}
         >
           <Toolbar>
-            <Flex>
-              <Label mb={3} mr={2}>
-                <div>
-                  <Checkbox
-                    name={MARKDOWN}
-                    defaultChecked
-                    onChange={event => handleChange(event)}
-                  />
-                </div>
-                Markdown
-              </Label>
-              <Label mb={3}>
-                <div>
-                  <Checkbox
-                    name={COMPONENTS}
-                    defaultChecked
-                    onChange={event => handleChange(event)}
-                  />
-                </div>
-                Components
-              </Label>
+            <Flex
+              sx={{
+                flex: "1 1 auto",
+                justifyContent: "space-between",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                }}
+              >
+                <Label mb={3} mr={2}>
+                  <div>
+                    <Checkbox
+                      name={MARKDOWN}
+                      defaultChecked
+                      onChange={event => handleChange(event)}
+                    />
+                  </div>
+                  Markdown
+                </Label>
+                <Label mb={3}>
+                  <div>
+                    <Checkbox
+                      name={COMPONENTS}
+                      defaultChecked
+                      onChange={event => handleChange(event)}
+                    />
+                  </div>
+                  Components
+                </Label>
+              </Box>
+              <Box>
+                <ThemeWrapper>
+                  <Button
+                    variant="ghost"
+                    onClick={() => setIsSourceVisible(!isSourceVisible)}
+                  >{`${isSourceVisible ? "Out" : "Src"}`}</Button>
+                </ThemeWrapper>
+              </Box>
             </Flex>
           </Toolbar>
-          <Preview themeObject={themeObject} children={mdx} />
+          {isSourceVisible ? (
+            <Source />
+          ) : (
+            <Preview themeObject={themeObject} children={mdx} />
+          )}
         </Box>
       </Flex>
     </Fragment>

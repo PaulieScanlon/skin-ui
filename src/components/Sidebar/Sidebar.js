@@ -34,7 +34,12 @@ export const Sidebar = ({ sidebarWidth, mdx, isNavOpen }) => {
           borderRightColor: "surface",
           borderRightWidth: 1,
           height: "100%",
-          left: [`-${conditionalLeft}px`, `-${conditionalLeft}px`, "0px"],
+          left: [
+            `-${conditionalLeft}px`,
+            `-${conditionalLeft}px`,
+            `-${conditionalLeft}px`,
+            "0px",
+          ],
           position: "fixed",
           transition: ".3s ease-in-out left",
           width: sidebarWidth,

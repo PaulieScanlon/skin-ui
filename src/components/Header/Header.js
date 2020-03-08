@@ -47,7 +47,7 @@ export const Header = ({ onClick, isNavOpen, sidebarWidth }) => (
               borderRadius: 0,
               color: "text",
               cursor: "pointer",
-              display: ["block", "block", "none"],
+              display: ["block", "block", "block", "none"],
               mr: 3,
               ":focus": {
                 ...commonFocus,
@@ -62,12 +62,12 @@ export const Header = ({ onClick, isNavOpen, sidebarWidth }) => (
           alignItems: "center",
           display: "flex",
           flexBasis: `calc(100% - ${sidebarWidth}px)`,
-          justifyContent: ["flex-end", "space-between", "space-between"],
+          justifyContent: ["flex-end", "flex-end", "space-between"],
         }}
       >
         <Text
           sx={{
-            display: ["none", "block", "block"],
+            display: ["none", "none", "block", "block"],
           }}
         >
           theme-iu: {packageJSON.dependencies["theme-ui"]}

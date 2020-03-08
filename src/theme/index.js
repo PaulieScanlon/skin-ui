@@ -27,7 +27,16 @@ export default {
     muted: "#666666",
     black: "#000000",
   },
+  fonts: {
+    body: "system-ui, sans-serif",
+    heading: "system-ui, sans-serif",
+    monospace: "Menlo, monospace",
+  },
   fontSizes: ["0.75rem", "1rem", "1.25rem"],
+  lineHeights: {
+    heading: 1,
+    body: 1.5,
+  },
   sizes: ["100%", "24px", "64px", "128px"],
   space: [0, 4, 8, 16, 24, 32, 48],
   zIndices: {
@@ -37,13 +46,25 @@ export default {
     toolbar: 996,
   },
   styles: {
-    root: {},
+    root: {
+      fontSize: 1,
+      fontFamily: "body",
+      lineHeight: "body",
+    },
   },
   buttons: {
     // default
     primary: {
       borderRadius: 0,
       cursor: "pointer",
+      ":focus": {
+        ...commonFocus,
+      },
+    },
+    ghost: {
+      borderRadius: 0,
+      cursor: "pointer",
+      backgroundColor: "surface",
       ":focus": {
         ...commonFocus,
       },
