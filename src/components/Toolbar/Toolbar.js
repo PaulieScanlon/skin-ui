@@ -10,10 +10,10 @@ export const Toolbar = ({ children }) => (
       sx={{
         alignItems: "center",
         borderBottomStyle: 0,
-        borderBottomColor: "surface",
+        borderBottomColor: "darken",
         borderBottomWidth: 1,
         borderRightStyle: 0,
-        borderRightColor: "surface",
+        borderRightColor: "darken",
         borderRightWidth: 1,
         backgroundColor: "background",
         color: "text",

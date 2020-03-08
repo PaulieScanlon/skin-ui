@@ -4,15 +4,15 @@ export default {
   borderStyles: ["solid", "dashed"],
   borderWidths: [1, 4],
   colors: {
-    text: "#000000",
+    text: "#24292E",
     background: "#FFFFFF",
-    primary: "#0077CC",
-    secondary: "#3300CC",
+    primary: "#34D058",
+    secondary: "#0366D6",
     muted: "#F6F6F6",
-    highlight: "#B3D7FF",
+    highlight: "#E1E4E8",
     gray: "#808080",
-    accent: "#FFFFFF",
-    darken: "#FFFFFF",
+    accent: "#F1F8FF",
+    darken: "#24292E",
   },
   fonts: {
     body: "system-ui, sans-serif",
@@ -75,7 +75,7 @@ export default {
       color: "secondary",
     },
     h1: {
-      color: "primary",
+      color: "text",
       fontSize: 7,
       fontWeight: "heading",
       lineHeight: "heading",
@@ -86,7 +86,7 @@ export default {
       },
     },
     h2: {
-      color: "primary",
+      color: "text",
       fontSize: 6,
       fontWeight: "heading",
       lineHeight: "heading",
@@ -97,7 +97,7 @@ export default {
       },
     },
     h3: {
-      color: "primary",
+      color: "text",
       fontSize: 5,
       fontWeight: "heading",
       lineHeight: "heading",
@@ -108,7 +108,7 @@ export default {
       },
     },
     h4: {
-      color: "primary",
+      color: "text",
       fontSize: 4,
       fontWeight: "heading",
       lineHeight: "heading",
@@ -119,7 +119,7 @@ export default {
       },
     },
     h5: {
-      color: "primary",
+      color: "text",
       fontSize: 3,
       fontWeight: "heading",
       lineHeight: "heading",
@@ -130,7 +130,7 @@ export default {
       },
     },
     h6: {
-      color: "primary",
+      color: "text",
       fontSize: 2,
       fontWeight: "heading",
       lineHeight: "heading",
@@ -233,9 +233,7 @@ export default {
   },
 
   // variant groups
-  box: {
-    color: "text",
-  },
+  box: {},
   flex: {},
   grids: {},
   buttons: {

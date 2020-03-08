@@ -22,10 +22,11 @@ export default {
     background: "#000000",
     primary: "#ff0099",
     secondary: "#33ff00",
-    surface: "#212121",
-    accent: "#9d015e",
     muted: "#666666",
-    black: "#000000",
+    highlight: "#67013E",
+    gray: "#808080",
+    accent: "#CC00FF",
+    darken: "#212121",
   },
   fonts: {
     body: "system-ui, sans-serif",
@@ -63,7 +64,7 @@ export default {
     ghost: {
       borderRadius: 0,
       cursor: "pointer",
-      backgroundColor: "surface",
+      backgroundColor: "darken",
       ":focus": {
         ...commonFocus,
       },

@@ -31,7 +31,7 @@ export const Sidebar = ({ sidebarWidth, mdx, isNavOpen }) => {
         sx={{
           backgroundColor: "background",
           borderRightStyle: 0,
-          borderRightColor: "surface",
+          borderRightColor: "darken",
           borderRightWidth: 1,
           height: "100%",
           left: [

@@ -38,6 +38,7 @@ export const Lightbox = ({ onClick, isNavOpen }) => {
           onClick={onClick}
           sx={{
             borderRadius: 0,
+            backgroundColor: "black",
             color: "text",
             cursor: "pointer",
             ":focus": {

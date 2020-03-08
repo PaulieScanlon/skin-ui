@@ -16,7 +16,7 @@ export const Header = ({ onClick, isNavOpen, sidebarWidth }) => (
       sx={{
         alignItems: "center",
         borderBottomStyle: 0,
-        borderBottomColor: "surface",
+        borderBottomColor: "darken",
         borderBottomWidth: 1,
         backgroundColor: "background",
         color: "text",
