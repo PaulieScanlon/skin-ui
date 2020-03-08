@@ -41,6 +41,7 @@ export default {
   sizes: {
     max: "100%",
     header: 64,
+    doubleHeader: 128,
     container: 1140,
   },
   space: [0, 4, 8, 16, 24, 32, 48],

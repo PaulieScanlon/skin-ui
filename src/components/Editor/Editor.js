@@ -35,7 +35,7 @@ export const Editor = ({ themeObject, onChange }) => {
                 "100%",
                 "100%",
                 "100%",
-                `calc(100vh - ${theme.sizes[3]})`,
+                `calc(100vh - ${theme.sizes.doubleHeader}px)`,
               ],
             },
           },
