@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Nude-UI`,
-    description: `A theme-ui live preview and code editor`,
+    description: `A Theme UI Live Preview and Code Editor`,
     keywords: [`gatsby`, `gatsbyjs`, `theme-ui`],
     url: `https://nude-ui.netlify.com`,
     ogImage: `images/nude-ui-open-graph-image.jpg`,
