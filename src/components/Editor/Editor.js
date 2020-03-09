@@ -38,7 +38,7 @@ export const Editor = ({ themeObject, onChange, isEditorHeightCollapsed }) => {
           ],
           ["> .ReactCodeMirror"]: {
             textarea: {
-              display: "none",
+              opacity: 0,
             },
             ["> .CodeMirror"]: {
               height: theme => [
