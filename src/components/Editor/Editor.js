@@ -14,8 +14,6 @@ if (typeof window !== `undefined`) {
 }
 
 export const Editor = ({ themeObject, onChange, isEditorHeightCollapsed }) => {
-  console.log("isEditorHeightCollapsed: ", isEditorHeightCollapsed)
-
   const conditionalHeight = isEditorHeightCollapsed ? "50vh" : "100%"
 
   const handleChange = event => {
