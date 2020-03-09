@@ -20,6 +20,7 @@ export const Sidenav = memo(({ navItems }) => {
                 <div
                   sx={{
                     color: "text",
+                    fontFamily: "body",
                     fontSize: 2,
                     fontWeight: "bold",
                     textTransform: "capitalize",
@@ -29,6 +30,7 @@ export const Sidenav = memo(({ navItems }) => {
                 </div>
                 <ul
                   sx={{
+                    fontFamily: "body",
                     listStyle: "none",
                     margin: 0,
                     p: theme => `0px ${theme.space[2]}px`,

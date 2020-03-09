@@ -108,6 +108,9 @@ export default {
       },
     },
   },
+  text: {
+    fontFamily: "body",
+  },
   layout: {
     container: {
       p: [3, 4, 6, 6],
@@ -115,6 +118,7 @@ export default {
   },
   forms: {
     label: {
+      fontFamily: "body",
       fontSize: [0, 0, 0, 1],
       alignItems: "center",
       mb: "0px !important",

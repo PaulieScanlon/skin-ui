@@ -23,6 +23,7 @@ export const Header = memo(({ onClick, isNavOpen, sidebarWidth }) => (
         boxSizing: "border-box",
         color: "text",
         display: "flex",
+        fontFamily: "body",
         justifyContent: "space-between",
         height: "header",
         p: theme => `${theme.space[2]}px ${theme.space[3]}px`,
