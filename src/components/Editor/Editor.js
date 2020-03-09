@@ -30,6 +30,12 @@ export const Editor = ({ themeObject, onChange, isEditorHeightCollapsed }) => {
       <Box
         sx={{
           backgroundColor: "black",
+          height: theme => [
+            `${conditionalHeight}`,
+            `${conditionalHeight}`,
+            `${conditionalHeight}`,
+            `calc(100vh - ${theme.sizes.doubleHeader}px)`,
+          ],
           ["> .ReactCodeMirror"]: {
             textarea: {
               display: "none",
