@@ -7,9 +7,16 @@ export default IndexLayout
 
   <Flex sx={{ flexWrap: "wrap" }}>
 
-  <Box sx={{ width: ["100%", "100%", "50%", "50%"] }}>
+  <Box 
+    sx={{ 
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      width: ["100%", "100%", "50%", "50%"] 
+    }}
+  >
   
-  <Image sx={{ mb: [5, 5, 5, 0] }}src='https://www.nude-ui.com/images/nude-ui-open-graph-image.jpg' />
+  <Image sx={{ mb: [5, 5, 0, 0] }}src='https://www.nude-ui.com/images/nude-ui-open-graph-image.jpg' />
   
   </Box>
 
@@ -18,7 +25,7 @@ export default IndexLayout
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      p: theme => `0px ${theme.space[5]}px`,
+      p: theme => ["0px", "0px", `0px ${theme.space[5]}px`, `0px ${theme.space[5]}px`],
       width: ["100%", "100%", "50%", "50%"],
     }}
   >

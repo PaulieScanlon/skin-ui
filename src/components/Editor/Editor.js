@@ -15,7 +15,11 @@ if (typeof window !== `undefined`) {
   require("codemirror/theme/isotope.css")
 }
 
-export const Editor = ({ themeObject, onChange }) => {
+export const Editor = ({ themeObject, onChange, isEditorHeightCollapsed }) => {
+  console.log("isEditorHeightCollapsed: ", isEditorHeightCollapsed)
+
+  const conditionalHeight = isEditorHeightCollapsed ? "50vh" : "100%"
+
   const handleChange = event => {
     try {
       return onChange(parseAddQuotes(event))
@@ -32,9 +36,9 @@ export const Editor = ({ themeObject, onChange }) => {
           ["> .ReactCodeMirror"]: {
             ["> .CodeMirror"]: {
               height: theme => [
-                "100%",
-                "100%",
-                "100%",
+                `${conditionalHeight}`,
+                `${conditionalHeight}`,
+                `${conditionalHeight}`,
                 `calc(100vh - ${theme.sizes.doubleHeader}px)`,
               ],
             },
@@ -48,6 +52,7 @@ export const Editor = ({ themeObject, onChange }) => {
             mode: { name: "javascript", json: true },
             theme: "isotope",
             lineNumbers: true,
+            viewportMargin: Infinity,
           }}
         />
       </Box>
@@ -56,6 +61,8 @@ export const Editor = ({ themeObject, onChange }) => {
 }
 
 Editor.propTypes = {
+  /** Parent state for isEditorHeightCollapsed */
+  isEditorHeightCollapsed: PropTypes.bool,
   /** The themeObject stored in state */
   themeObject: PropTypes.object.isRequired,
   /** CodeMirror onChange , passes event */

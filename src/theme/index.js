@@ -53,7 +53,8 @@ export default {
   },
   styles: {
     root: {
-      fontSize: 1,
+      //fontSize: "62.5%",
+      wordBreak: "break-all",
       fontFamily: "body",
       lineHeight: "body",
     },
@@ -72,6 +73,7 @@ export default {
     primary: {
       borderRadius: 0,
       cursor: "pointer",
+      fontSize: [0, 0, 0, 1],
       ":focus": {
         ...commonFocus,
       },
@@ -79,6 +81,7 @@ export default {
     ghost: {
       borderRadius: 0,
       cursor: "pointer",
+      fontSize: [0, 0, 0, 1],
       backgroundColor: "darken",
       ":focus": {
         ...commonFocus,
@@ -87,6 +90,7 @@ export default {
   },
   forms: {
     label: {
+      fontSize: [0, 0, 0, 1],
       alignItems: "center",
       mb: "0px !important",
     },

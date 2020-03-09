@@ -21,11 +21,12 @@ export const Source = () => {
         sx={{
           ["> .ReactCodeMirror"]: {
             ["> .CodeMirror"]: {
+              fontSize: 1,
               height: theme => [
                 "100%",
                 "100%",
                 "100%",
-                `calc(100vh - ${theme.sizes[2]})`,
+                `calc(100vh - ${theme.sizes.doubleHeader}px)`,
               ],
             },
           },
@@ -36,6 +37,7 @@ export const Source = () => {
           options={{
             mode: { name: "markdown", json: true },
             theme: "xq-light",
+            readOnly: true,
           }}
         />
       </Box>

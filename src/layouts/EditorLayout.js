@@ -51,7 +51,8 @@ const EditorLayout = ({ children }) => {
 
   const [themeObject, setThemeObject] = useState(defaultThemeObject)
   const [isNavOpen, setIsNavOpen] = useState(false)
-  const [isEditorCollapsed, setIsEditorCollapsed] = useState(false)
+  const [isEditorWidthCollapsed, setIsEditorWidthCollapsed] = useState(false)
+  const [isEditorHeightCollapsed, setIsEditorHeightCollapsed] = useState(true)
   const [isSourceVisible, setIsSourceVisible] = useState(false)
 
   const [filterChildren, setFilterChildren] = useState({
@@ -100,7 +101,7 @@ const EditorLayout = ({ children }) => {
               "0%",
               "0%",
               `${
-                isEditorCollapsed
+                isEditorWidthCollapsed
                   ? `calc(100% - ${editorCollapseOffset}px)`
                   : "60%"
               }`,
@@ -114,16 +115,40 @@ const EditorLayout = ({ children }) => {
               sx={{
                 alignItems: "center",
                 flex: "1 1 auto",
-                justifyContent: [
-                  "flex-end",
-                  "flex-end",
-                  "flex-end",
-                  "space-between",
-                ],
+                justifyContent: "space-between",
               }}
             >
               <IconButton
-                onClick={() => setIsEditorCollapsed(!isEditorCollapsed)}
+                onClick={() =>
+                  setIsEditorHeightCollapsed(!isEditorHeightCollapsed)
+                }
+                sx={{
+                  borderRadius: 0,
+                  color: "text",
+                  cursor: "pointer",
+                  display: ["block", "block", "block", "none"],
+                  transform: "rotate(-90deg)",
+                  ":focus": {
+                    ...commonFocus,
+                  },
+                }}
+                aria-label={`${
+                  isEditorHeightCollapsed ? "Expand" : "Collapse"
+                } Editor`}
+              >
+                <SvgIcon
+                  iconPath={
+                    isEditorHeightCollapsed
+                      ? "M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"
+                      : "M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6h2v12h-2z"
+                  }
+                />
+              </IconButton>
+
+              <IconButton
+                onClick={() =>
+                  setIsEditorWidthCollapsed(!isEditorWidthCollapsed)
+                }
                 sx={{
                   borderRadius: 0,
                   color: "text",
@@ -134,12 +159,12 @@ const EditorLayout = ({ children }) => {
                   },
                 }}
                 aria-label={`${
-                  isEditorCollapsed ? "Expand" : "Collapse"
+                  isEditorWidthCollapsed ? "Expand" : "Collapse"
                 } Editor`}
               >
                 <SvgIcon
                   iconPath={
-                    isEditorCollapsed
+                    isEditorWidthCollapsed
                       ? "M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"
                       : "M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6h2v12h-2z"
                   }
@@ -152,6 +177,7 @@ const EditorLayout = ({ children }) => {
             </Flex>
           </Toolbar>
           <Editor
+            isEditorHeightCollapsed={isEditorHeightCollapsed}
             themeObject={themeObject}
             onChange={event => setThemeObject(event)}
           />
@@ -164,7 +190,7 @@ const EditorLayout = ({ children }) => {
               "100%",
               "100%",
               `calc(${
-                isEditorCollapsed
+                isEditorWidthCollapsed
                   ? `calc(100% - ${editorCollapseOffset}px)`
                   : "60%"
               } - ${sidebarWidth}px)`,
