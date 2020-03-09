@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 import { MDXProvider } from "@mdx-js/react"
 import * as themeUiComponents from "@theme-ui/components"
+import { Text, Link } from "@theme-ui/components"
 
 import { ThemeWrapper } from "../components/ThemeWrapper"
 import { Seo } from "../components/Seo"
@@ -51,10 +52,28 @@ const IndexLayout = ({ children }) => {
           zIndex: -1,
         }}
       />
+
       <Header isNavOpen={true} />
       <main>
         <MDXProvider components={themeUiComponents}>{children}</MDXProvider>
       </main>
+      <Text
+        sx={{
+          color: "muted",
+          display: "flex",
+          fontSize: 0,
+          p: 3,
+        }}
+      >
+        Photo Credit:{" "}
+        <Link
+          sx={{ color: "muted", ml: 2 }}
+          href="https://unsplash.com/@dynamicwang"
+          target="_blank"
+        >
+          @dynamicwang
+        </Link>
+      </Text>
     </ThemeWrapper>
   )
 }
