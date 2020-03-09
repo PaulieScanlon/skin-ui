@@ -36,8 +36,8 @@ if (typeof window !== `undefined`) {
 
 export const MARKDOWN = "markdown"
 export const COMPONENTS = "components"
-const sidebarWidth = 230
-const editorCollapseOffset = 60
+const sidebarWidth = 210
+const editorCollapseWidth = 60
 
 const EditorLayout = ({ children }) => {
   const {
@@ -107,7 +107,7 @@ const EditorLayout = ({ children }) => {
               "0%",
               `${
                 isEditorWidthCollapsed
-                  ? `calc(100% - ${editorCollapseOffset}px)`
+                  ? `calc(100% - ${editorCollapseWidth}px)`
                   : "60%"
               }`,
             ],
@@ -196,7 +196,7 @@ const EditorLayout = ({ children }) => {
               "100%",
               `calc(${
                 isEditorWidthCollapsed
-                  ? `calc(100% - ${editorCollapseOffset}px)`
+                  ? `calc(100% - ${editorCollapseWidth}px)`
                   : "60%"
               } - ${sidebarWidth}px)`,
             ],
