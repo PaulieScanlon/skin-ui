@@ -4,6 +4,6 @@
 
 # nude-ui
 
-A Theme UI preview and code editor.
+A Theme UI Live Preview and Code Editor.
 
 [https://www.nude-ui.com/](https://www.nude-ui.com/)
