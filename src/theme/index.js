@@ -93,6 +93,7 @@ export default {
       fontSize: [0, 0, 0, 1],
       alignItems: "center",
       mb: "0px !important",
+      wordBreak: "initial",
     },
     checkbox: {
       cursor: "pointer",

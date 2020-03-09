@@ -57,7 +57,7 @@ export const Sidebar = ({ sidebarWidth, mdx, isNavOpen }) => {
             display: "flex",
             height: "header",
             justifyContent: "flex-start",
-            p: theme => `0px ${theme.space[4]}px`,
+            p: theme => `0px ${theme.space[3]}px`,
           }}
         >
           <Logo />

@@ -24,7 +24,7 @@ export const Header = ({ onClick, isNavOpen, sidebarWidth }) => (
         display: "flex",
         justifyContent: "space-between",
         height: "header",
-        p: theme => `${theme.space[2]}px ${theme.space[4]}px`,
+        p: theme => `${theme.space[2]}px ${theme.space[3]}px`,
         position: "fixed",
         width: "max",
         zIndex: theme => theme.zIndices.header,

@@ -54,7 +54,7 @@ const IndexLayout = ({ children }) => {
       <Header isNavOpen={true} />
       <main
         sx={{
-          p: theme => `${theme.space[2]}px ${theme.space[4]}px`,
+          p: [3, 4, 6, 6],
         }}
       >
         <MDXProvider components={themeUiComponents}>{children}</MDXProvider>

@@ -19,10 +19,9 @@ export const Toolbar = ({ children }) => (
         color: "text",
         display: "flex",
         height: "header",
-        p: theme => `${theme.space[2]}px ${theme.space[4]}px`,
+        p: theme => `${theme.space[2]}px ${theme.space[3]}px`,
         position: ["relative", "relative", "relative", "fixed"],
         width: "inherit",
-
         zIndex: theme => ["", "", theme.zIndices.toolbar],
       }}
     >
