@@ -24,7 +24,7 @@ export default {
     secondary: "#33ff00",
     muted: "#666666",
     highlight: "#67013E",
-    gray: "#808080",
+    gray: "#272727",
     accent: "#CC00FF",
     darken: "#212121",
   },
@@ -77,6 +77,15 @@ export default {
         ...commonFocus,
       },
     },
+    secondary: {
+      borderRadius: 0,
+      cursor: "pointer",
+      color: "gray",
+      backgroundColor: "secondary",
+      ":focus": {
+        ...commonFocus,
+      },
+    },
     ghost: {
       borderRadius: 0,
       cursor: "pointer",
@@ -84,6 +93,11 @@ export default {
       ":focus": {
         ...commonFocus,
       },
+    },
+  },
+  layout: {
+    container: {
+      p: [3, 4, 6, 6],
     },
   },
   forms: {

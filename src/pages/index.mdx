@@ -1,9 +1,10 @@
+import { transparentize } from '@theme-ui/color'
 import IndexLayout from "../layouts/IndexLayout"
 
 export default IndexLayout
 
-
-<Container>
+<Box>
+  <Container>
 
   <Flex sx={{ flexWrap: "wrap" }}>
 
@@ -27,22 +28,66 @@ export default IndexLayout
       justifyContent: "center",
       p: theme => ["0px", "0px", `0px ${theme.space[5]}px`, `0px ${theme.space[5]}px`],
       width: ["100%", "100%", "50%", "50%"],
+      wordBreak: 'initial'
     }}
   >
 
-  # Nude-UI 
+  # Nude UI 
 
-  A Theme UI preview and code editor
-
+  A <Link href='https://theme-ui.com/' target="_blank" sx={{color: "text"}}>Theme UI</Link> <Text sx={{ color: "primary", display: 'inline' }}>Live Preview</Text> and <Text sx={{ color: "accent", display: 'inline' }}>Code Editor</Text>
 
   <Link href="/editor">
-    <Button>Get started</Button>
+    <Button variant='secondary'>Get started</Button>
   </Link>
 
   </Box>
 
+  </Flex>
 
+  </Container>
+</Box>
+
+<Box sx={{ backgroundColor: transparentize('gray', 0.3) }}>
+
+  <Container>
+
+  <Flex sx={{ flexWrap: "wrap" }}>
+
+  <Box 
+    sx={{ 
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      width: ["100%", "100%", "50%", "50%"],
+      wordBreak: 'initial' 
+    }}
+  >
+
+  ## Live Preview 
+
+  Nude UI provides a starting point to help you style markdown and theme-ui/components.
+
+  Changes to the Theme UI style object update live, and once you're done copy the theme into your project. 
+  
+  </Box>
+
+  <Box
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      p: theme => ["0px", "0px", `0px ${theme.space[5]}px`, `0px ${theme.space[5]}px`],
+      width: ["100%", "100%", "50%", "50%"],
+    }}
+  >
+
+  <Image sx={{ mb: [5, 5, 0, 0] }}src='https://www.nude-ui.com/images/nude-ui-editor-image.jpg' />
+
+  </Box>
 
   </Flex>
 
-</Container>
+
+  </Container>
+
+</Box>
