@@ -29,7 +29,11 @@ export const Editor = ({ themeObject, onChange, isEditorHeightCollapsed }) => {
     <ThemeWrapper>
       <Box
         sx={{
+          backgroundColor: "black",
           ["> .ReactCodeMirror"]: {
+            textarea: {
+              display: "none",
+            },
             ["> .CodeMirror"]: {
               height: theme => [
                 `${conditionalHeight}`,
