@@ -6,8 +6,6 @@ import CodeMirror from "react-codemirror"
 import { ThemeWrapper } from "../ThemeWrapper"
 
 if (typeof window !== `undefined`) {
-  require("codemirror/lib/codemirror")
-  require("codemirror/lib/codemirror.css")
   require("codemirror/mode/markdown/markdown")
   require("codemirror/theme/xq-light.css")
 }

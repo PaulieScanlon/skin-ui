@@ -9,8 +9,6 @@ import { stringifyReplaceQuotes } from "../../utils/stringifyReplaceQuotes"
 import { parseAddQuotes } from "../../utils/parseAddQuotes"
 
 if (typeof window !== `undefined`) {
-  require("codemirror/lib/codemirror")
-  require("codemirror/lib/codemirror.css")
   require("codemirror/mode/javascript/javascript")
   require("codemirror/theme/isotope.css")
 }

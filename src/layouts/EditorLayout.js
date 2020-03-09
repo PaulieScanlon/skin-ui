@@ -29,6 +29,11 @@ import { useSiteMetadata } from "../data/useSiteMetadata"
 
 import defaultThemeObject from "../utils/defaultThemeObject"
 
+if (typeof window !== `undefined`) {
+  require("codemirror/lib/codemirror")
+  require("codemirror/lib/codemirror.css")
+}
+
 export const MARKDOWN = "markdown"
 export const COMPONENTS = "components"
 const sidebarWidth = 230
