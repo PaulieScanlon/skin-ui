@@ -37,6 +37,10 @@ export const Seo = ({
       ]}
     >
       <html lang={lang} />
+      <meta
+        name="viewport"
+        content="width=device-width, user-scalable=no"
+      ></meta>
       <meta name="description" content={description} />
       <meta name="image" content={`${url}/${ogImage}`} />
       <meta name="image:alt" content={description} />
