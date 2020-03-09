@@ -73,7 +73,6 @@ export default {
     primary: {
       borderRadius: 0,
       cursor: "pointer",
-      fontSize: [0, 0, 0, 1],
       ":focus": {
         ...commonFocus,
       },
@@ -81,7 +80,6 @@ export default {
     ghost: {
       borderRadius: 0,
       cursor: "pointer",
-      fontSize: [0, 0, 0, 1],
       backgroundColor: "darken",
       ":focus": {
         ...commonFocus,
