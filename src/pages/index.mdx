@@ -17,7 +17,7 @@ export default IndexLayout
     }}
   >
   
-  <Image sx={{ mb: [5, 5, 0, 0] }}src='https://www.nude-ui.com/images/nude-ui-open-graph-image.jpg' />
+  <Image sx={{ mb: [5, 5, 0, 0] }} alt='Nude UI' src='https://www.nude-ui.com/images/nude-ui-open-graph-image.jpg' />
   
   </Box>
 
@@ -34,7 +34,7 @@ export default IndexLayout
 
   # Nude UI 
 
-  A <Link href='https://theme-ui.com/' target="_blank" sx={{color: "text"}}>Theme UI</Link> <Text sx={{ color: "primary", display: 'inline' }}>Live Preview</Text> and <Text sx={{ color: "accent", display: 'inline' }}>Code Editor</Text>
+  A <Link href='https://theme-ui.com/' target="_blank" sx={{color: "text"}}>Theme UI</Link> <Text sx={{ color: "primary", display: 'inline' }}>Live Preview</Text> and <Text sx={{ color: "accent", display: 'inline' }}>Code Editor.</Text>
 
   <Link href="/editor">
     <Button variant='secondary'>Get started</Button>
@@ -58,6 +58,7 @@ export default IndexLayout
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
+      p: theme => ["0px", "0px", `0px ${theme.space[5]}px`, `0px ${theme.space[5]}px`],
       width: ["100%", "100%", "50%", "50%"],
       wordBreak: 'initial' 
     }}
@@ -67,7 +68,45 @@ export default IndexLayout
 
   Nude UI provides a starting point to help you style markdown and theme-ui/components.
 
-  Changes to the Theme UI style object update live, and once you're done copy the theme into your project. 
+  Changes to the Theme UI style object update live, and once you're done <Text sx={{ display: "inline", color: "primary" }} >Copy</Text> the theme object into your own project. 
+  
+  </Box>
+
+  <Box
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      width: ["100%", "100%", "50%", "50%"],
+    }}
+  >
+
+  <Image sx={{ mb: [5, 5, 0, 0] }} alt='Nude UI Editor' src='https://www.nude-ui.com/images/nude-ui-editor-image.jpg' />
+
+  </Box>
+
+  </Flex>
+
+
+  </Container>
+
+</Box>
+
+<Box sx={{ backgroundColor: transparentize('black', 0.8) }} >
+  <Container>
+
+  <Flex sx={{ flexWrap: "wrap" }}>
+
+  <Box 
+    sx={{ 
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      width: ["100%", "100%", "50%", "50%"] 
+    }}
+  >
+  
+  <Image sx={{ mb: [5, 5, 0, 0] }} alt='Nude UI Src' src='https://www.nude-ui.com/images/nude-ui-source-image.jpg' />
   
   </Box>
 
@@ -78,16 +117,17 @@ export default IndexLayout
       justifyContent: "center",
       p: theme => ["0px", "0px", `0px ${theme.space[5]}px`, `0px ${theme.space[5]}px`],
       width: ["100%", "100%", "50%", "50%"],
+      wordBreak: 'initial'
     }}
   >
 
-  <Image sx={{ mb: [5, 5, 0, 0] }}src='https://www.nude-ui.com/images/nude-ui-editor-image.jpg' />
+  ## Src
+
+  You can also see the markdown `.md` and Theme UI components `.mdx` source and <Text sx={{ display: "inline", color: "primary" }} >Copy</Text> that into your own project too.
 
   </Box>
 
   </Flex>
 
-
   </Container>
-
 </Box>

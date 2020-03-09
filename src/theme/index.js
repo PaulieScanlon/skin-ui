@@ -67,6 +67,12 @@ export default {
       lineHeight: "body",
       marginTop: 0,
       marginBottom: 4,
+      code: {
+        fontSize: "1.1rem",
+        p: 1,
+        // color: "gray",
+        backgroundColor: "gray",
+      },
     },
   },
   buttons: {
