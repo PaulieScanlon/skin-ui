@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import { memo } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 import { MenuButton, IconButton, Link, Text } from "@theme-ui/components"
@@ -9,9 +10,8 @@ import { commonFocus } from "../../theme"
 import { SvgIcon } from "../SvgIcon"
 
 import * as packageJSON from "../../../package.json"
-import { Fragment } from "react"
 
-export const Header = ({ onClick, isNavOpen, sidebarWidth }) => (
+export const Header = memo(({ onClick, isNavOpen, sidebarWidth }) => (
   <ThemeWrapper>
     <header
       sx={{
@@ -153,7 +153,7 @@ export const Header = ({ onClick, isNavOpen, sidebarWidth }) => (
     </header>
     <div sx={{ height: "header" }} />
   </ThemeWrapper>
-)
+))
 
 Header.propTypes = {
   /** MenuButton onClick */

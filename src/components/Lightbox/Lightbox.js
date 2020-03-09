@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import { memo } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 import { transparentize } from "@theme-ui/color"
@@ -7,7 +8,7 @@ import { Close } from "@theme-ui/components"
 import { ThemeWrapper } from "../ThemeWrapper"
 import { commonFocus } from "../../theme"
 
-export const Lightbox = ({ onClick, isNavOpen }) => {
+export const Lightbox = memo(({ onClick, isNavOpen }) => {
   return (
     <ThemeWrapper>
       <div
@@ -50,7 +51,7 @@ export const Lightbox = ({ onClick, isNavOpen }) => {
       </div>
     </ThemeWrapper>
   )
-}
+})
 
 Lightbox.propTypes = {
   /** CloseButton onClick */

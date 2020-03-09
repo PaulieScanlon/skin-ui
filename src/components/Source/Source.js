@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import { memo } from "react"
 import { jsx } from "theme-ui"
 import { Box } from "@theme-ui/components"
 import CodeMirror from "react-codemirror"
@@ -12,7 +13,7 @@ if (typeof window !== `undefined`) {
 
 import mdxString from "!!raw-loader!../../pages/editor.mdx"
 
-export const Source = () => {
+export const Source = memo(() => {
   return (
     <ThemeWrapper>
       <Box
@@ -41,4 +42,4 @@ export const Source = () => {
       </Box>
     </ThemeWrapper>
   )
-}
+})

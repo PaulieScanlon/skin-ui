@@ -1,10 +1,11 @@
 /** @jsx jsx */
+import { memo } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 
 import { ThemeWrapper } from "../ThemeWrapper"
 
-export const Toolbar = ({ children }) => (
+export const Toolbar = memo(({ children }) => (
   <ThemeWrapper>
     <div
       sx={{
@@ -29,7 +30,7 @@ export const Toolbar = ({ children }) => (
     </div>
     <div sx={{ height: ["0px", "0px", "0px", "header"] }} />
   </ThemeWrapper>
-)
+))
 
 Toolbar.propTypes = {
   /** React children */

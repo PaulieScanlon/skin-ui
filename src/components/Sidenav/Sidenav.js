@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import { memo } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 import { Location } from "@reach/router"
@@ -6,7 +7,7 @@ import { Location } from "@reach/router"
 import { ThemeWrapper } from "../ThemeWrapper"
 import { navFocus } from "../../theme"
 
-export const Sidenav = ({ navItems }) => {
+export const Sidenav = memo(({ navItems }) => {
   return (
     <ThemeWrapper>
       <Location>
@@ -65,7 +66,8 @@ export const Sidenav = ({ navItems }) => {
       </Location>
     </ThemeWrapper>
   )
-}
+})
+
 Sidenav.propTypes = {
   /** navItems extracted from mdx */
   navItems: PropTypes.any,

@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
-
 import { ThemeWrapper } from "../ThemeWrapper"
 import { commonFocus } from "../../theme"
 

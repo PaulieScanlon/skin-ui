@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import { memo } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 
@@ -6,7 +7,7 @@ import { ThemeWrapper } from "../ThemeWrapper"
 import { Logo } from "../Logo"
 import { Sidenav } from "../Sidenav"
 
-export const Sidebar = ({ sidebarWidth, mdx, isNavOpen }) => {
+export const Sidebar = memo(({ sidebarWidth, mdx, isNavOpen }) => {
   const navItems = mdx.reduce((items, item) => {
     const { className } = item.props
     items[className] = items[className] = []
@@ -74,7 +75,7 @@ export const Sidebar = ({ sidebarWidth, mdx, isNavOpen }) => {
       </div>
     </ThemeWrapper>
   )
-}
+})
 
 Sidebar.propTypes = {
   /** Width of the Sidebar */
