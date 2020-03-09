@@ -64,6 +64,7 @@ export default {
       wordBreak: "break-all",
       fontFamily: "body",
       lineHeight: "body",
+      minWidth: 320,
     },
     h1: {
       lineHeight: "heading",
