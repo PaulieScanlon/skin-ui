@@ -59,7 +59,7 @@ const EditorLayout = ({ children }) => {
         description={description}
         url={url}
         ogImage={ogImage}
-        path="/"
+        path="/editor"
         keywords={keywords}
         lang={lang}
       />
