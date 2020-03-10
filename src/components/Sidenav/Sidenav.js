@@ -3,6 +3,7 @@ import { memo } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 import { Location } from "@reach/router"
+import { NavLink } from "@theme-ui/components"
 
 import { ThemeWrapper } from "../ThemeWrapper"
 import { navFocus } from "../../theme"
@@ -49,7 +50,7 @@ export const Sidenav = memo(({ navItems }) => {
                             mb: 1,
                           }}
                         >
-                          <a
+                          <NavLink
                             title={children}
                             href={href}
                             sx={{
@@ -63,7 +64,22 @@ export const Sidenav = memo(({ navItems }) => {
                             }}
                           >
                             {children}
-                          </a>
+                          </NavLink>
+                          {/* <a
+                            title={children}
+                            href={href}
+                            sx={{
+                              ":focus": {
+                                ...navFocus,
+                              },
+                              textDecoration: `${
+                                href === hash ? "underline" : "none"
+                              }`,
+                              color: `${href === hash ? "primary" : "muted"}`,
+                            }}
+                          >
+                            {children}
+                          </a> */}
                         </li>
                       )
                     })

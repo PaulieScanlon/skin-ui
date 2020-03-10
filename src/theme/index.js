@@ -6,12 +6,12 @@ export const commonFocus = {
 
 export const navFocus = {
   outline: "none",
-  textDecoration: "none",
-  "::before": {
-    content: `'·'`,
-    color: "primary",
-    mr: 2,
-  },
+  textDecoration: "underline",
+  // "::before": {
+  //   content: `'·'`,
+  //   color: "primary",
+  //   mr: 2,
+  // },
 }
 
 export default {
@@ -34,6 +34,9 @@ export default {
     monospace: "Menlo, monospace",
   },
   fontSizes: ["0.75rem", "1rem", "1.25rem"],
+  fontWeights: {
+    body: 400,
+  },
   lineHeights: {
     heading: 1,
     body: 1.5,
@@ -118,6 +121,12 @@ export default {
   },
   text: {
     fontFamily: "body",
+  },
+  links: {
+    nav: {
+      color: "primary",
+      fontWeight: "body",
+    },
   },
   layout: {
     container: {
