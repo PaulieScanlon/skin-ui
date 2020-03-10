@@ -36,7 +36,11 @@ export const Lightbox = memo(({ onClick, isNavOpen }) => {
           },
         }}
       >
-        <Close title="Close Lightbox" onClick={onClick} />
+        <Close
+          title="Close Lightbox"
+          onClick={onClick}
+          sx={{ background: "black" }}
+        />
       </div>
     </ThemeWrapper>
   )

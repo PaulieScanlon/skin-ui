@@ -2,32 +2,22 @@
 import { useState, Fragment } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
-import { Flex, Box, Label, Checkbox, Button } from "@theme-ui/components"
-import copy from "clipboard-copy"
+import { Flex, Box } from "@theme-ui/components"
 
+import { ThemeWrapper } from "../components/ThemeWrapper"
 import { Header } from "../components/Header"
 import { Sidebar } from "../components/Sidebar"
 import { Lightbox } from "../components/Lightbox"
-import { Toolbar } from "../components/Toolbar"
 import { Editor } from "../components/Editor"
+import { EditorToolbar } from "../components/EditorToolbar"
 import { Preview } from "../components/Preview"
 import { Source } from "../components/Source"
-import { IconButton } from "../components/IconButton"
-import { ThemeWrapper } from "../components/ThemeWrapper"
 import { Seo } from "../components/Seo"
 
-import {
-  EXPAND_ICON,
-  COLLAPSE_ICON,
-  ENTER_FULLSCREEN_ICON,
-  EXIT_FULLSCREEN_ICON,
-  PREVIEW_ICON,
-  SOURCE_ICON,
-} from "../utils/iconPaths"
-import { stringifyReplaceQuotes } from "../utils/stringifyReplaceQuotes"
 import { useSiteMetadata } from "../data/useSiteMetadata"
 
 import defaultThemeObject from "../utils/defaultThemeObject"
+import { PreviewToolbar } from "../components/PreviewToolbar"
 
 if (typeof window !== `undefined`) {
   require("codemirror/lib/codemirror")
@@ -70,7 +60,7 @@ const EditorLayout = ({ children }) => {
 
   const conditionalWidth = isFullScreen ? "100%" : "60%"
 
-  const handleChange = event => {
+  const handleCheckboxChange = event => {
     setFilterChildren({
       ...filterChildren,
       [event.target.name]: !filterChildren[event.target.name],
@@ -123,63 +113,17 @@ const EditorLayout = ({ children }) => {
                     : "60%"
                 }`,
               ],
-              width: ["100%", "100%", "100%", "40%"],
               transition: ".3s ease-in-out left",
+              width: ["100%", "100%", "100%", "40%"],
             }}
           >
-            <Toolbar>
-              <Flex
-                sx={{
-                  alignItems: "center",
-                  flex: "1 1 auto",
-                  justifyContent: "space-between",
-                }}
-              >
-                <IconButton
-                  title={`${
-                    isEditorHeightCollapsed ? "Expand" : "Collapse"
-                  } Editor`}
-                  onClick={() =>
-                    setIsEditorHeightCollapsed(!isEditorHeightCollapsed)
-                  }
-                  sx={{
-                    display: ["block", "block", "block", "none"],
-                    transform: "rotate(-90deg)",
-                  }}
-                  aria-label={`${
-                    isEditorHeightCollapsed ? "Expand" : "Collapse"
-                  } Editor`}
-                  iconPath={
-                    isEditorHeightCollapsed ? COLLAPSE_ICON : EXPAND_ICON
-                  }
-                />
-
-                <IconButton
-                  title={`${
-                    isEditorWidthCollapsed ? "Expand" : "Collapse"
-                  } Editor`}
-                  onClick={() =>
-                    setIsEditorWidthCollapsed(!isEditorWidthCollapsed)
-                  }
-                  sx={{
-                    display: ["none", "none", "none", "block"],
-                  }}
-                  aria-label={`${
-                    isEditorWidthCollapsed ? "Expand" : "Collapse"
-                  } Editor`}
-                  iconPath={
-                    isEditorWidthCollapsed ? COLLAPSE_ICON : EXPAND_ICON
-                  }
-                />
-
-                <Button
-                  title="Copy Theme UI object"
-                  onClick={() => copy(stringifyReplaceQuotes(themeObject))}
-                >
-                  Copy
-                </Button>
-              </Flex>
-            </Toolbar>
+            <EditorToolbar
+              isEditorHeightCollapsed={isEditorHeightCollapsed}
+              setIsEditorHeightCollapsed={setIsEditorHeightCollapsed}
+              isEditorWidthCollapsed={isEditorWidthCollapsed}
+              setIsEditorWidthCollapsed={setIsEditorWidthCollapsed}
+              themeObject={themeObject}
+            />
             <Editor
               isEditorHeightCollapsed={isEditorHeightCollapsed}
               themeObject={themeObject}
@@ -190,6 +134,8 @@ const EditorLayout = ({ children }) => {
         <Box
           sx={{
             marginLeft: [0, 0, 0, isFullScreen ? 0 : sidebarWidth],
+            transition: ".3s ease-in-out margin-left",
+            transition: ".3s ease-in-out width",
             width: [
               "100%",
               "100%",
@@ -200,77 +146,15 @@ const EditorLayout = ({ children }) => {
                   : conditionalWidth
               } - ${isFullScreen ? 0 : sidebarWidth}px)`,
             ],
-            transition: ".3s ease-in-out margin-left",
-            transition: ".3s ease-in-out width",
           }}
         >
-          <Toolbar>
-            <Flex
-              sx={{
-                flex: "1 1 auto",
-                justifyContent: "space-between",
-              }}
-            >
-              <Box
-                sx={{
-                  alignItems: "center",
-                  display: "flex",
-                }}
-              >
-                <Label title="Toggle Markdown visibility" mb={3} mr={2}>
-                  <div>
-                    <Checkbox
-                      name={MARKDOWN}
-                      defaultChecked
-                      onChange={event => handleChange(event)}
-                    />
-                  </div>
-                  Markdown
-                </Label>
-                <Label title="Toggle Theme UI components visibility" mb={3}>
-                  <div>
-                    <Checkbox
-                      name={COMPONENTS}
-                      defaultChecked
-                      onChange={event => handleChange(event)}
-                    />
-                  </div>
-                  Components
-                </Label>
-              </Box>
-              <Box
-                sx={{
-                  alignItems: "center",
-                  display: "flex",
-                }}
-              >
-                <ThemeWrapper>
-                  <IconButton
-                    title={`${isFullScreen ? "Exit" : "Enter"} Fullscreen`}
-                    onClick={() => setIsFullScreen(!isFullScreen)}
-                    sx={{
-                      mr: 1,
-                    }}
-                    aria-label={`${isFullScreen ? "Exit" : "Enter"} Fullscreen`}
-                    iconPath={
-                      isFullScreen
-                        ? EXIT_FULLSCREEN_ICON
-                        : ENTER_FULLSCREEN_ICON
-                    }
-                  />
-
-                  <IconButton
-                    title={`View ${isSourceVisible ? "Preview" : "Source"}`}
-                    onClick={() => setIsSourceVisible(!isSourceVisible)}
-                    aria-label={`View ${
-                      isSourceVisible ? "Preview" : "Source"
-                    }`}
-                    iconPath={isSourceVisible ? SOURCE_ICON : PREVIEW_ICON}
-                  />
-                </ThemeWrapper>
-              </Box>
-            </Flex>
-          </Toolbar>
+          <PreviewToolbar
+            handleCheckboxChange={handleCheckboxChange}
+            isFullScreen={isFullScreen}
+            setIsFullScreen={setIsFullScreen}
+            isSourceVisible={isSourceVisible}
+            setIsSourceVisible={setIsSourceVisible}
+          />
           {isSourceVisible ? (
             <Source isFullScreen={isFullScreen} />
           ) : (
