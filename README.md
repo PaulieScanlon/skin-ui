@@ -1,12 +1,12 @@
-<a href="https://www.nude-ui.com/" target="_blank">
-<img src="https://www.nude-ui.com/images/nude-ui-open-graph-image.jpg" alt="nude-ui main image" />
+<a href="https://www.skin-ui.com/" target="_blank">
+<img src="https://www.skin-ui.com/images/skin-ui-open-graph-image.jpg" alt="skin-ui main image" />
 </a>
 
-# Nude UI
+# Skin UI
 
 A Theme UI Live Preview and Code Editor.
 
-[https://www.nude-ui.com/](https://www.nude-ui.com/)
+[https://www.skin-ui.com/](https://www.skin-ui.com/)
 
 If you have any feedback i'd love to hear from you: [@pauliescanlon](https://twitter.com/PaulieScanlon)
 

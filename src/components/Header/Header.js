@@ -131,7 +131,7 @@ export const Header = memo(({ onClick, isNavOpen, sidebarWidth }) => (
             </IconButton>
           </Link>
           <Link
-            href="https://github.com/PaulieScanlon/nude-ui"
+            href="https://github.com/PaulieScanlon/skin-ui"
             target="_blank"
             title="GitHub Repo"
           >

@@ -1,5 +1,5 @@
 {
-  "name": "nude-ui",
+  "name": "skin-ui",
   "private": true,
   "description": "...",
   "version": "0.1.0",
@@ -40,9 +40,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/PaulieScanlon/nude-ui"
+    "url": "https://github.com/PaulieScanlon/skin-ui"
   },
   "bugs": {
-    "url": "https://github.com/PaulieScanlon/nude-ui/issues"
+    "url": "https://github.com/PaulieScanlon/skin-ui/issues"
   }
 }
