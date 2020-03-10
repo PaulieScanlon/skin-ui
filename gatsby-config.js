@@ -8,6 +8,10 @@ module.exports = {
     bgImage: `images/skin-ui-background-image.jpg`,
     lang: `en`,
     author: `@pauliescanlon`,
+    config: {
+      sidebarWidth: 210,
+      editorCollapseWidth: 60,
+    },
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

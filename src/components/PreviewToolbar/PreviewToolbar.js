@@ -14,7 +14,7 @@ import {
   SOURCE_ICON,
 } from "../../utils/iconPaths"
 
-import { MARKDOWN, COMPONENTS } from "../../layouts/EditorLayout"
+import { MARKDOWN, COMPONENTS } from "../../utils/const"
 
 export const PreviewToolbar = ({
   handleCheckboxChange,

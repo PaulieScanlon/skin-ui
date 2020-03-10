@@ -14,6 +14,10 @@ export const useSiteMetadata = () => {
             bgImage
             lang
             author
+            config {
+              sidebarWidth
+              editorCollapseWidth
+            }
           }
         }
       }
