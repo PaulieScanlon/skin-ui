@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import PropTypes from "prop-types"
 import { memo } from "react"
 import { jsx } from "theme-ui"
 import { Box } from "@theme-ui/components"
@@ -13,19 +14,28 @@ if (typeof window !== `undefined`) {
 
 import mdxString from "!!raw-loader!../../pages/editor.mdx"
 
-export const Source = memo(() => {
+export const Source = memo(({ isFullScreen }) => {
   return (
     <ThemeWrapper>
       <Box
         sx={{
+          height: theme => [
+            "100%",
+            "100%",
+            "100%",
+            `calc(100vh - ${isFullScreen ? 0 : theme.sizes.doubleHeader}px)`,
+          ],
           ["> .ReactCodeMirror"]: {
+            height: "100%",
             ["> .CodeMirror"]: {
               fontSize: 1,
               height: theme => [
                 "100%",
                 "100%",
                 "100%",
-                `calc(100vh - ${theme.sizes.doubleHeader}px)`,
+                `calc(100vh - ${
+                  isFullScreen ? 0 : theme.sizes.doubleHeader
+                }px)`,
               ],
             },
           },
@@ -43,3 +53,8 @@ export const Source = memo(() => {
     </ThemeWrapper>
   )
 })
+
+Source.propTypes = {
+  /** parent state isFullScreen */
+  isFullScreen: PropTypes.bool,
+}

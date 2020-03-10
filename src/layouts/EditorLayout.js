@@ -272,7 +272,7 @@ const EditorLayout = ({ children }) => {
             </Flex>
           </Toolbar>
           {isSourceVisible ? (
-            <Source />
+            <Source isFullScreen={isFullScreen} />
           ) : (
             <Preview themeObject={themeObject} children={mdx} />
           )}
