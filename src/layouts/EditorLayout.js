@@ -196,7 +196,7 @@ const EditorLayout = ({ children }) => {
               "100%",
               `calc(${
                 isEditorWidthCollapsed
-                  ? `calc(100% - ${editorCollapseWidth}px)`
+                  ? `calc(100% - ${isFullScreen ? 0 : editorCollapseWidth}px)`
                   : conditionalWidth
               } - ${isFullScreen ? 0 : sidebarWidth}px)`,
             ],

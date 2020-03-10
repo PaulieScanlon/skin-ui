@@ -38,10 +38,6 @@ export const Sidenav = memo(({ navItems, isElementVisible }) => {
                   {navItems[heading].map(item => {
                     return item.map((nav, index) => {
                       const { children, href } = nav.props.children.props
-                      if (href === hash) {
-                        console.log("href: ", href, "| hash: ", hash)
-                        console.log("")
-                      }
                       return (
                         <li
                           key={index}
