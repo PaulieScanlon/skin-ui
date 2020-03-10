@@ -4,16 +4,6 @@ export const commonFocus = {
   boxShadow: theme => `0 0 0 2px ${theme.colors.accent}`,
 }
 
-export const navFocus = {
-  outline: "none",
-  textDecoration: "underline",
-  // "::before": {
-  //   content: `'·'`,
-  //   color: "primary",
-  //   mr: 2,
-  // },
-}
-
 export default {
   borderWidths: [0, 1],
   borderStyles: ["solid"],
@@ -124,8 +114,19 @@ export default {
   },
   links: {
     nav: {
-      color: "primary",
+      color: "muted",
       fontWeight: "body",
+      transition: ".2s linear color",
+      ":hover": {
+        color: "text",
+      },
+      ":focus": {
+        outline: "none",
+        color: "text",
+      },
+      ":active": {
+        color: "text",
+      },
     },
   },
   layout: {

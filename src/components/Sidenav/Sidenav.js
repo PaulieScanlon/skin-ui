@@ -3,7 +3,7 @@ import { memo } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 import { Location } from "@reach/router"
-import { NavLink } from "@theme-ui/components"
+import { NavLink, Text } from "@theme-ui/components"
 
 import { ThemeWrapper } from "../ThemeWrapper"
 import { navFocus } from "../../theme"
@@ -50,36 +50,20 @@ export const Sidenav = memo(({ navItems }) => {
                             mb: 1,
                           }}
                         >
-                          <NavLink
-                            title={children}
-                            href={href}
-                            sx={{
-                              ":focus": {
-                                ...navFocus,
-                              },
-                              textDecoration: `${
-                                href === hash ? "underline" : "none"
-                              }`,
-                              color: `${href === hash ? "primary" : "muted"}`,
-                            }}
-                          >
-                            {children}
-                          </NavLink>
-                          {/* <a
-                            title={children}
-                            href={href}
-                            sx={{
-                              ":focus": {
-                                ...navFocus,
-                              },
-                              textDecoration: `${
-                                href === hash ? "underline" : "none"
-                              }`,
-                              color: `${href === hash ? "primary" : "muted"}`,
-                            }}
-                          >
-                            {children}
-                          </a> */}
+                          {href == hash ? (
+                            <Text
+                              sx={{
+                                color: "primary",
+                                textDecoration: "underline",
+                              }}
+                            >
+                              {children}
+                            </Text>
+                          ) : (
+                            <NavLink title={children} href={href}>
+                              {children}
+                            </NavLink>
+                          )}
                         </li>
                       )
                     })
