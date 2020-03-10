@@ -118,6 +118,30 @@ export default {
         ...commonFocus,
       },
     },
+    close: {
+      borderRadius: 0,
+      color: "text",
+      cursor: "pointer",
+      ":focus": {
+        ...commonFocus,
+      },
+    },
+    icon: {
+      borderRadius: 0,
+      color: "text",
+      cursor: "pointer",
+      ":focus": {
+        ...commonFocus,
+      },
+    },
+    menu: {
+      borderRadius: 0,
+      color: "text",
+      cursor: "pointer",
+      ":focus": {
+        ...commonFocus,
+      },
+    },
   },
   text: {
     fontFamily: "body",

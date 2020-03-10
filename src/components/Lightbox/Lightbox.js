@@ -36,18 +36,7 @@ export const Lightbox = memo(({ onClick, isNavOpen }) => {
           },
         }}
       >
-        <Close
-          onClick={onClick}
-          sx={{
-            borderRadius: 0,
-            backgroundColor: "black",
-            color: "text",
-            cursor: "pointer",
-            ":focus": {
-              ...commonFocus,
-            },
-          }}
-        />
+        <Close title="Close Lightbox" onClick={onClick} />
       </div>
     </ThemeWrapper>
   )

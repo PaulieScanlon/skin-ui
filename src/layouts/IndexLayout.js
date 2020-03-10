@@ -67,6 +67,7 @@ const IndexLayout = ({ children }) => {
       >
         Photo Credit:{" "}
         <Link
+          title="@dynamicwang"
           sx={{ color: "muted", ml: 2 }}
           href="https://unsplash.com/@dynamicwang"
           target="_blank"
