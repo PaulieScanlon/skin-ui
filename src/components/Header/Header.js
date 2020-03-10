@@ -103,27 +103,21 @@ export const Header = memo(({ onClick, isNavOpen, sidebarWidth }) => (
           <Link
             href="https://twitter.com/PaulieScanlon"
             target="_blank"
-            title="@pauliescanlon"
+            title="https://twitter.com/PaulieScanlon"
+            aria-label="Twitter Username"
             sx={{
               mr: 1,
             }}
           >
-            <IconButton
-              tabIndex={-1}
-              aria-label="Twitter Username"
-              iconPath={TWITTER_ICON}
-            />
+            <IconButton tabIndex={-1} iconPath={TWITTER_ICON} />
           </Link>
           <Link
             href="https://github.com/PaulieScanlon/skin-ui"
             target="_blank"
-            title="GitHub Repo"
+            title="https://github.com/PaulieScanlon/skin-ui"
+            aria-label="GitHub Repo"
           >
-            <IconButton
-              tabIndex={-1}
-              aria-label="GitHub Repo"
-              iconPath={GITHUB_ICON}
-            />
+            <IconButton tabIndex={-1} iconPath={GITHUB_ICON} />
           </Link>
         </div>
       </div>

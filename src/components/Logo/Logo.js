@@ -4,13 +4,21 @@ import { jsx } from "theme-ui"
 import { ThemeWrapper } from "../ThemeWrapper"
 import { commonFocus } from "../../theme"
 
+import { useSiteMetadata } from "../../data/useSiteMetadata"
+
 export const Logo = ({ isElementVisible }) => {
+  const {
+    site: {
+      siteMetadata: { url },
+    },
+  } = useSiteMetadata()
+
   return (
     <ThemeWrapper>
       <a
         tabIndex={isElementVisible ? 0 : -1}
         href="/"
-        title="skin-ui.com"
+        title={url}
         sx={{
           alignItems: "center",
           display: "flex",
