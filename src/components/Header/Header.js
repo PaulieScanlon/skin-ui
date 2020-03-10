@@ -109,16 +109,16 @@ export const Header = memo(({ onClick, isNavOpen, sidebarWidth }) => (
             href="https://twitter.com/PaulieScanlon"
             target="_blank"
             title="@pauliescanlon"
+            sx={{
+              mr: 1,
+            }}
           >
             <IconButton
+              tabIndex={-1}
               sx={{
                 borderRadius: 0,
                 color: "text",
                 cursor: "pointer",
-                mr: 1,
-                ":focus": {
-                  ...commonFocus,
-                },
               }}
               aria-label="Twitter"
             >
@@ -137,13 +137,11 @@ export const Header = memo(({ onClick, isNavOpen, sidebarWidth }) => (
             title="GitHub Repo"
           >
             <IconButton
+              tabIndex={-1}
               sx={{
                 borderRadius: 0,
                 color: "text",
                 cursor: "pointer",
-                ":focus": {
-                  ...commonFocus,
-                },
               }}
               aria-label="GitHub Repo"
             >

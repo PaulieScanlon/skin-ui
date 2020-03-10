@@ -79,6 +79,16 @@ export default {
         backgroundColor: "gray",
       },
     },
+    a: {
+      ":focus": {
+        ...commonFocus,
+      },
+      button: {
+        ":focus": {
+          outline: "none",
+        },
+      },
+    },
   },
   buttons: {
     primary: {
