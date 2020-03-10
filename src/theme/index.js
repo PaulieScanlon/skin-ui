@@ -71,6 +71,11 @@ export default {
       marginTop: 0,
       marginBottom: 2,
     },
+    h2: {
+      lineHeight: "heading",
+      marginTop: 0,
+      marginBottom: 3,
+    },
     p: {
       lineHeight: "body",
       marginTop: 0,
@@ -86,23 +91,26 @@ export default {
     primary: {
       borderRadius: 0,
       cursor: "pointer",
+      fontSize: [0, 1, 1, 1],
       ":focus": {
         ...commonFocus,
       },
     },
     secondary: {
+      backgroundColor: "secondary",
       borderRadius: 0,
       cursor: "pointer",
       color: "gray",
-      backgroundColor: "secondary",
+      fontSize: [0, 1, 1, 1],
       ":focus": {
         ...commonFocus,
       },
     },
     ghost: {
+      backgroundColor: "darken",
       borderRadius: 0,
       cursor: "pointer",
-      backgroundColor: "darken",
+      fontSize: [0, 1, 1, 1],
       ":focus": {
         ...commonFocus,
       },

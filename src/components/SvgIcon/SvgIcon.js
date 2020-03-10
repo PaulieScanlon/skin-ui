@@ -2,9 +2,10 @@
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 
-export const SvgIcon = ({ iconPath }) => {
+export const SvgIcon = ({ iconPath, ...sx }) => {
   return (
     <svg
+      {...sx}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
@@ -23,4 +24,6 @@ export const SvgIcon = ({ iconPath }) => {
 SvgIcon.propTypes = {
   /** icon svg path */
   iconPath: PropTypes.string.isRequired,
+  /** jsx sx spread */
+  sx: PropTypes.any,
 }

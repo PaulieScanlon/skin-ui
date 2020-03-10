@@ -115,6 +115,7 @@ export const Header = memo(({ onClick, isNavOpen, sidebarWidth }) => (
                 borderRadius: 0,
                 color: "text",
                 cursor: "pointer",
+                mr: 1,
                 ":focus": {
                   ...commonFocus,
                 },

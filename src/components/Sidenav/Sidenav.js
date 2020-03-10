@@ -13,7 +13,6 @@ export const Sidenav = memo(({ navItems }) => {
       <Location>
         {({ location }) => {
           const { hash } = location
-
           return Object.keys(navItems).map((heading, index) => {
             return (
               <div key={index} sx={{ mb: 4 }}>
@@ -39,6 +38,7 @@ export const Sidenav = memo(({ navItems }) => {
                   {navItems[heading].map(item => {
                     return item.map((nav, index) => {
                       const { children, href } = nav.props.children.props
+
                       return (
                         <li key={index} sx={{ mb: 1 }}>
                           <a
