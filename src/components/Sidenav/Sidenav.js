@@ -38,12 +38,15 @@ export const Sidenav = memo(({ navItems }) => {
                   {navItems[heading].map(item => {
                     return item.map((nav, index) => {
                       const { children, href } = nav.props.children.props
+                      if (href === hash) {
+                        console.log("href: ", href, "| hash: ", hash)
+                        console.log("")
+                      }
                       return (
                         <li
                           key={index}
                           sx={{
                             mb: 1,
-                            color: `${hash === href ? "primary" : "muted"}`,
                           }}
                         >
                           <a
@@ -54,9 +57,9 @@ export const Sidenav = memo(({ navItems }) => {
                                 ...navFocus,
                               },
                               textDecoration: `${
-                                hash === href ? "underline" : "none"
+                                href === hash ? "underline" : "none"
                               }`,
-                              color: "inherit",
+                              color: `${href === hash ? "primary" : "muted"}`,
                             }}
                           >
                             {children}
