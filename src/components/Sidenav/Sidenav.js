@@ -2,6 +2,7 @@
 import { memo } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
+import { Link } from "@theme-ui/components"
 import { Location } from "@reach/router"
 
 import { ThemeWrapper } from "../ThemeWrapper"
@@ -12,6 +13,7 @@ export const Sidenav = memo(({ navItems }) => {
     <ThemeWrapper>
       <Location>
         {({ location }) => {
+          console.log("location: ", location)
           const { hash } = location
           return Object.keys(navItems).map((heading, index) => {
             return (
@@ -38,11 +40,13 @@ export const Sidenav = memo(({ navItems }) => {
                   {navItems[heading].map(item => {
                     return item.map((nav, index) => {
                       const { children, href } = nav.props.children.props
-
+                      console.log("props: ", nav.props.children.props)
+                      console.log("href: ", href)
                       return (
                         <li key={index} sx={{ mb: 1 }}>
-                          <a
+                          <Link
                             title={children}
+                            // to={href}
                             href={href}
                             sx={{
                               ":focus": {
@@ -55,7 +59,7 @@ export const Sidenav = memo(({ navItems }) => {
                             }}
                           >
                             {children}
-                          </a>
+                          </Link>
                         </li>
                       )
                     })
