@@ -6,9 +6,8 @@ import { Location } from "@reach/router"
 import { NavLink, Text } from "@theme-ui/components"
 
 import { ThemeWrapper } from "../ThemeWrapper"
-import { navFocus } from "../../theme"
 
-export const Sidenav = memo(({ navItems }) => {
+export const Sidenav = memo(({ navItems, isElementVisible }) => {
   return (
     <ThemeWrapper>
       <Location>
@@ -60,7 +59,11 @@ export const Sidenav = memo(({ navItems }) => {
                               {children}
                             </Text>
                           ) : (
-                            <NavLink title={children} href={href}>
+                            <NavLink
+                              tabIndex={isElementVisible ? 0 : -1}
+                              title={children}
+                              href={href}
+                            >
                               {children}
                             </NavLink>
                           )}
@@ -81,4 +84,6 @@ export const Sidenav = memo(({ navItems }) => {
 Sidenav.propTypes = {
   /** navItems extracted from mdx */
   navItems: PropTypes.any,
+  /** parent state isElementVisible */
+  isElementVisible: PropTypes.bool,
 }

@@ -61,6 +61,7 @@ export const Editor = memo(
               theme: "isotope",
               lineNumbers: true,
               viewportMargin: Infinity,
+              tabindex: -1,
             }}
           />
         </Box>

@@ -59,7 +59,7 @@ export const Header = memo(({ onClick, isNavOpen, sidebarWidth }) => (
             }}
           />
         )}
-        <Logo />
+        <Logo isElementVisible={true} />
       </div>
       <div
         sx={{

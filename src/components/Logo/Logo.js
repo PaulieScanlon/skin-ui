@@ -1,12 +1,14 @@
 /** @jsx jsx */
+import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 import { ThemeWrapper } from "../ThemeWrapper"
 import { commonFocus } from "../../theme"
 
-export const Logo = () => {
+export const Logo = ({ isElementVisible }) => {
   return (
     <ThemeWrapper>
       <a
+        tabIndex={isElementVisible ? 0 : -1}
         href="/"
         title="skin-ui.com"
         sx={{
@@ -53,4 +55,9 @@ export const Logo = () => {
       </a>
     </ThemeWrapper>
   )
+}
+
+Logo.propTypes = {
+  /** parent state isElementVisible */
+  isElementVisible: PropTypes.bool,
 }
