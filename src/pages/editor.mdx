@@ -1,16 +1,14 @@
 import { MARKDOWN, COMPONENTS } from '../utils/const'
-
 import AppLayout  from "../layouts/AppLayout"
-
 export default AppLayout
 
-<Box className={MARKDOWN}>
+<section className={MARKDOWN}>
 
   ## Markdown
 
   [Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
-  <Divider />
+  <hr />
 
   ##### [Headings](#headings)
 
@@ -35,7 +33,7 @@ export default AppLayout
 
   ###### h6
 
-  <Divider />
+  <hr />
 
   ##### [Emphasis](#emphasis)
 
@@ -58,7 +56,7 @@ export default AppLayout
   Strikethrough uses two tildes. ~~Scratch this.~~
 
 
-  <Divider />
+  <hr />
 
   ##### [Lists](#lists)
 
@@ -88,7 +86,7 @@ export default AppLayout
   - Or pluses
 
 
-  <Divider />
+  <hr />
 
   ##### [Links](#links)
 
@@ -140,7 +138,7 @@ export default AppLayout
   [1]: http://slashdot.org
   [link text itself]: http://www.reddit.com
 
-  <Divider />
+  <hr />
 
   ##### [Images](#images)
 
@@ -166,7 +164,7 @@ export default AppLayout
 
   [logo]: https://placedog.net/50/50 "Purr"
 
-  <Divider />
+  <hr />
 
   ##### [Code Highlighting](#code-highlighting)
 
@@ -221,7 +219,7 @@ export default AppLayout
   alert(s)
   ```
 
-  <Divider />
+  <hr />
 
   ##### [Tables](#tables)
 
@@ -264,7 +262,7 @@ export default AppLayout
   | _Still_  | `renders` | **nicely** |
   | 1        | 2         | 3          |
 
-  <Divider />
+  <hr />
 
   ##### [Blockquotes](#blockquotes)
 
@@ -284,8 +282,7 @@ export default AppLayout
 
   > This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can _put_ **Markdown** into a blockquote.
 
-  <Divider />
-
+  <hr />
 
   ##### [Horizontal Rule](#horizontal-rule)
 
@@ -319,7 +316,7 @@ export default AppLayout
 
   Underscores
 
-  <Divider />
+  <hr />
 
   ##### [Line Breaks](#line-breaks)
 
@@ -336,12 +333,12 @@ export default AppLayout
 
   ```
 
-  <Divider />
+  <hr />
 
-</Box>
+</section>
 
 
-<Box className={COMPONENTS}>
+<section className={COMPONENTS}>
 
   ## Components
 
@@ -1011,4 +1008,4 @@ export default AppLayout
     aria-label='Toggle Menu'
   />
 
-</Box> 
+</section> 
