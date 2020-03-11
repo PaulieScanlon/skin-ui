@@ -1,25 +1,30 @@
-import React, { useEffect, Fragment } from "react"
+import React, { Fragment } from "react"
 import PropTypes from "prop-types"
-
-import netlifyIdentify from "netlify-identity-widget"
+import { Router } from "@reach/router"
 
 import EditorLayout from "./EditorLayout"
+import LoginLayout from "./LoginLayout"
+import LogoutLayout from "./LogoutLayout"
+import IndexLayout from "./IndexLayout"
 
-if (typeof window !== `undefined`) {
-  require("codemirror/lib/codemirror")
-  require("codemirror/lib/codemirror.css")
-}
+import { Identity } from "../components/Identity"
 
 const AppLayout = ({ children }) => {
-  useEffect(() => {
-    netlifyIdentify.init({})
-  })
-
   return (
-    <Fragment>
-      {/* <button onClick={() => netlifyIdentify.open()}>Netlify</button> */}
-      <EditorLayout children={children} />
-    </Fragment>
+    <Identity>
+      {user => {
+        return (
+          <Fragment>
+            <Router basepath="/">
+              <EditorLayout path="/editor" props={children} user={user} />
+              <LoginLayout path="/login" />
+              <LogoutLayout path="/logout" />
+              <IndexLayout path="/" props={children} />
+            </Router>
+          </Fragment>
+        )
+      }}
+    </Identity>
   )
 }
 

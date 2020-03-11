@@ -11,7 +11,7 @@ import { Header } from "../components/Header"
 
 import { useSiteMetadata } from "../data/useSiteMetadata"
 
-const IndexLayout = ({ children }) => {
+const IndexLayout = ({ props }) => {
   const {
     site: {
       siteMetadata: {
@@ -53,9 +53,9 @@ const IndexLayout = ({ children }) => {
         }}
       />
 
-      <Header isNavOpen={true} />
+      <Header isNavOpen={false} />
       <main>
-        <MDXProvider components={themeUiComponents}>{children}</MDXProvider>
+        <MDXProvider components={themeUiComponents}>{props}</MDXProvider>
       </main>
       <Text
         sx={{
@@ -80,8 +80,8 @@ const IndexLayout = ({ children }) => {
 }
 
 IndexLayout.propTypes = {
-  /** React children passed from mdx */
-  children: PropTypes.any,
+  /** React children passed from parent */
+  props: PropTypes.any,
 }
 
 export default IndexLayout
