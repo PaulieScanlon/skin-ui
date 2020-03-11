@@ -12,7 +12,12 @@ import { Seo } from "../components/Seo"
 import { useSiteMetadata } from "../data/useSiteMetadata"
 import { MARKDOWN, COMPONENTS } from "../utils/const"
 
-const EditorLayout = ({ children }) => {
+if (typeof window !== `undefined`) {
+  require("codemirror/lib/codemirror")
+  require("codemirror/lib/codemirror.css")
+}
+
+const EditorLayout = ({ user, props }) => {
   const {
     site: {
       siteMetadata: {
@@ -36,7 +41,7 @@ const EditorLayout = ({ children }) => {
     [COMPONENTS]: true,
   })
 
-  const mdx = children.filter(child => filterChildren[child.props.className])
+  const mdx = props.filter(child => filterChildren[child.props.className])
 
   const handleCheckboxChange = event => {
     setFilterChildren({
@@ -73,6 +78,7 @@ const EditorLayout = ({ children }) => {
             onClick={() => setIsNavOpen(!isNavOpen)}
             sidebarWidth={sidebarWidth}
             isNavOpen={isNavOpen}
+            user={user}
           />
         </Fragment>
       )}
@@ -87,8 +93,10 @@ const EditorLayout = ({ children }) => {
 }
 
 EditorLayout.propTypes = {
-  /** React children passed from mdx */
-  children: PropTypes.any,
+  /** user from Netlify Identity */
+  user: PropTypes.object,
+  /** React children passed from parent */
+  props: PropTypes.any,
 }
 
 export default EditorLayout
