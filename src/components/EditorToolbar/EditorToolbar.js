@@ -50,7 +50,7 @@ export const EditorToolbar = ({
       <Button
         title="Copy Theme UI object"
         onClick={() =>
-          copy(`export default { \n${stringifyReplaceQuotes(themeObject)}\n}`)
+          copy(`export default \n${stringifyReplaceQuotes(themeObject)}`)
         }
       >
         Copy
