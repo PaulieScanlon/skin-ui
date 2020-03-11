@@ -45,8 +45,13 @@ export const Source = memo(({ isFullScreen }) => {
           },
         }}
       >
+        {/* stackoverflow regex question:  */}
+        {/* https://stackoverflow.com/questions/60634044/advanced-regex-help-required/60637381#60637381 */}
         <CodeMirror
-          value={deleteLines(mdxString, 4)}
+          value={deleteLines(mdxString, 4).replace(
+            /<section\s+className\=\{([^>]*)\}>([\s\S]*?)<\/section>\s*/gm,
+            "<!-- $1 -->\n$2"
+          )}
           options={{
             mode: { name: "markdown", json: true },
             theme: "xq-light",
