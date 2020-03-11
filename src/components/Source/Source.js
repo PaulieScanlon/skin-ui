@@ -14,6 +14,10 @@ if (typeof window !== `undefined`) {
 
 import mdxString from "!!raw-loader!../../pages/editor.mdx"
 
+const deleteLines = (string, n = 1) => {
+  return string.replace(new RegExp(`(?:.*?\n){${n - 1}}(?:.*?\n)`), "")
+}
+
 export const Source = memo(({ isFullScreen }) => {
   return (
     <ThemeWrapper>
@@ -42,7 +46,7 @@ export const Source = memo(({ isFullScreen }) => {
         }}
       >
         <CodeMirror
-          value={mdxString}
+          value={deleteLines(mdxString, 4)}
           options={{
             mode: { name: "markdown", json: true },
             theme: "xq-light",
