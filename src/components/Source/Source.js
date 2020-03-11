@@ -50,6 +50,7 @@ export const Source = memo(({ isFullScreen }) => {
           options={{
             mode: { name: "markdown", json: true },
             theme: "xq-light",
+            lineNumbers: true,
             readOnly: true,
           }}
         />
