@@ -12,11 +12,6 @@ import { Seo } from "../components/Seo"
 import { useSiteMetadata } from "../data/useSiteMetadata"
 import { MARKDOWN, COMPONENTS } from "../utils/const"
 
-if (typeof window !== `undefined`) {
-  require("codemirror/lib/codemirror")
-  require("codemirror/lib/codemirror.css")
-}
-
 const EditorLayout = ({ children }) => {
   const {
     site: {
