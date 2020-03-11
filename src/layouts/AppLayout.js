@@ -1,5 +1,7 @@
-import React, { Fragment } from "react"
+import React, { useEffect, Fragment } from "react"
 import PropTypes from "prop-types"
+
+import netlifyIdentify from "netlify-identity-widget"
 
 import EditorLayout from "./EditorLayout"
 
@@ -9,8 +11,13 @@ if (typeof window !== `undefined`) {
 }
 
 const AppLayout = ({ children }) => {
+  useEffect(() => {
+    netlifyIdentify.init({})
+  })
+
   return (
     <Fragment>
+      {/* <button onClick={() => netlifyIdentify.open()}>Netlify</button> */}
       <EditorLayout children={children} />
     </Fragment>
   )
