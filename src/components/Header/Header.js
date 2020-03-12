@@ -13,14 +13,14 @@ import { TWITTER_ICON, GITHUB_ICON } from "../../utils/iconPaths"
 import * as packageJSON from "../../../package.json"
 
 export const Header = memo(({ user, onClick, isNavOpen, sidebarWidth }) => {
-  const {
-    user_metadata: { full_name },
-  } = user || { user_metadata: { full_name: "Test" } }
+  // const {
+  //   user_metadata: { full_name },
+  // } = user || { user_metadata: { full_name: "" } }
 
   // if (user && user.user_metadata) {
   //   console.log(user.user_metadata.full_name)
   // }
-  console.log(full_name)
+  // console.log(full_name)
 
   return (
     <ThemeWrapper>
