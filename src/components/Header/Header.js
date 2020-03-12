@@ -12,6 +12,8 @@ import { Logo } from "../Logo"
 import { IconButton } from "../IconButton"
 import { TWITTER_ICON, GITHUB_ICON } from "../../utils/iconPaths"
 
+import { SET_IS_NAV_OPEN } from "../../utils/const"
+
 import * as packageJSON from "../../../package.json"
 
 import { useSiteMetadata } from "../../data/useSiteMetadata"
@@ -64,7 +66,7 @@ export const Header = memo(({ showMenu }) => {
             <MenuButton
               title="Open Navigation"
               onClick={() =>
-                dispatch({ type: "setIsNavOpen", isNavOpen: true })
+                dispatch({ type: SET_IS_NAV_OPEN, isNavOpen: true })
               }
               sx={{
                 display: ["block", "block", "block", "none"],

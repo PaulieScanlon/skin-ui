@@ -13,6 +13,10 @@ import { IconButton } from "../IconButton"
 import { stringifyReplaceQuotes } from "../../utils/stringifyReplaceQuotes"
 
 import { EXPAND_ICON, COLLAPSE_ICON } from "../../utils/iconPaths"
+import {
+  SET_IS_EDITOR_WIDTH_COLLAPSED,
+  SET_IS_EDITOR_HEIGHT_COLLAPSED,
+} from "../../utils/const"
 
 export const EditorToolbar = ({ themeObject }) => {
   const { state, dispatch } = useContext(SkinContext)
@@ -32,7 +36,7 @@ export const EditorToolbar = ({ themeObject }) => {
           } Editor`}
           onClick={() =>
             dispatch({
-              type: "setIsEditorHeightCollapsed",
+              type: SET_IS_EDITOR_HEIGHT_COLLAPSED,
               isEditorHeightCollapsed: state.isEditorHeightCollapsed,
             })
           }
@@ -52,7 +56,7 @@ export const EditorToolbar = ({ themeObject }) => {
           } Editor`}
           onClick={() =>
             dispatch({
-              type: "setIsEditorWidthCollapsed",
+              type: SET_IS_EDITOR_WIDTH_COLLAPSED,
               isEditorWidthCollapsed: state.isEditorWidthCollapsed,
             })
           }

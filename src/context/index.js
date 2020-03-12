@@ -1,6 +1,16 @@
 import React, { createContext, useReducer } from "react"
 
-import { MARKDOWN, COMPONENTS } from "../utils/const"
+import {
+  MARKDOWN,
+  COMPONENTS,
+  SET_IS_USER_LOGGED_IN,
+  SET_IS_NAV_OPEN,
+  SET_FULL_SCREEN,
+  SET_IS_SOURCE_VISIBLE,
+  SET_FILTER_CHILDREN,
+  SET_IS_EDITOR_WIDTH_COLLAPSED,
+  SET_IS_EDITOR_HEIGHT_COLLAPSED,
+} from "../utils/const"
 
 const initialState = {
   user: null,
@@ -17,19 +27,19 @@ const initialState = {
 
 const reducer = (state, actions) => {
   switch (actions.type) {
-    case "setIsUserLoggedIn":
+    case SET_IS_USER_LOGGED_IN:
       return { ...state, user: actions.user }
 
-    case "setIsNavOpen":
+    case SET_IS_NAV_OPEN:
       return { ...state, isNavOpen: actions.isNavOpen }
 
-    case "setIsFullScreen":
+    case SET_FULL_SCREEN:
       return { ...state, isFullScreen: !actions.isFullScreen }
 
-    case "setIsSourceVisible":
+    case SET_IS_SOURCE_VISIBLE:
       return { ...state, isSourceVisible: !actions.isSourceVisible }
 
-    case "setFilterChildren":
+    case SET_FILTER_CHILDREN:
       return {
         ...state,
         filterChildren: {
@@ -39,13 +49,13 @@ const reducer = (state, actions) => {
           ],
         },
       }
-    case "setIsEditorWidthCollapsed":
+    case SET_IS_EDITOR_WIDTH_COLLAPSED:
       return {
         ...state,
         isEditorWidthCollapsed: !actions.isEditorWidthCollapsed,
       }
 
-    case "setIsEditorHeightCollapsed":
+    case SET_IS_EDITOR_HEIGHT_COLLAPSED:
       return {
         ...state,
         isEditorHeightCollapsed: !actions.isEditorHeightCollapsed,

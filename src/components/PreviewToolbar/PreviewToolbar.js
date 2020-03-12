@@ -17,10 +17,23 @@ import {
   SOURCE_ICON,
 } from "../../utils/iconPaths"
 
-import { MARKDOWN, COMPONENTS } from "../../utils/const"
+import {
+  MARKDOWN,
+  COMPONENTS,
+  SET_FULL_SCREEN,
+  SET_IS_SOURCE_VISIBLE,
+  SET_FILTER_CHILDREN,
+} from "../../utils/const"
 
 export const PreviewToolbar = () => {
   const { state, dispatch } = useContext(SkinContext)
+
+  const handleChange = event => {
+    dispatch({
+      type: SET_FILTER_CHILDREN,
+      filterChildren: event.target.name,
+    })
+  }
 
   return (
     <Toolbar>
@@ -41,12 +54,7 @@ export const PreviewToolbar = () => {
               <Checkbox
                 name={MARKDOWN}
                 defaultChecked
-                onChange={event =>
-                  dispatch({
-                    type: "setFilterChildren",
-                    filterChildren: event.target.name,
-                  })
-                }
+                onChange={event => handleChange(event)}
               />
             </div>
             Markdown
@@ -56,12 +64,7 @@ export const PreviewToolbar = () => {
               <Checkbox
                 name={COMPONENTS}
                 defaultChecked
-                onChange={event =>
-                  dispatch({
-                    type: "setFilterChildren",
-                    filterChildren: event.target.name,
-                  })
-                }
+                onChange={event => handleChange(event)}
               />
             </div>
             Components
@@ -78,7 +81,7 @@ export const PreviewToolbar = () => {
               title={`${state.isFullScreen ? "Exit" : "Enter"} Fullscreen`}
               onClick={() =>
                 dispatch({
-                  type: "setIsFullScreen",
+                  type: SET_FULL_SCREEN,
                   isFullScreen: state.isFullScreen,
                 })
               }
@@ -97,7 +100,7 @@ export const PreviewToolbar = () => {
               title={`View ${state.isSourceVisible ? "Preview" : "Source"}`}
               onClick={() =>
                 dispatch({
-                  type: "setIsSourceVisible",
+                  type: SET_IS_SOURCE_VISIBLE,
                   isSourceVisible: state.isSourceVisible,
                 })
               }

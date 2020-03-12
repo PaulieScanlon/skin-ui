@@ -3,6 +3,8 @@ import netlifyIdentity from "netlify-identity-widget"
 
 import { SkinContext } from "../../context"
 
+import { SET_IS_USER_LOGGED_IN } from "../../utils/const"
+
 export const Identity = ({ children }) => {
   const { dispatch } = useContext(SkinContext)
 
@@ -11,7 +13,7 @@ export const Identity = ({ children }) => {
 
     if (netlifyIdentity.currentUser()) {
       dispatch({
-        type: "setIsUserLoggedIn",
+        type: SET_IS_USER_LOGGED_IN,
         user: netlifyIdentity.currentUser(),
       })
     }
@@ -20,14 +22,14 @@ export const Identity = ({ children }) => {
   netlifyIdentity.on("login", user => {
     netlifyIdentity.close()
     dispatch({
-      type: "setIsUserLoggedIn",
+      type: SET_IS_USER_LOGGED_IN,
       user: user,
     })
   })
 
   netlifyIdentity.on("logout", user => {
     netlifyIdentity.close()
-    dispatch({ type: "setIsUserLoggedIn", user: user })
+    dispatch({ type: SET_IS_USER_LOGGED_IN, user: user })
   })
 
   return <Fragment>{children}</Fragment>

@@ -8,11 +8,13 @@ import { SkinContext } from "../../context"
 
 import { ThemeWrapper } from "../ThemeWrapper"
 
+import { SET_IS_NAV_OPEN } from "../../utils/const"
+
 export const Lightbox = memo(() => {
   const { state, dispatch } = useContext(SkinContext)
 
   const handleClose = () => {
-    dispatch({ type: "setIsNavOpen", isNavOpen: false })
+    dispatch({ type: SET_IS_NAV_OPEN, isNavOpen: false })
   }
 
   return (
