@@ -1,14 +1,28 @@
 /** @jsx jsx */
-import { useState, memo, Fragment } from "react"
+import { useContext, useState, memo, Fragment } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 import VisibilitySensor from "react-visibility-sensor"
+
+import { SkinContext } from "../../context"
 
 import { ThemeWrapper } from "../ThemeWrapper"
 import { Logo } from "../Logo"
 import { Sidenav } from "../Sidenav"
 
-export const Sidebar = memo(({ sidebarWidth, mdx, isNavOpen }) => {
+import { useSiteMetadata } from "../../data/useSiteMetadata"
+
+export const Sidebar = memo(({ mdx }) => {
+  const {
+    site: {
+      siteMetadata: {
+        config: { sidebarWidth },
+      },
+    },
+  } = useSiteMetadata()
+
+  const { state } = useContext(SkinContext)
+
   const [isElementVisible, setIsElementVisible] = useState(true)
 
   const navItems = mdx.reduce((items, item) => {
@@ -27,7 +41,7 @@ export const Sidebar = memo(({ sidebarWidth, mdx, isNavOpen }) => {
     return items
   }, [])
 
-  const conditionalLeft = isNavOpen ? 0 : sidebarWidth
+  const conditionalLeft = state.isNavOpen ? 0 : sidebarWidth
 
   const handleVisibilityChange = isVisible => {
     setIsElementVisible(isVisible)
@@ -92,10 +106,6 @@ export const Sidebar = memo(({ sidebarWidth, mdx, isNavOpen }) => {
 })
 
 Sidebar.propTypes = {
-  /** Width of the Sidebar */
-  sidebarWidth: PropTypes.number,
   /** mdx children from layout */
   mdx: PropTypes.any,
-  /** parent state isNavOpen */
-  isNavOpen: PropTypes.bool,
 }

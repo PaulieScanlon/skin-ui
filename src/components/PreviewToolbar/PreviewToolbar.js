@@ -1,7 +1,10 @@
 /** @jsx jsx */
-import PropTypes from "prop-types"
+import { useContext } from "react"
+
 import { jsx } from "theme-ui"
 import { Flex, Box, Label, Checkbox } from "@theme-ui/components"
+
+import { SkinContext } from "../../context"
 
 import { Toolbar } from "../Toolbar"
 import { IconButton } from "../IconButton"
@@ -16,87 +19,96 @@ import {
 
 import { MARKDOWN, COMPONENTS } from "../../utils/const"
 
-export const PreviewToolbar = ({
-  handleCheckboxChange,
-  isFullScreen,
-  setIsFullScreen,
-  isSourceVisible,
-  setIsSourceVisible,
-}) => (
-  <Toolbar>
-    <Flex
-      sx={{
-        flex: "1 1 auto",
-        justifyContent: "space-between",
-      }}
-    >
-      <Box
+export const PreviewToolbar = () => {
+  const { state, dispatch } = useContext(SkinContext)
+
+  return (
+    <Toolbar>
+      <Flex
         sx={{
-          alignItems: "center",
-          display: "flex",
+          flex: "1 1 auto",
+          justifyContent: "space-between",
         }}
       >
-        <Label title="Toggle Markdown visibility" mb={3} mr={2}>
-          <div>
-            <Checkbox
-              name={MARKDOWN}
-              defaultChecked
-              onChange={event => handleCheckboxChange(event)}
+        <Box
+          sx={{
+            alignItems: "center",
+            display: "flex",
+          }}
+        >
+          <Label title="Toggle Markdown visibility" mb={3} mr={2}>
+            <div>
+              <Checkbox
+                name={MARKDOWN}
+                defaultChecked
+                onChange={event =>
+                  dispatch({
+                    type: "setFilterChildren",
+                    filterChildren: event.target.name,
+                  })
+                }
+              />
+            </div>
+            Markdown
+          </Label>
+          <Label title="Toggle Theme UI components visibility" mb={3}>
+            <div>
+              <Checkbox
+                name={COMPONENTS}
+                defaultChecked
+                onChange={event =>
+                  dispatch({
+                    type: "setFilterChildren",
+                    filterChildren: event.target.name,
+                  })
+                }
+              />
+            </div>
+            Components
+          </Label>
+        </Box>
+        <Box
+          sx={{
+            alignItems: "center",
+            display: "flex",
+          }}
+        >
+          <ThemeWrapper>
+            <IconButton
+              title={`${state.isFullScreen ? "Exit" : "Enter"} Fullscreen`}
+              onClick={() =>
+                dispatch({
+                  type: "setIsFullScreen",
+                  isFullScreen: state.isFullScreen,
+                })
+              }
+              sx={{
+                mr: 1,
+              }}
+              aria-label={`${state.isFullScreen ? "Exit" : "Enter"} Fullscreen`}
+              iconPath={
+                state.isFullScreen
+                  ? EXIT_FULLSCREEN_ICON
+                  : ENTER_FULLSCREEN_ICON
+              }
             />
-          </div>
-          Markdown
-        </Label>
-        <Label title="Toggle Theme UI components visibility" mb={3}>
-          <div>
-            <Checkbox
-              name={COMPONENTS}
-              defaultChecked
-              onChange={event => handleCheckboxChange(event)}
+
+            <IconButton
+              title={`View ${state.isSourceVisible ? "Preview" : "Source"}`}
+              onClick={() =>
+                dispatch({
+                  type: "setIsSourceVisible",
+                  isSourceVisible: state.isSourceVisible,
+                })
+              }
+              aria-label={`View ${
+                state.isSourceVisible ? "Preview" : "Source"
+              }`}
+              iconPath={state.isSourceVisible ? SOURCE_ICON : PREVIEW_ICON}
             />
-          </div>
-          Components
-        </Label>
-      </Box>
-      <Box
-        sx={{
-          alignItems: "center",
-          display: "flex",
-        }}
-      >
-        <ThemeWrapper>
-          <IconButton
-            title={`${isFullScreen ? "Exit" : "Enter"} Fullscreen`}
-            onClick={() => setIsFullScreen(!isFullScreen)}
-            sx={{
-              mr: 1,
-            }}
-            aria-label={`${isFullScreen ? "Exit" : "Enter"} Fullscreen`}
-            iconPath={
-              isFullScreen ? EXIT_FULLSCREEN_ICON : ENTER_FULLSCREEN_ICON
-            }
-          />
-
-          <IconButton
-            title={`View ${isSourceVisible ? "Preview" : "Source"}`}
-            onClick={() => setIsSourceVisible(!isSourceVisible)}
-            aria-label={`View ${isSourceVisible ? "Preview" : "Source"}`}
-            iconPath={isSourceVisible ? SOURCE_ICON : PREVIEW_ICON}
-          />
-        </ThemeWrapper>
-      </Box>
-    </Flex>
-  </Toolbar>
-)
-
-PreviewToolbar.prototypes = {
-  /** parent handleCheckboxChange function */
-  handleCheckboxChange: PropTypes.func,
-  /** parent isFullScreen state value */
-  isFullScreen: PropTypes.bool,
-  /** parent setIsFullScreen function */
-  setIsFullScreen: PropTypes.func,
-  /** parent isSourceVisible state value */
-  isSourceVisible: PropTypes.bool,
-  /** parent setIsSourceVisible function */
-  setIsSourceVisible: PropTypes.func,
+          </ThemeWrapper>
+        </Box>
+      </Flex>
+    </Toolbar>
+  )
 }

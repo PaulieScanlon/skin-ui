@@ -1,9 +1,11 @@
 /** @jsx jsx */
-import { memo, Fragment } from "react"
+import { useContext, memo /** Fragment **/ } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
-import netlifyIdentity from "netlify-identity-widget"
-import { MenuButton, Link, Text, Button } from "@theme-ui/components"
+// import netlifyIdentity from "netlify-identity-widget"
+import { MenuButton, Link, Text /**Button **/ } from "@theme-ui/components"
+
+import { SkinContext } from "../../context"
 
 import { ThemeWrapper } from "../ThemeWrapper"
 import { Logo } from "../Logo"
@@ -12,15 +14,18 @@ import { TWITTER_ICON, GITHUB_ICON } from "../../utils/iconPaths"
 
 import * as packageJSON from "../../../package.json"
 
-export const Header = memo(({ user, onClick, isNavOpen, sidebarWidth }) => {
-  // const {
-  //   user_metadata: { full_name },
-  // } = user || { user_metadata: { full_name: "" } }
+import { useSiteMetadata } from "../../data/useSiteMetadata"
 
-  // if (user && user.user_metadata) {
-  //   console.log(user.user_metadata.full_name)
-  // }
-  // console.log(full_name)
+export const Header = memo(({ showMenu }) => {
+  const {
+    site: {
+      siteMetadata: {
+        config: { sidebarWidth },
+      },
+    },
+  } = useSiteMetadata()
+
+  const { state, dispatch } = useContext(SkinContext)
 
   return (
     <ThemeWrapper>
@@ -55,10 +60,12 @@ export const Header = memo(({ user, onClick, isNavOpen, sidebarWidth }) => {
             height: "header",
           }}
         >
-          {!isNavOpen && (
+          {!state.isNavOpen && showMenu && (
             <MenuButton
               title="Open Navigation"
-              onClick={onClick}
+              onClick={() =>
+                dispatch({ type: "setIsNavOpen", isNavOpen: true })
+              }
               sx={{
                 display: ["block", "block", "block", "none"],
                 mr: 3,
@@ -138,7 +145,7 @@ export const Header = memo(({ user, onClick, isNavOpen, sidebarWidth }) => {
             >
               <IconButton tabIndex={-1} iconPath={GITHUB_ICON} />
             </Link>
-            {/* {user ? (
+            {/* {state.user ? (
               <Fragment>
                 <Button
                   variant="ghost"
@@ -149,7 +156,7 @@ export const Header = memo(({ user, onClick, isNavOpen, sidebarWidth }) => {
                 >
                   Logout
                 </Button>
-                <Text>{full_name}</Text>
+                <Text>{state.user.full_name}</Text>
               </Fragment>
             ) : (
               <Button
@@ -167,13 +174,10 @@ export const Header = memo(({ user, onClick, isNavOpen, sidebarWidth }) => {
   )
 })
 
+Header.defaultProps = {
+  showMenu: false,
+}
 Header.propTypes = {
-  /** user from Netlify Identity */
-  user: PropTypes.object,
-  /** MenuButton onClick */
-  onClick: PropTypes.func,
-  /** parent state isNavOpen */
-  isNavOpen: PropTypes.bool,
-  /** Width of the Sidebar */
-  sidebarWidth: PropTypes.number,
+  /** Boolean to control Menu Button visibility */
+  showMenu: PropTypes.bool,
 }

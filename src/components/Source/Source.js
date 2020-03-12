@@ -1,9 +1,10 @@
 /** @jsx jsx */
-import PropTypes from "prop-types"
-import { memo } from "react"
+import { useContext, memo } from "react"
 import { jsx } from "theme-ui"
 import { Box } from "@theme-ui/components"
 import CodeMirror from "react-codemirror"
+
+import { SkinContext } from "../../context"
 
 import { ThemeWrapper } from "../ThemeWrapper"
 
@@ -18,7 +19,9 @@ const deleteLines = (string, n = 1) => {
   return string.replace(new RegExp(`(?:.*?\n){${n - 1}}(?:.*?\n)`), "")
 }
 
-export const Source = memo(({ isFullScreen }) => {
+export const Source = memo(() => {
+  const { state } = useContext(SkinContext)
+
   return (
     <ThemeWrapper>
       <Box
@@ -27,7 +30,9 @@ export const Source = memo(({ isFullScreen }) => {
             "100%",
             "100%",
             "100%",
-            `calc(100vh - ${isFullScreen ? 0 : theme.sizes.doubleHeader}px)`,
+            `calc(100vh - ${
+              state.isFullScreen ? 0 : theme.sizes.doubleHeader
+            }px)`,
           ],
           ["> .ReactCodeMirror"]: {
             height: "100%",
@@ -38,7 +43,7 @@ export const Source = memo(({ isFullScreen }) => {
                 "100%",
                 "100%",
                 `calc(100vh - ${
-                  isFullScreen ? 0 : theme.sizes.doubleHeader
+                  state.isFullScreen ? 0 : theme.sizes.doubleHeader
                 }px)`,
               ],
             },
@@ -62,8 +67,3 @@ export const Source = memo(({ isFullScreen }) => {
     </ThemeWrapper>
   )
 })
-
-Source.propTypes = {
-  /** parent state isFullScreen */
-  isFullScreen: PropTypes.bool,
-}

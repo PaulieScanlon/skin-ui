@@ -1,22 +1,34 @@
-import React, { useEffect, useState, Fragment } from "react"
+import React, { useEffect, useContext, Fragment } from "react"
 import netlifyIdentity from "netlify-identity-widget"
 
+import { SkinContext } from "../../context"
+
 export const Identity = ({ children }) => {
-  const [user, setUser] = useState(netlifyIdentity.currentUser())
+  const { dispatch } = useContext(SkinContext)
 
   useEffect(() => {
     netlifyIdentity.init({})
-  })
+
+    if (netlifyIdentity.currentUser()) {
+      dispatch({
+        type: "setIsUserLoggedIn",
+        user: netlifyIdentity.currentUser(),
+      })
+    }
+  }, [])
 
   netlifyIdentity.on("login", user => {
     netlifyIdentity.close()
-    setUser(user)
+    dispatch({
+      type: "setIsUserLoggedIn",
+      user: user,
+    })
   })
 
   netlifyIdentity.on("logout", user => {
     netlifyIdentity.close()
-    setUser(user)
+    dispatch({ type: "setIsUserLoggedIn", user: user })
   })
 
-  return <Fragment>{children(user)}</Fragment>
+  return <Fragment>{children}</Fragment>
 }
