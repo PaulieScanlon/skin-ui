@@ -78,25 +78,6 @@ export const PreviewToolbar = () => {
         >
           <ThemeWrapper>
             <IconButton
-              title={`${state.isFullScreen ? "Exit" : "Enter"} Fullscreen`}
-              onClick={() =>
-                dispatch({
-                  type: SET_FULL_SCREEN,
-                  isFullScreen: state.isFullScreen,
-                })
-              }
-              sx={{
-                mr: 1,
-              }}
-              aria-label={`${state.isFullScreen ? "Exit" : "Enter"} Fullscreen`}
-              iconPath={
-                state.isFullScreen
-                  ? EXIT_FULLSCREEN_ICON
-                  : ENTER_FULLSCREEN_ICON
-              }
-            />
-
-            <IconButton
               title={`View ${state.isSourceVisible ? "Preview" : "Source"}`}
               onClick={() =>
                 dispatch({
@@ -104,10 +85,29 @@ export const PreviewToolbar = () => {
                   isSourceVisible: state.isSourceVisible,
                 })
               }
+              sx={{
+                mr: 1,
+              }}
               aria-label={`View ${
                 state.isSourceVisible ? "Preview" : "Source"
               }`}
               iconPath={state.isSourceVisible ? SOURCE_ICON : PREVIEW_ICON}
+            />
+
+            <IconButton
+              title={`${state.isFullScreen ? "Exit" : "Enter"} Fullscreen`}
+              onClick={() =>
+                dispatch({
+                  type: SET_FULL_SCREEN,
+                  isFullScreen: state.isFullScreen,
+                })
+              }
+              aria-label={`${state.isFullScreen ? "Exit" : "Enter"} Fullscreen`}
+              iconPath={
+                state.isFullScreen
+                  ? EXIT_FULLSCREEN_ICON
+                  : ENTER_FULLSCREEN_ICON
+              }
             />
           </ThemeWrapper>
         </Box>

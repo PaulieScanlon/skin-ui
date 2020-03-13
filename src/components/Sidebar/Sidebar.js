@@ -63,7 +63,7 @@ export const Sidebar = memo(({ mdx }) => {
             "0px",
           ],
           position: "fixed",
-          transition: ".3s ease-in-out left",
+          transition: ".5s ease-in-out left",
           width: sidebarWidth,
           zIndex: theme => theme.zIndices.sidebar,
         }}
