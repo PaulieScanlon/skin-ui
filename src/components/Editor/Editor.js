@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { useContext, memo } from "react"
-import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 import { Box } from "@theme-ui/components"
 import CodeMirror from "react-codemirror"
@@ -16,13 +15,18 @@ if (typeof window !== `undefined`) {
   require("codemirror/theme/isotope.css")
 }
 
-export const Editor = memo(({ themeObject, onChange }) => {
-  const { state } = useContext(SkinContext)
+import { UPDATE_DEFAULT_THEME_OBJECT } from "../../utils/const"
+
+export const Editor = memo(() => {
+  const { state, dispatch } = useContext(SkinContext)
   const conditionalHeight = state.isEditorHeightCollapsed ? "50vh" : "100%"
 
   const handleChange = event => {
     try {
-      return onChange(parseAddQuotes(event))
+      return dispatch({
+        type: UPDATE_DEFAULT_THEME_OBJECT,
+        defaultThemeObject: parseAddQuotes(event),
+      })
     } catch (e) {
       // if (e instanceof SyntaxError) {
       //   console.error("SyntaxError")
@@ -56,7 +60,7 @@ export const Editor = memo(({ themeObject, onChange }) => {
         }}
       >
         <CodeMirror
-          value={stringifyReplaceQuotes(themeObject)}
+          value={stringifyReplaceQuotes(state.defaultThemeObject)}
           onChange={event => handleChange(event)}
           options={{
             mode: { name: "javascript", json: true },
@@ -70,10 +74,3 @@ export const Editor = memo(({ themeObject, onChange }) => {
     </ThemeWrapper>
   )
 })
-
-Editor.propTypes = {
-  /** The themeObject stored in state */
-  themeObject: PropTypes.object.isRequired,
-  /** CodeMirror onChange , passes event */
-  onChange: PropTypes.func,
-}

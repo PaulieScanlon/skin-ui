@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState, memo, useContext } from "react"
+import { memo, useContext } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 import { Flex, Box } from "@theme-ui/components"
@@ -11,8 +11,6 @@ import { PreviewToolbar } from "../PreviewToolbar"
 import { Source } from "../Source"
 
 import { SkinContext } from "../../context"
-
-import defaultThemeObject from "../../utils/defaultThemeObject"
 
 import { useSiteMetadata } from "../../data/useSiteMetadata"
 
@@ -27,7 +25,7 @@ export const Application = memo(({ mdx }) => {
 
   const { state } = useContext(SkinContext)
 
-  const [themeObject, setThemeObject] = useState(defaultThemeObject)
+  // console.log(state)
 
   const conditionalWidth = state.isFullScreen ? "100%" : "60%"
 
@@ -51,11 +49,8 @@ export const Application = memo(({ mdx }) => {
             width: ["100%", "100%", "100%", "40%"],
           }}
         >
-          <EditorToolbar themeObject={themeObject} />
-          <Editor
-            themeObject={themeObject}
-            onChange={event => setThemeObject(event)}
-          />
+          <EditorToolbar />
+          <Editor />
         </Box>
       )}
       <Box
@@ -78,11 +73,7 @@ export const Application = memo(({ mdx }) => {
         }}
       >
         <PreviewToolbar />
-        {state.isSourceVisible ? (
-          <Source />
-        ) : (
-          <Preview themeObject={themeObject} children={mdx} />
-        )}
+        {state.isSourceVisible ? <Source /> : <Preview children={mdx} />}
       </Box>
     </Flex>
   )

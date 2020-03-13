@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { useContext } from "react"
-import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 import { Flex, Button } from "@theme-ui/components"
 import copy from "clipboard-copy"
@@ -18,7 +17,7 @@ import {
   SET_IS_EDITOR_HEIGHT_COLLAPSED,
 } from "../../utils/const"
 
-export const EditorToolbar = ({ themeObject }) => {
+export const EditorToolbar = () => {
   const { state, dispatch } = useContext(SkinContext)
 
   return (
@@ -72,7 +71,11 @@ export const EditorToolbar = ({ themeObject }) => {
         <Button
           title="Copy Theme UI object"
           onClick={() =>
-            copy(`export default \n${stringifyReplaceQuotes(themeObject)}`)
+            copy(
+              `export default \n${stringifyReplaceQuotes(
+                state.defaultThemeObject
+              )}`
+            )
           }
         >
           Copy
@@ -80,9 +83,4 @@ export const EditorToolbar = ({ themeObject }) => {
       </Flex>
     </Toolbar>
   )
-}
-
-EditorToolbar.prototypes = {
-  /** parent themeObject state value */
-  themeObject: PropTypes.any,
 }

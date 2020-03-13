@@ -1,9 +1,12 @@
 import React, { createContext, useReducer } from "react"
 
+import defaultThemeObject from "../utils/defaultThemeObject"
+
 import {
   MARKDOWN,
   COMPONENTS,
   SET_IS_USER_LOGGED_IN,
+  UPDATE_DEFAULT_THEME_OBJECT,
   SET_IS_NAV_OPEN,
   SET_FULL_SCREEN,
   SET_IS_SOURCE_VISIBLE,
@@ -14,6 +17,7 @@ import {
 
 const initialState = {
   user: null,
+  defaultThemeObject: defaultThemeObject,
   isNavOpen: false,
   isFullScreen: false,
   isSourceVisible: false,
@@ -29,6 +33,9 @@ const reducer = (state, actions) => {
   switch (actions.type) {
     case SET_IS_USER_LOGGED_IN:
       return { ...state, user: actions.user }
+
+    case UPDATE_DEFAULT_THEME_OBJECT:
+      return { ...state, defaultThemeObject: actions.defaultThemeObject }
 
     case SET_IS_NAV_OPEN:
       return { ...state, isNavOpen: actions.isNavOpen }
