@@ -12,7 +12,7 @@ import { Sidenav } from "../Sidenav"
 
 import { useSiteMetadata } from "../../data/useSiteMetadata"
 
-export const Sidebar = memo(({ mdx }) => {
+export const Sidebar = memo(({ children }) => {
   const {
     site: {
       siteMetadata: {
@@ -24,22 +24,6 @@ export const Sidebar = memo(({ mdx }) => {
   const { state } = useContext(SkinContext)
 
   const [isElementVisible, setIsElementVisible] = useState(true)
-
-  const navItems = mdx.reduce((items, item) => {
-    const { className } = item.props
-    items[className] = items[className] = []
-    items[className].push(
-      item.props.children.filter(child =>
-        child.props.children &&
-        child.props.children.props &&
-        child.props.children.props.href
-          ? child
-          : null
-      )
-    )
-
-    return items
-  }, [])
 
   const conditionalLeft = state.isNavOpen ? 0 : sidebarWidth
 
@@ -93,10 +77,7 @@ export const Sidebar = memo(({ mdx }) => {
                 p: theme => `0px ${theme.space[4]}px`,
               }}
             >
-              <Sidenav
-                navItems={navItems}
-                isElementVisible={isElementVisible}
-              />
+              {children(isElementVisible)}
             </nav>
           </Fragment>
         </VisibilitySensor>
@@ -106,6 +87,6 @@ export const Sidebar = memo(({ mdx }) => {
 })
 
 Sidebar.propTypes = {
-  /** mdx children from layout */
-  mdx: PropTypes.any,
+  /** children nav items from parent */
+  children: PropTypes.any,
 }

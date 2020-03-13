@@ -25,8 +25,6 @@ export const Application = memo(({ mdx }) => {
 
   const { state } = useContext(SkinContext)
 
-  // console.log(state)
-
   const conditionalWidth = state.isFullScreen ? "100%" : "60%"
 
   return (

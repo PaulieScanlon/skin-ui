@@ -5,6 +5,7 @@ import { jsx } from "theme-ui"
 
 import { Header } from "../components/Header"
 import { Sidebar } from "../components/Sidebar"
+import { Sidenav } from "../components/Sidenav"
 import { Lightbox } from "../components/Lightbox"
 import { Application } from "../components/Application"
 import { Seo } from "../components/Seo"
@@ -37,6 +38,22 @@ const EditorLayout = ({ props }) => {
 
   const mdx = props.filter(child => state.filterChildren[child.props.className])
 
+  const navItems = mdx.reduce((items, item) => {
+    const { className } = item.props
+    items[className] = items[className] = []
+    items[className].push(
+      item.props.children.filter(child =>
+        child.props.children &&
+        child.props.children.props &&
+        child.props.children.props.href
+          ? child
+          : null
+      )
+    )
+
+    return items
+  }, [])
+
   return (
     <Fragment>
       <Seo
@@ -52,7 +69,14 @@ const EditorLayout = ({ props }) => {
       />
       {!state.isFullScreen && (
         <Fragment>
-          <Sidebar mdx={mdx} />
+          <Sidebar>
+            {isElementVisible => (
+              <Sidenav
+                navItems={navItems}
+                isElementVisible={isElementVisible}
+              />
+            )}
+          </Sidebar>
           <Lightbox />
           <Header showMenu={true} />
         </Fragment>

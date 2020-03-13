@@ -8,6 +8,7 @@ import { NavLink, Text } from "@theme-ui/components"
 import { ThemeWrapper } from "../ThemeWrapper"
 
 export const Sidenav = memo(({ navItems, isElementVisible }) => {
+  console.log("Sidenav: isElementVisible", isElementVisible)
   return (
     <ThemeWrapper>
       <Location>
