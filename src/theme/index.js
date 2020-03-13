@@ -46,10 +46,10 @@ export default {
   },
   space: [0, 4, 8, 16, 24, 32, 48],
   zIndices: {
-    sidebar: 5,
-    lightbox: 4,
-    header: 3,
-    toolbar: 2,
+    sidebar: 10,
+    lightbox: 9,
+    header: 8,
+    toolbar: 7,
   },
   styles: {
     root: {

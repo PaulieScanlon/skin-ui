@@ -1,27 +1,35 @@
 /** @jsx jsx */
-import { memo } from "react"
-import PropTypes from "prop-types"
+import { memo, useContext } from "react"
 import { jsx } from "theme-ui"
 import { transparentize } from "@theme-ui/color"
 import { Close } from "@theme-ui/components"
 
-import { ThemeWrapper } from "../ThemeWrapper"
-import { commonFocus } from "../../theme"
+import { SkinContext } from "../../context"
 
-export const Lightbox = memo(({ onClick, isNavOpen }) => {
+import { ThemeWrapper } from "../ThemeWrapper"
+
+import { SET_IS_NAV_OPEN } from "../../utils/const"
+
+export const Lightbox = memo(() => {
+  const { state, dispatch } = useContext(SkinContext)
+
+  const handleClose = () => {
+    dispatch({ type: SET_IS_NAV_OPEN, isNavOpen: false })
+  }
+
   return (
     <ThemeWrapper>
       <div
         role="button"
         tabIndex="0"
-        onClick={onClick}
-        onKeyDown={event => (event.key === "Enter" ? onClick : {})}
+        onClick={handleClose}
+        onKeyDown={event => (event.key === "Enter" ? handleClose : {})}
         sx={{
           backgroundColor: transparentize("black", 0.2),
           display: [
-            isNavOpen ? "flex" : "none",
-            isNavOpen ? "flex" : "none",
-            isNavOpen ? "flex" : "none",
+            state.isNavOpen ? "flex" : "none",
+            state.isNavOpen ? "flex" : "none",
+            state.isNavOpen ? "flex" : "none",
             "none",
           ],
           height: "100%",
@@ -38,17 +46,10 @@ export const Lightbox = memo(({ onClick, isNavOpen }) => {
       >
         <Close
           title="Close Lightbox"
-          onClick={onClick}
+          onClick={handleClose}
           sx={{ background: "black" }}
         />
       </div>
     </ThemeWrapper>
   )
 })
-
-Lightbox.propTypes = {
-  /** CloseButton onClick */
-  onClick: PropTypes.func,
-  /** parent state isNavOpen */
-  isNavOpen: PropTypes.bool,
-}

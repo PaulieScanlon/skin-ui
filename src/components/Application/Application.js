@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState, memo } from "react"
+import { memo, useContext } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 import { Flex, Box } from "@theme-ui/components"
@@ -10,103 +10,76 @@ import { Preview } from "../Preview"
 import { PreviewToolbar } from "../PreviewToolbar"
 import { Source } from "../Source"
 
-import defaultThemeObject from "../../utils/defaultThemeObject"
+import { SkinContext } from "../../context"
 
 import { useSiteMetadata } from "../../data/useSiteMetadata"
 
-export const Application = memo(
-  ({ children, isFullScreen, setIsFullScreen, handleCheckboxChange }) => {
-    const {
-      site: {
-        siteMetadata: {
-          config: { sidebarWidth, editorCollapseWidth },
-        },
+export const Application = memo(({ mdx }) => {
+  const {
+    site: {
+      siteMetadata: {
+        config: { sidebarWidth, editorCollapseWidth },
       },
-    } = useSiteMetadata()
+    },
+  } = useSiteMetadata()
 
-    const [themeObject, setThemeObject] = useState(defaultThemeObject)
-    const [isEditorWidthCollapsed, setIsEditorWidthCollapsed] = useState(false)
-    const [isEditorHeightCollapsed, setIsEditorHeightCollapsed] = useState(true)
-    const [isSourceVisible, setIsSourceVisible] = useState(false)
+  const { state } = useContext(SkinContext)
 
-    const conditionalWidth = isFullScreen ? "100%" : "60%"
+  // console.log(state)
 
-    return (
-      <Flex sx={{ flexWrap: "wrap" }}>
-        {!isFullScreen && (
-          <Box
-            sx={{
-              position: ["relative", "relative", "relative", "fixed"],
-              left: [
-                "0%",
-                "0%",
-                "0%",
-                `${
-                  isEditorWidthCollapsed
-                    ? `calc(100% - ${editorCollapseWidth}px)`
-                    : "60%"
-                }`,
-              ],
-              transition: ".3s ease-in-out left",
-              width: ["100%", "100%", "100%", "40%"],
-            }}
-          >
-            <EditorToolbar
-              isEditorHeightCollapsed={isEditorHeightCollapsed}
-              setIsEditorHeightCollapsed={setIsEditorHeightCollapsed}
-              isEditorWidthCollapsed={isEditorWidthCollapsed}
-              setIsEditorWidthCollapsed={setIsEditorWidthCollapsed}
-              themeObject={themeObject}
-            />
-            <Editor
-              isEditorHeightCollapsed={isEditorHeightCollapsed}
-              themeObject={themeObject}
-              onChange={event => setThemeObject(event)}
-            />
-          </Box>
-        )}
+  const conditionalWidth = state.isFullScreen ? "100%" : "60%"
+
+  return (
+    <Flex sx={{ flexWrap: "wrap" }}>
+      {!state.isFullScreen && (
         <Box
           sx={{
-            marginLeft: [0, 0, 0, isFullScreen ? 0 : sidebarWidth],
-            transition: ".3s ease-in-out margin-left",
-            transition: ".3s ease-in-out width",
-            width: [
-              "100%",
-              "100%",
-              "100%",
-              `calc(${
-                isEditorWidthCollapsed
-                  ? `calc(100% - ${isFullScreen ? 0 : editorCollapseWidth}px)`
-                  : conditionalWidth
-              } - ${isFullScreen ? 0 : sidebarWidth}px)`,
+            position: ["relative", "relative", "relative", "fixed"],
+            left: [
+              "0%",
+              "0%",
+              "0%",
+              `${
+                state.isEditorWidthCollapsed
+                  ? `calc(100% - ${editorCollapseWidth}px)`
+                  : "60%"
+              }`,
             ],
+            // transition: ".3s ease-in-out left",
+            width: ["100%", "100%", "100%", "40%"],
           }}
         >
-          <PreviewToolbar
-            handleCheckboxChange={handleCheckboxChange}
-            isFullScreen={isFullScreen}
-            setIsFullScreen={setIsFullScreen}
-            isSourceVisible={isSourceVisible}
-            setIsSourceVisible={setIsSourceVisible}
-          />
-          {isSourceVisible ? (
-            <Source isFullScreen={isFullScreen} />
-          ) : (
-            <Preview themeObject={themeObject} children={children} />
-          )}
+          <EditorToolbar />
+          <Editor />
         </Box>
-      </Flex>
-    )
-  }
-)
+      )}
+      <Box
+        sx={{
+          marginLeft: [0, 0, 0, state.isFullScreen ? 0 : sidebarWidth],
+          // transition: ".3s ease-in-out margin-left",
+          // transition: ".3s ease-in-out width",
+          width: [
+            "100%",
+            "100%",
+            "100%",
+            `calc(${
+              state.isEditorWidthCollapsed
+                ? `calc(100% - ${
+                    state.isFullScreen ? 0 : editorCollapseWidth
+                  }px)`
+                : conditionalWidth
+            } - ${state.isFullScreen ? 0 : sidebarWidth}px)`,
+          ],
+        }}
+      >
+        <PreviewToolbar />
+        {state.isSourceVisible ? <Source /> : <Preview children={mdx} />}
+      </Box>
+    </Flex>
+  )
+})
 
 Application.propTypes = {
   /** React children passed from mdx */
-  children: PropTypes.any,
-  /** parent isFullScreen state value */
-  isFullScreen: PropTypes.bool,
-  /** parent setIsFullScreen function */
-  setIsFullScreen: PropTypes.func,
-  /** parent handleCheckboxChange funtion */
-  handleCheckboxChange: PropTypes.func,
+  mdx: PropTypes.any,
 }

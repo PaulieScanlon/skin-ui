@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState, Fragment } from "react"
+import { useContext, Fragment } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 
@@ -9,15 +9,16 @@ import { Lightbox } from "../components/Lightbox"
 import { Application } from "../components/Application"
 import { Seo } from "../components/Seo"
 
+import { SkinContext } from "../context"
+
 import { useSiteMetadata } from "../data/useSiteMetadata"
-import { MARKDOWN, COMPONENTS } from "../utils/const"
 
 if (typeof window !== `undefined`) {
   require("codemirror/lib/codemirror")
   require("codemirror/lib/codemirror.css")
 }
 
-const EditorLayout = ({ user, props }) => {
+const EditorLayout = ({ props }) => {
   const {
     site: {
       siteMetadata: {
@@ -28,27 +29,13 @@ const EditorLayout = ({ user, props }) => {
         ogImage,
         keywords,
         lang,
-        config: { sidebarWidth },
       },
     },
   } = useSiteMetadata()
 
-  const [isNavOpen, setIsNavOpen] = useState(false)
-  const [isFullScreen, setIsFullScreen] = useState(false)
+  const { state } = useContext(SkinContext)
 
-  const [filterChildren, setFilterChildren] = useState({
-    [MARKDOWN]: true,
-    [COMPONENTS]: true,
-  })
-
-  const mdx = props.filter(child => filterChildren[child.props.className])
-
-  const handleCheckboxChange = event => {
-    setFilterChildren({
-      ...filterChildren,
-      [event.target.name]: !filterChildren[event.target.name],
-    })
-  }
+  const mdx = props.filter(child => state.filterChildren[child.props.className])
 
   return (
     <Fragment>
@@ -63,38 +50,19 @@ const EditorLayout = ({ user, props }) => {
         keywords={keywords}
         lang={lang}
       />
-      {!isFullScreen && (
+      {!state.isFullScreen && (
         <Fragment>
-          <Sidebar
-            sidebarWidth={sidebarWidth}
-            mdx={mdx}
-            isNavOpen={isNavOpen}
-          />
-          <Lightbox
-            onClick={() => setIsNavOpen(!isNavOpen)}
-            isNavOpen={isNavOpen}
-          />
-          <Header
-            onClick={() => setIsNavOpen(!isNavOpen)}
-            sidebarWidth={sidebarWidth}
-            isNavOpen={isNavOpen}
-            user={user}
-          />
+          <Sidebar mdx={mdx} />
+          <Lightbox />
+          <Header showMenu={true} />
         </Fragment>
       )}
-      <Application
-        children={mdx}
-        isFullScreen={isFullScreen}
-        setIsFullScreen={setIsFullScreen}
-        handleCheckboxChange={handleCheckboxChange}
-      />
+      <Application mdx={mdx} />
     </Fragment>
   )
 }
 
 EditorLayout.propTypes = {
-  /** user from Netlify Identity */
-  user: PropTypes.object,
   /** React children passed from parent */
   props: PropTypes.any,
 }

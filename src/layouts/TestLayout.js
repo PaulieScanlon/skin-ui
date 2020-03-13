@@ -1,7 +1,10 @@
 /** @jsx jsx */
+import { useContext } from "react"
 import { jsx } from "theme-ui"
 import { Container, Button } from "theme-ui"
 import netlifyIdentity from "netlify-identity-widget"
+
+import { SkinContent, SkinContext } from "../context"
 
 import { ThemeWrapper } from "../components/ThemeWrapper"
 import { Seo } from "../components/Seo"
@@ -9,7 +12,9 @@ import { Header } from "../components/Header"
 
 import { useSiteMetadata } from "../data/useSiteMetadata"
 
-const LoginLayout = () => {
+const TestLayout = () => {
+  const { state } = useContext(SkinContext)
+
   const {
     site: {
       siteMetadata: {
@@ -29,11 +34,11 @@ const LoginLayout = () => {
       <Seo
         author={author}
         title={title}
-        titleTemplate="Login"
+        titleTemplate="Test"
         description={description}
         url={url}
         ogImage={ogImage}
-        path="/Login"
+        path="/test"
         keywords={keywords}
         lang={lang}
       />
@@ -42,11 +47,13 @@ const LoginLayout = () => {
 
       <main>
         <Container>
-          <Button onClick={() => netlifyIdentity.open()}>Login</Button>
+          <Button onClick={() => netlifyIdentity.open()}>
+            {`${state.user && state.user ? "Logout" : "Login"}`}
+          </Button>
         </Container>
       </main>
     </ThemeWrapper>
   )
 }
 
-export default LoginLayout
+export default TestLayout
