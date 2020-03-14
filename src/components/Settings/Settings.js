@@ -180,11 +180,13 @@ export const Settings = memo(({ isElementVisible }) => {
           }}
         >
           <IconButton
+            as="a"
+            download="skin-ui-source.zip"
+            href={`${url}/skin-ui-source.zip`}
             variant="ghostIcon"
             title="Download source"
             aria-label="Download source"
             iconPath={DOWNLOAD_ICON}
-            href={`${url}/skin-ui-source.zip`}
             sx={{
               mr: 1,
             }}
