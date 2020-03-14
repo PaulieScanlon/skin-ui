@@ -10,6 +10,7 @@ module.exports = {
     author: `@pauliescanlon`,
     config: {
       sidebarWidth: 210,
+      drawerWidth: 320,
       editorCollapseWidth: 60,
     },
   },

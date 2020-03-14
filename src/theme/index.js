@@ -1,3 +1,5 @@
+import { lighten, darken } from "@theme-ui/color"
+
 export const commonFocus = {
   outline: "none",
   transition: ".2s linear box-shadow",
@@ -13,10 +15,11 @@ export default {
     primary: "#ff0099",
     secondary: "#33ff00",
     muted: "#666666",
-    highlight: "#67013E",
+    highlight: "#ffceeb",
     gray: "#272727",
     accent: "#CC00FF",
-    darken: "#212121",
+    lighten: "#cccccc",
+    darken: "#111111",
   },
   fonts: {
     body: "system-ui, sans-serif",
@@ -48,8 +51,9 @@ export default {
   zIndices: {
     sidebar: 10,
     lightbox: 9,
-    header: 8,
-    toolbar: 7,
+    drawer: 8,
+    header: 7,
+    toolbar: 6,
   },
   styles: {
     root: {
@@ -89,12 +93,22 @@ export default {
         },
       },
     },
+    hr: {
+      mt: 3,
+      mb: 3,
+      color: "lighten",
+    },
   },
   buttons: {
     primary: {
       borderRadius: 0,
       cursor: "pointer",
       fontSize: [0, 1, 1, 1],
+      textTransform: "uppercase",
+      transition: ".2s linear background-color",
+      ":hover": {
+        background: darken("primary", 0.05),
+      },
       ":focus": {
         ...commonFocus,
       },
@@ -105,6 +119,12 @@ export default {
       cursor: "pointer",
       color: "gray",
       fontSize: [0, 1, 1, 1],
+      textTransform: "uppercase",
+      transition: ".2s linear background-color, .1s linear color",
+      ":hover": {
+        color: "text",
+        background: darken("secondary", 0.05),
+      },
       ":focus": {
         ...commonFocus,
       },
@@ -114,6 +134,11 @@ export default {
       borderRadius: 0,
       cursor: "pointer",
       fontSize: [0, 1, 1, 1],
+      textTransform: "uppercase",
+      transition: ".2s linear background-color",
+      ":hover": {
+        background: lighten("darken", 0.05),
+      },
       ":focus": {
         ...commonFocus,
       },
@@ -122,6 +147,10 @@ export default {
       borderRadius: 0,
       color: "text",
       cursor: "pointer",
+      transition: ".2s linear background-color",
+      ":hover": {
+        background: lighten("darken", 0.05),
+      },
       ":focus": {
         ...commonFocus,
       },
@@ -130,6 +159,22 @@ export default {
       borderRadius: 0,
       color: "text",
       cursor: "pointer",
+      transition: ".2s linear background-color",
+      ":hover": {
+        background: lighten("darken", 0.05),
+      },
+      ":focus": {
+        ...commonFocus,
+      },
+    },
+    ghostIcon: {
+      borderRadius: 0,
+      color: "gray",
+      cursor: "pointer",
+      transition: ".2s linear background-color",
+      ":hover": {
+        background: darken("lighten", 0.05),
+      },
       ":focus": {
         ...commonFocus,
       },
@@ -138,6 +183,10 @@ export default {
       borderRadius: 0,
       color: "text",
       cursor: "pointer",
+      transition: ".2s linear background-color",
+      ":hover": {
+        background: lighten("darken", 0.05),
+      },
       ":focus": {
         ...commonFocus,
       },
@@ -170,11 +219,35 @@ export default {
   },
   forms: {
     label: {
+      color: "muted",
       fontFamily: "body",
-      fontSize: [0, 0, 0, 1],
+      fontSize: 0,
+      fontWeight: "bold",
       alignItems: "center",
-      mb: "0px !important",
+      mb: 2,
+      userSelect: "none",
       wordBreak: "initial",
+    },
+    input: {
+      borderColor: "lighten",
+      borderRadius: 0,
+      p: 2,
+      mb: 4,
+      ":focus": {
+        ...commonFocus,
+      },
+    },
+    textarea: {
+      borderColor: "lighten",
+      borderRadius: 0,
+      p: 2,
+      mb: 4,
+      ":focus": {
+        ...commonFocus,
+      },
+    },
+    radio: {
+      cursor: "pointer",
     },
     checkbox: {
       cursor: "pointer",

@@ -11,10 +11,10 @@ export const Toolbar = memo(({ children }) => (
       sx={{
         alignItems: "center",
         borderBottomStyle: 0,
-        borderBottomColor: "darken",
+        borderBottomColor: "gray",
         borderBottomWidth: 1,
         borderRightStyle: 0,
-        borderRightColor: "darken",
+        borderRightColor: "gray",
         borderRightWidth: 1,
         backgroundColor: "background",
         color: "text",

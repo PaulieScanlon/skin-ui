@@ -16,6 +16,7 @@ export const useSiteMetadata = () => {
             author
             config {
               sidebarWidth
+              drawerWidth
               editorCollapseWidth
             }
           }

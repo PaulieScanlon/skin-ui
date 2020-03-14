@@ -5,19 +5,20 @@ import defaultThemeObject from "../utils/defaultThemeObject"
 import {
   MARKDOWN,
   COMPONENTS,
-  SET_IS_USER_LOGGED_IN,
   UPDATE_DEFAULT_THEME_OBJECT,
+  SET_IS_USER_LOGGED_IN,
   SET_IS_NAV_OPEN,
   SET_FULL_SCREEN,
   SET_IS_SOURCE_VISIBLE,
   SET_FILTER_CHILDREN,
   SET_IS_EDITOR_WIDTH_COLLAPSED,
   SET_IS_EDITOR_HEIGHT_COLLAPSED,
+  SET_IS_SETTINGS_OPEN,
 } from "../utils/const"
 
 const initialState = {
-  user: null,
   defaultThemeObject: defaultThemeObject,
+  user: null,
   isNavOpen: false,
   isFullScreen: false,
   isSourceVisible: false,
@@ -27,15 +28,16 @@ const initialState = {
   },
   isEditorWidthCollapsed: false,
   isEditorHeightCollapsed: true,
+  isSettingsOpen: false,
 }
 
 const reducer = (state, actions) => {
   switch (actions.type) {
-    case SET_IS_USER_LOGGED_IN:
-      return { ...state, user: actions.user }
-
     case UPDATE_DEFAULT_THEME_OBJECT:
       return { ...state, defaultThemeObject: actions.defaultThemeObject }
+
+    case SET_IS_USER_LOGGED_IN:
+      return { ...state, user: actions.user }
 
     case SET_IS_NAV_OPEN:
       return { ...state, isNavOpen: actions.isNavOpen }
@@ -67,6 +69,9 @@ const reducer = (state, actions) => {
         ...state,
         isEditorHeightCollapsed: !actions.isEditorHeightCollapsed,
       }
+
+    case SET_IS_SETTINGS_OPEN:
+      return { ...state, isSettingsOpen: !actions.isSettingsOpen }
 
     default:
       return

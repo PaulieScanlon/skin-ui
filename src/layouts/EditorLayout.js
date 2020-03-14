@@ -6,6 +6,8 @@ import { jsx } from "theme-ui"
 import { Header } from "../components/Header"
 import { Sidebar } from "../components/Sidebar"
 import { Sidenav } from "../components/Sidenav"
+import { Drawer } from "../components/Drawer"
+import { Settings } from "../components/Settings"
 import { Lightbox } from "../components/Lightbox"
 import { Application } from "../components/Application"
 import { Seo } from "../components/Seo"
@@ -77,6 +79,11 @@ const EditorLayout = ({ props }) => {
               />
             )}
           </Sidebar>
+          <Drawer>
+            {isElementVisible => (
+              <Settings isElementVisible={isElementVisible} />
+            )}
+          </Drawer>
           <Lightbox />
           <Header showMenu={true} />
         </Fragment>
@@ -87,7 +94,7 @@ const EditorLayout = ({ props }) => {
 }
 
 EditorLayout.propTypes = {
-  /** React children passed from parent */
+  /** mdx children passed from parent */
   props: PropTypes.any,
 }
 

@@ -2,29 +2,31 @@
 import { useContext, useState, memo, Fragment } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
+import { darken } from "@theme-ui/color"
 import VisibilitySensor from "react-visibility-sensor"
+
+import { Close } from "@theme-ui/components"
 
 import { SkinContext } from "../../context"
 
 import { ThemeWrapper } from "../ThemeWrapper"
-import { Logo } from "../Logo"
+
+import { SET_IS_SETTINGS_OPEN } from "../../utils/const"
 
 import { useSiteMetadata } from "../../data/useSiteMetadata"
 
-export const Sidebar = memo(({ children }) => {
+export const Drawer = memo(({ children }) => {
   const {
     site: {
       siteMetadata: {
-        config: { sidebarWidth },
+        config: { drawerWidth },
       },
     },
   } = useSiteMetadata()
 
-  const { state } = useContext(SkinContext)
+  const { state, dispatch } = useContext(SkinContext)
 
   const [isElementVisible, setIsElementVisible] = useState(true)
-
-  const conditionalLeft = state.isNavOpen ? 0 : sidebarWidth
 
   const handleVisibilityChange = isVisible => {
     setIsElementVisible(isVisible)
@@ -34,21 +36,14 @@ export const Sidebar = memo(({ children }) => {
     <ThemeWrapper>
       <div
         sx={{
-          backgroundColor: "background",
-          borderRightStyle: 0,
-          borderRightColor: "gray",
-          borderRightWidth: 1,
+          backgroundColor: "white",
+          boxShadow: isElementVisible ? 2 : 0,
           height: "max",
-          left: [
-            `-${conditionalLeft}px`,
-            `-${conditionalLeft}px`,
-            `-${conditionalLeft}px`,
-            "0px",
-          ],
+          right: `${state.isSettingsOpen ? 0 : `-${drawerWidth}px`}`,
           position: "fixed",
-          transition: ".3s ease-in-out left",
-          width: sidebarWidth,
-          zIndex: theme => theme.zIndices.sidebar,
+          transition: ".3s ease-in-out right",
+          width: drawerWidth,
+          zIndex: theme => theme.zIndices.drawer,
         }}
       >
         <VisibilitySensor onChange={handleVisibilityChange}>
@@ -56,28 +51,34 @@ export const Sidebar = memo(({ children }) => {
             <div
               sx={{
                 alignItems: "center",
-                borderBottomStyle: 0,
-                borderBottomColor: "black",
-                borderBottomWidth: 1,
-                backgroundColor: "black",
                 boxSizing: "border-box",
                 display: "flex",
                 height: "header",
-                justifyContent: "flex-start",
+                justifyContent: "flex-end",
                 p: theme => `0px ${theme.space[3]}px`,
               }}
             >
-              <Logo isElementVisible={isElementVisible} />
+              <Close
+                variant="ghostIcon"
+                tabIndex={isElementVisible ? 0 : -1}
+                onClick={() =>
+                  dispatch({
+                    type: SET_IS_SETTINGS_OPEN,
+                    isSettingsOpen: state.isSettingsOpen,
+                  })
+                }
+              />
             </div>
-            <nav
+            <div
               sx={{
                 height: theme => `calc(100% - ${theme.sizes.header}px)`,
+                color: "gray",
+                p: 3,
                 overflow: "auto",
-                p: theme => `0px ${theme.space[4]}px`,
               }}
             >
               {children(isElementVisible)}
-            </nav>
+            </div>
           </Fragment>
         </VisibilitySensor>
       </div>
@@ -85,7 +86,7 @@ export const Sidebar = memo(({ children }) => {
   )
 })
 
-Sidebar.propTypes = {
+Drawer.propTypes = {
   /** children nav items from parent */
   children: PropTypes.any,
 }
