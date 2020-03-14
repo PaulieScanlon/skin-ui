@@ -35,7 +35,7 @@ export const Header = memo(({ showMenu }) => {
         sx={{
           alignItems: "center",
           borderBottomStyle: 0,
-          borderBottomColor: "darken",
+          borderBottomColor: "gray",
           borderBottomWidth: 1,
           backgroundColor: "background",
           boxSizing: "border-box",

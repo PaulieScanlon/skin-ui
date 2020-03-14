@@ -1,16 +1,18 @@
 /** @jsx jsx */
 import { useContext } from "react"
 import { jsx } from "theme-ui"
+import { Link } from "gatsby"
 import { Container, Button } from "theme-ui"
 import netlifyIdentity from "netlify-identity-widget"
 
-import { SkinContent, SkinContext } from "../context"
+import { SkinContext } from "../context"
 
 import { ThemeWrapper } from "../components/ThemeWrapper"
 import { Seo } from "../components/Seo"
 import { Header } from "../components/Header"
 
 import { useSiteMetadata } from "../data/useSiteMetadata"
+import { Box } from "@theme-ui/components"
 
 const TestLayout = () => {
   const { state } = useContext(SkinContext)
@@ -47,9 +49,16 @@ const TestLayout = () => {
 
       <main>
         <Container>
-          <Button onClick={() => netlifyIdentity.open()}>
-            {`${state.user && state.user ? "Logout" : "Login"}`}
-          </Button>
+          <Box>
+            <Button onClick={() => netlifyIdentity.open()} sx={{ mb: 4 }}>
+              {`${state.user && state.user ? "Logout" : "Login"}`}
+            </Button>
+          </Box>
+          <Box>
+            <Link sx={{ color: "secondary" }} to="/editor">
+              Go to Editor
+            </Link>
+          </Box>
         </Container>
       </main>
     </ThemeWrapper>

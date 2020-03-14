@@ -49,26 +49,52 @@ export const PreviewToolbar = () => {
             display: "flex",
           }}
         >
-          <Label title="Toggle Markdown visibility" mb={3} mr={2}>
-            <div>
+          <Box
+            sx={{
+              alignItems: "center",
+              display: "flex",
+            }}
+          >
+            <Label
+              title="Toggle Markdown visibility"
+              htmlFor={MARKDOWN}
+              sx={{
+                fontWeight: "body",
+                mb: 0,
+                mr: 3,
+              }}
+            >
               <Checkbox
+                id={MARKDOWN}
                 name={MARKDOWN}
                 defaultChecked
                 onChange={event => handleChange(event)}
               />
-            </div>
-            Markdown
-          </Label>
-          <Label title="Toggle Theme UI components visibility" mb={3}>
-            <div>
+              Markdown
+            </Label>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+            }}
+          >
+            <Label
+              title="Toggle Theme UI components visibility"
+              htmlFor={COMPONENTS}
+              sx={{
+                fontWeight: "body",
+                mb: 0,
+              }}
+            >
               <Checkbox
+                id={COMPONENTS}
                 name={COMPONENTS}
                 defaultChecked
                 onChange={event => handleChange(event)}
               />
-            </div>
-            Components
-          </Label>
+              Components
+            </Label>
+          </Box>
         </Box>
         <Box
           sx={{
