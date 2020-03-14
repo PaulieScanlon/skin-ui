@@ -2,7 +2,7 @@
 import { useContext } from "react"
 import { jsx } from "theme-ui"
 import { Flex, Box, Button } from "@theme-ui/components"
-// import copy from "clipboard-copy"
+import copy from "clipboard-copy"
 
 import { SkinContext } from "../../context"
 
@@ -89,7 +89,7 @@ export const EditorToolbar = () => {
             display: "flex",
           }}
         >
-          {/* <Button
+          <Button
             title="Copy Theme UI object"
             onClick={() =>
               copy(
@@ -103,7 +103,7 @@ export const EditorToolbar = () => {
             }}
           >
             Copy
-          </Button> */}
+          </Button>
           {state.user && (
             <IconButton
               title="Settings"
