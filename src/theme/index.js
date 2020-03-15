@@ -103,7 +103,7 @@ export default {
     primary: {
       borderRadius: 0,
       cursor: "pointer",
-      fontSize: [0, 1, 1, 1],
+      fontSize: 1,
       textTransform: "uppercase",
       transition: ".2s linear background-color",
       ":hover": {
@@ -118,7 +118,7 @@ export default {
       borderRadius: 0,
       cursor: "pointer",
       color: "gray",
-      fontSize: [0, 1, 1, 1],
+      fontSize: 1,
       textTransform: "uppercase",
       transition: ".2s linear background-color, .1s linear color",
       ":hover": {
@@ -133,7 +133,7 @@ export default {
       backgroundColor: "darken",
       borderRadius: 0,
       cursor: "pointer",
-      fontSize: [0, 1, 1, 1],
+      fontSize: 1,
       textTransform: "uppercase",
       transition: ".2s linear background-color",
       ":hover": {

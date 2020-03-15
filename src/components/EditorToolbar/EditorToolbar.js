@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { useContext } from "react"
 import { jsx } from "theme-ui"
-import { Flex, Box, Button } from "@theme-ui/components"
+import { Flex, Box } from "@theme-ui/components"
 import copy from "clipboard-copy"
 
 import { SkinContext } from "../../context"
@@ -15,6 +15,7 @@ import {
   EXPAND_ICON,
   COLLAPSE_ICON,
   SETTINGS_ICON,
+  COPY_ICON,
 } from "../../utils/iconPaths"
 import {
   SET_IS_EDITOR_WIDTH_COLLAPSED,
@@ -89,7 +90,7 @@ export const EditorToolbar = () => {
             display: "flex",
           }}
         >
-          <Button
+          <IconButton
             title="Copy Theme UI object"
             onClick={() =>
               copy(
@@ -98,12 +99,12 @@ export const EditorToolbar = () => {
                 )}`
               )
             }
+            aria-label="Copy Theme UI object"
+            iconPath={COPY_ICON}
             sx={{
-              mr: 2,
+              color: "primary",
             }}
-          >
-            Copy
-          </Button>
+          />
           {state.user && (
             <IconButton
               title="Settings"
