@@ -6,17 +6,20 @@ import { commonFocus } from "../../theme"
 
 import { useSiteMetadata } from "../../data/useSiteMetadata"
 
-export const Logo = ({ isElementVisible }) => {
+export const Logo = ({ isElementVisible, ...sx }) => {
   const {
     site: {
       siteMetadata: { url },
     },
   } = useSiteMetadata()
 
+  console.log("sx: ", sx)
+
   return (
     <ThemeWrapper>
       <a
         tabIndex={isElementVisible ? 0 : -1}
+        title={url}
         href="/"
         title={url}
         sx={{
@@ -26,6 +29,7 @@ export const Logo = ({ isElementVisible }) => {
             ...commonFocus,
           },
         }}
+        {...sx}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -68,4 +72,6 @@ export const Logo = ({ isElementVisible }) => {
 Logo.propTypes = {
   /** parent state isElementVisible */
   isElementVisible: PropTypes.bool,
+  /** jsx sx spread */
+  sx: PropTypes.any,
 }

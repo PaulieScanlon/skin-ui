@@ -16,4 +16,6 @@ export const IconButton = ({ iconPath, sx, ...rest }) => {
 IconButton.propTypes = {
   /** Svg icon path */
   iconPath: PropTypes.string.isRequired,
+  /** jsx sx spread */
+  sx: PropTypes.any,
 }

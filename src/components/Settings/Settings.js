@@ -148,6 +148,7 @@ export const Settings = memo(({ isElementVisible }) => {
           }}
         >
           <IconButton
+            tabIndex={isElementVisible ? 0 : -1}
             variant="ghostIcon"
             title="Copy Theme UI object"
             aria-label="Copy Theme UI object"
@@ -180,6 +181,7 @@ export const Settings = memo(({ isElementVisible }) => {
           }}
         >
           <IconButton
+            tabIndex={isElementVisible ? 0 : -1}
             as="a"
             download="skin-ui-source.zip"
             href={`${url}/skin-ui-source.zip`}

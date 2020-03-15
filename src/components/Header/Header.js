@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useContext, memo /** Fragment **/ } from "react"
+import { useContext, memo } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 // import netlifyIdentity from "netlify-identity-widget"
@@ -62,7 +62,7 @@ export const Header = memo(({ showMenu }) => {
             height: "header",
           }}
         >
-          {!state.isNavOpen && showMenu && (
+          {showMenu && (
             <MenuButton
               title="Open Navigation"
               onClick={() =>
@@ -74,8 +74,14 @@ export const Header = memo(({ showMenu }) => {
               }}
             />
           )}
-          <Logo isElementVisible={true} />
+          <Logo
+            isElementVisible={true}
+            sx={{
+              display: ["flex", "flex", "flex", "none"],
+            }}
+          />
         </div>
+
         <div
           sx={{
             alignItems: "center",
@@ -130,9 +136,6 @@ export const Header = memo(({ showMenu }) => {
               target="_blank"
               title="https://twitter.com/PaulieScanlon"
               aria-label="Twitter Username"
-              sx={{
-                mr: 1,
-              }}
             >
               <IconButton tabIndex={-1} iconPath={TWITTER_ICON} />
             </Link>
@@ -141,9 +144,9 @@ export const Header = memo(({ showMenu }) => {
               target="_blank"
               title="https://github.com/PaulieScanlon/skin-ui"
               aria-label="GitHub Repo"
-              // sx={{
-              //   mr: 1,
-              // }}
+              sx={{
+                ml: 2,
+              }}
             >
               <IconButton tabIndex={-1} iconPath={GITHUB_ICON} />
             </Link>

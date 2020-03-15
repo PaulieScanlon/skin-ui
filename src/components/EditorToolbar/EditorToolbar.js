@@ -116,6 +116,9 @@ export const EditorToolbar = () => {
               }}
               aria-label="Settings"
               iconPath={SETTINGS_ICON}
+              sx={{
+                ml: 2,
+              }}
             />
           )}
         </Box>
