@@ -1,19 +1,19 @@
 /** @jsx jsx */
+import { useContext } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
+
 import { ThemeWrapper } from "../ThemeWrapper"
 import { commonFocus } from "../../theme"
 
 import { useSiteMetadata } from "../../data/useSiteMetadata"
 
-export const Logo = ({ isElementVisible, ...sx }) => {
+export const Logo = ({ isElementVisible }) => {
   const {
     site: {
       siteMetadata: { url },
     },
   } = useSiteMetadata()
-
-  console.log("sx: ", sx)
 
   return (
     <ThemeWrapper>
@@ -29,7 +29,6 @@ export const Logo = ({ isElementVisible, ...sx }) => {
             ...commonFocus,
           },
         }}
-        {...sx}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -72,6 +71,4 @@ export const Logo = ({ isElementVisible, ...sx }) => {
 Logo.propTypes = {
   /** parent state isElementVisible */
   isElementVisible: PropTypes.bool,
-  /** jsx sx spread */
-  sx: PropTypes.any,
 }
