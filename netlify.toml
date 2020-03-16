@@ -1,3 +1,4 @@
 [build]
-  command = "yarn build"
+  command = "yarn build && cd functions/apollo-graphql && yarn"
+  functions = "functions"
   publish = "public/"

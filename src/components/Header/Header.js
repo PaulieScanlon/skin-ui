@@ -74,12 +74,8 @@ export const Header = memo(({ showMenu }) => {
               }}
             />
           )}
-          <Logo
-            isElementVisible={true}
-            sx={{
-              display: ["flex", "flex", "flex", "none"],
-            }}
-          />
+
+          <Logo isElementVisible={true} />
         </div>
 
         <div
