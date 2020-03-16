@@ -116,7 +116,7 @@ export const Header = memo(({ showMenu }) => {
                   mr: 3,
                 }}
               >
-                theme-iu/compoments:
+                theme-iu/components:
                 {packageJSON.dependencies["@theme-ui/components"]}
               </Text>
             </div>
