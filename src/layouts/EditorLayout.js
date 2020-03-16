@@ -85,7 +85,7 @@ const EditorLayout = ({ props }) => {
             )}
           </Drawer>
           <Lightbox />
-          <Header showMenu={true} />
+          <Header isEditorRoute={true} />
         </Fragment>
       )}
       <Application mdx={mdx} />

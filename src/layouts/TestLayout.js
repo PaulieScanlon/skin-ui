@@ -45,7 +45,7 @@ const TestLayout = () => {
         lang={lang}
       />
 
-      <Header isNavOpen={true} />
+      <Header />
 
       <main>
         <Container>

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useContext, memo } from "react"
+import { useContext, memo, Fragment } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 // import netlifyIdentity from "netlify-identity-widget"
@@ -18,7 +18,7 @@ import * as packageJSON from "../../../package.json"
 
 import { useSiteMetadata } from "../../data/useSiteMetadata"
 
-export const Header = memo(({ showMenu }) => {
+export const Header = memo(({ isEditorRoute }) => {
   const {
     site: {
       siteMetadata: {
@@ -27,7 +27,7 @@ export const Header = memo(({ showMenu }) => {
     },
   } = useSiteMetadata()
 
-  const { state, dispatch } = useContext(SkinContext)
+  const { dispatch } = useContext(SkinContext)
 
   return (
     <ThemeWrapper>
@@ -62,7 +62,7 @@ export const Header = memo(({ showMenu }) => {
             height: "header",
           }}
         >
-          {showMenu && (
+          {isEditorRoute && (
             <MenuButton
               title="Open Navigation"
               onClick={() =>
@@ -98,27 +98,31 @@ export const Header = memo(({ showMenu }) => {
                 display: "flex",
               }}
             >
-              <Text
-                sx={{
-                  display: ["none", "block", "block", "block"],
-                  color: "muted",
-                  fontSize: 0,
-                  mr: 3,
-                }}
-              >
-                theme-iu: {packageJSON.dependencies["theme-ui"]}
-              </Text>
-              <Text
-                sx={{
-                  display: ["none", "block", "block", "block"],
-                  color: "muted",
-                  fontSize: 0,
-                  mr: 3,
-                }}
-              >
-                theme-iu/components:
-                {packageJSON.dependencies["@theme-ui/components"]}
-              </Text>
+              {isEditorRoute && (
+                <Fragment>
+                  <Text
+                    sx={{
+                      display: ["none", "block", "block", "block"],
+                      color: "muted",
+                      fontSize: 0,
+                      mr: 3,
+                    }}
+                  >
+                    theme-iu: {packageJSON.dependencies["theme-ui"]}
+                  </Text>
+                  <Text
+                    sx={{
+                      display: ["none", "block", "block", "block"],
+                      color: "muted",
+                      fontSize: 0,
+                      mr: 3,
+                    }}
+                  >
+                    theme-iu/components:
+                    {packageJSON.dependencies["@theme-ui/components"]}
+                  </Text>
+                </Fragment>
+              )}
             </div>
           )}
           <div
@@ -176,9 +180,9 @@ export const Header = memo(({ showMenu }) => {
 })
 
 Header.defaultProps = {
-  showMenu: false,
+  isEditorRoute: false,
 }
 Header.propTypes = {
-  /** Boolean to control Menu Button visibility */
-  showMenu: PropTypes.bool,
+  /** Boolean to control Menu Button and package text visibility */
+  isEditorRoute: PropTypes.bool,
 }

@@ -53,7 +53,7 @@ const IndexLayout = ({ props }) => {
         }}
       />
 
-      <Header isNavOpen={false} />
+      <Header />
       <main>
         <MDXProvider components={themeUiComponents}>{props}</MDXProvider>
       </main>
