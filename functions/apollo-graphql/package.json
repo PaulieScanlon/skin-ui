@@ -16,6 +16,8 @@
   "license": "MIT",
   "dependencies": {
     "apollo-server-lambda": "^2.4.8",
-    "graphql": "^14.1.1"
+    "graphql": "^14.1.1",
+    "dotenv": "^8.2.0",
+    "faunadb": "^2.13.0"
   }
 }
