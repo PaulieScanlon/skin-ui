@@ -35,7 +35,7 @@ const Test = () => {
   const { state } = useContext(SkinContext)
 
   const { loading, error, data } = useQuery(GET_THEMES_BY_USER, {
-    variables: { user_id: state.user && state.user.id },
+    variables: { user_id: (state.user && state.user.id) || "" },
   })
 
   // console.log("loading: ", loading)
@@ -78,6 +78,9 @@ const Test = () => {
             <Button onClick={() => netlifyIdentity.open()} sx={{ mb: 4 }}>
               {`${state.user && state.user ? "Logout" : "Login"}`}
             </Button>
+          </Box>
+          <Box>
+            <Text>FAUNA: {process.env.FAUNA}</Text>
           </Box>
           <Box sx={{ mb: 3 }}>
             {state.user && (

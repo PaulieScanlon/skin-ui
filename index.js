@@ -1,6 +1,11 @@
 require("dotenv").config()
+// require("dotenv").config({
+//   path: `.env.${process.env.NODE_ENV}`,
+// })
 const faunadb = require("faunadb")
 const q = faunadb.query
+
+console.log("process: ", process.env.FAUNA)
 
 const client = new faunadb.Client({ secret: process.env.FAUNA })
 
@@ -10,12 +15,10 @@ async function run() {
   // const results = await client.query(
   //   q.Paginate(q.Match(q.Index("get-all-public-themes"), "false"))
   // )
-
   // get light / dark themes
   //   const results = await client.query(
   //     q.Paginate(q.Match(q.Index("get-themes-by-style"), "dark"))
   //   )
-
   // get themes by user
   const results = await client.query(
     q.Paginate(
@@ -25,14 +28,12 @@ async function run() {
       )
     )
   )
-
   // update a value for a given user
   //   const results = await client.query(
   //     q.Update(q.Ref(q.Collection("skin-ui-themes"), "260225998507737611"), {
   //       data: { theme_name: "Updated theme name" },
   //     })
   //   )
-
   //   create a new nuser
   //   const results = await client.query(
   //     q.Create(q.Collection("skin-ui-themes"), {
@@ -46,7 +47,6 @@ async function run() {
   //       },
   //     })
   //   )
-
   console.log("results: ", results)
   //   console.log("results.ref: ", results.data)
 }
