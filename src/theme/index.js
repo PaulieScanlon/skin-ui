@@ -19,7 +19,7 @@ export default {
     gray: "#272727",
     accent: "#CC00FF",
     lighten: "#cccccc",
-    darken: "#111111",
+    darken: "#161616",
   },
   fonts: {
     body: "system-ui, sans-serif",
