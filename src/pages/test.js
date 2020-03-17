@@ -79,10 +79,6 @@ const Test = () => {
               {`${state.user && state.user ? "Logout" : "Login"}`}
             </Button>
           </Box>
-          <Box>
-            <Text>FAUNA: {process.env.FAUNA}</Text>
-            {/* <pre>process: {JSON.stringify(process, null, 2)}</pre> */}
-          </Box>
           <Box sx={{ mb: 3 }}>
             {state.user && (
               <Fragment>
