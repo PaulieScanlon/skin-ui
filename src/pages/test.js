@@ -18,9 +18,9 @@ import { Header } from "../components/Header"
 import { useSiteMetadata } from "../data/useSiteMetadata"
 import { Box } from "@theme-ui/components"
 
-const GET_ALL_USERS = gql`
-  query GetAllUsersQuery {
-    getAllUsers {
+const GET_THEMES_BY_USER = gql`
+  query GetAllUsersQuery($user_id: String!) {
+    getThemesByUser(user_id: $user_id) {
       user_id
       theme_author
       theme_name
@@ -34,7 +34,9 @@ const GET_ALL_USERS = gql`
 const Test = () => {
   const { state } = useContext(SkinContext)
 
-  const { loading, error, data } = useQuery(GET_ALL_USERS)
+  const { loading, error, data } = useQuery(GET_THEMES_BY_USER, {
+    variables: { user_id: state.user && state.user.id },
+  })
 
   // console.log("loading: ", loading)
   // console.log("error: ", error)
@@ -88,7 +90,7 @@ const Test = () => {
           </Box>
 
           {loading ? <Text>Loading</Text> : null}
-          {error ? <Text>Error</Text> : null}
+          {error ? <Text>{`${error}`}</Text> : null}
           {!loading && !error && (
             <Box sx={{ mb: 3 }}>
               <pre>{JSON.stringify(data, null, 2)}</pre>

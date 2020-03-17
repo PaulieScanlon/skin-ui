@@ -7,19 +7,24 @@ const client = new faunadb.Client({ secret: process.env.FAUNA })
 async function run() {
   // get all public themes
   // the false string relates to the theme_is_private data value
-  const results = await client.query(
-    q.Paginate(q.Match(q.Index("get-all-public-themes"), "false"))
-  )
+  // const results = await client.query(
+  //   q.Paginate(q.Match(q.Index("get-all-public-themes"), "false"))
+  // )
 
   // get light / dark themes
   //   const results = await client.query(
   //     q.Paginate(q.Match(q.Index("get-themes-by-style"), "dark"))
   //   )
 
-  //get themes by user
-  //   const results = await client.query(
-  //     q.Paginate(q.Match(q.Index("get-themes-by-user"), "123"))
-  //   )
+  // get themes by user
+  const results = await client.query(
+    q.Paginate(
+      q.Match(
+        q.Index("get-themes-by-user"),
+        "dbbe4b2e-0cc3-41ce-aa81-84d63bb07727"
+      )
+    )
+  )
 
   // update a value for a given user
   //   const results = await client.query(

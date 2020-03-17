@@ -1,9 +1,15 @@
+require("dotenv").config()
+const faunadb = require("faunadb")
 const { ApolloServer, gql } = require("apollo-server-lambda")
+
+const q = faunadb.query
+
+const client = new faunadb.Client({ secret: process.env.FAUNA })
 
 const typeDefs = gql`
   type Query {
     hello: String
-    getAllUsers: [User!]
+    getThemesByUser(user_id: String!): [User!]
     user(id: Int!): User
     userByName(author: String!): User
   }
@@ -49,8 +55,39 @@ const resolvers = {
     hello: (root, args, context) => {
       return "Hello, world!"
     },
-    getAllUsers: (root, args, context) => {
-      return users
+    // getAllUsers: (root, args, context) => {
+    //   return users
+    // },
+    getThemesByUser: async (root, args, context) => {
+      if (!args.user_id) {
+        return []
+      } else {
+        const results = await client.query(
+          q.Paginate(q.Match(q.Index("get-themes-by-user"), args.user_id))
+        )
+        return results.data.map(
+          ([
+            ref,
+            user_id,
+            theme_author,
+            theme_name,
+            theme_description,
+            theme_style,
+            theme_is_private,
+          ]) => ({
+            id: ref.id,
+            user_id,
+            theme_author,
+            theme_name,
+            theme_description,
+            theme_style,
+            theme_is_private,
+          })
+        )
+      }
+
+      // console.log("//// results.data: ", results.data)
+      // return results
     },
     user: (root, args, context) => {
       return
