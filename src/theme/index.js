@@ -29,6 +29,7 @@ export default {
   fontSizes: ["0.75rem", "1rem", "1.25rem"],
   fontWeights: {
     body: 400,
+    heading: 700,
   },
   lineHeights: {
     heading: 1,
@@ -83,6 +84,7 @@ export default {
         backgroundColor: "gray",
       },
     },
+
     a: {
       ":focus": {
         ...commonFocus,

@@ -21,7 +21,7 @@ if (typeof window !== `undefined`) {
   require("codemirror/lib/codemirror.css")
 }
 
-const EditorLayout = ({ props }) => {
+const EditorLayout = ({ children }) => {
   const {
     site: {
       siteMetadata: {
@@ -38,7 +38,9 @@ const EditorLayout = ({ props }) => {
 
   const { state } = useContext(SkinContext)
 
-  const mdx = props.filter(child => state.filterChildren[child.props.className])
+  const mdx = children.filter(
+    child => state.filterChildren[child.props.className]
+  )
 
   const navItems = mdx.reduce((items, item) => {
     const { className } = item.props

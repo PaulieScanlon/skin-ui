@@ -28,7 +28,7 @@ const GET_ALL_USERS = gql`
   }
 `
 
-const TestLayout = () => {
+const Test = () => {
   const { state } = useContext(SkinContext)
 
   const { loading, error, data } = useQuery(GET_ALL_USERS)
@@ -103,4 +103,4 @@ const TestLayout = () => {
   )
 }
 
-export default TestLayout
+export default Test
