@@ -3,21 +3,45 @@ const { ApolloServer, gql } = require("apollo-server-lambda")
 const typeDefs = gql`
   type Query {
     hello: String
-    allUsers: [User!]
+    getAllUsers: [User!]
     user(id: Int!): User
-    userByName(name: String!): User
+    userByName(author: String!): User
   }
   type User {
-    id: ID!
-    full_name: String!
-    email: String!
+    user_id: String!
+    theme_author: String!
+    theme_name: String!
+    theme_description: String!
+    theme_style: String!
+    theme_is_private: String!
   }
 `
 
 const users = [
-  { id: 1, full_name: "Terry Pratchett", email: "terry@gmail.com" },
-  { id: 2, full_name: "Stephen King", email: "stephen@gmail.com" },
-  { id: 3, full_name: "JK Rowling", email: "j@gmail.com" },
+  {
+    user_id: "123",
+    theme_author: "Boop",
+    theme_name: "Theme name ",
+    theme_description: "Theme description",
+    theme_style: "light",
+    theme_is_private: "false",
+  },
+  {
+    user_id: "123",
+    theme_author: "Boop",
+    theme_name: "Theme name",
+    theme_description: "Theme description",
+    theme_style: "dark",
+    theme_is_private: "true",
+  },
+  {
+    user_id: "789",
+    theme_author: "Paul",
+    theme_name: "Theme name",
+    theme_description: "Theme description",
+    theme_style: "light",
+    theme_is_private: "false",
+  },
 ]
 
 const resolvers = {
@@ -25,15 +49,15 @@ const resolvers = {
     hello: (root, args, context) => {
       return "Hello, world!"
     },
-    allUsers: (root, args, context) => {
+    getAllUsers: (root, args, context) => {
       return users
     },
     user: (root, args, context) => {
       return
     },
     userByName: (root, args, context) => {
-      console.log("hi hi hi", args.full_name)
-      return users.find(x => x.full_name === args.full_name) || "NOTFOUND"
+      console.log("hi hi hi", args.theme_author)
+      return users.find(x => x.theme_author === args.theme_author) || "NOTFOUND"
     },
   },
 }

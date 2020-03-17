@@ -19,11 +19,14 @@ import { useSiteMetadata } from "../data/useSiteMetadata"
 import { Box } from "@theme-ui/components"
 
 const GET_ALL_USERS = gql`
-  query GetAllUsers {
-    allUsers {
-      id
-      full_name
-      email
+  query GetAllUsersQuery {
+    getAllUsers {
+      user_id
+      theme_author
+      theme_name
+      theme_description
+      theme_style
+      theme_is_private
     }
   }
 `
