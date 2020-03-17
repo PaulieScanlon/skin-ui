@@ -2,8 +2,8 @@
 import { useContext, memo, Fragment } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
-// import netlifyIdentity from "netlify-identity-widget"
-import { MenuButton, Link, Text /**Button **/ } from "@theme-ui/components"
+import netlifyIdentity from "netlify-identity-widget"
+import { MenuButton, Link, Text, Button } from "@theme-ui/components"
 
 import { SkinContext } from "../../context"
 
@@ -27,7 +27,7 @@ export const Header = memo(({ isEditorRoute }) => {
     },
   } = useSiteMetadata()
 
-  const { dispatch } = useContext(SkinContext)
+  const { state, dispatch } = useContext(SkinContext)
 
   return (
     <ThemeWrapper>
@@ -102,7 +102,7 @@ export const Header = memo(({ isEditorRoute }) => {
                 <Fragment>
                   <Text
                     sx={{
-                      display: ["none", "block", "block", "block"],
+                      display: ["none", "none", "none", "block"],
                       color: "muted",
                       fontSize: 0,
                       mr: 3,
@@ -112,7 +112,7 @@ export const Header = memo(({ isEditorRoute }) => {
                   </Text>
                   <Text
                     sx={{
-                      display: ["none", "block", "block", "block"],
+                      display: ["none", "none", "none", "block"],
                       color: "muted",
                       fontSize: 0,
                       mr: 3,
@@ -150,12 +150,12 @@ export const Header = memo(({ isEditorRoute }) => {
             >
               <IconButton tabIndex={-1} iconPath={GITHUB_ICON} />
             </Link>
-            {/* {state.user ? (
+            {state.user ? (
               <Fragment>
                 <Button
                   variant="ghost"
                   sx={{
-                    mr: 2,
+                    ml: 2,
                   }}
                   onClick={() => netlifyIdentity.logout()}
                 >
@@ -163,14 +163,7 @@ export const Header = memo(({ isEditorRoute }) => {
                 </Button>
                 <Text>{state.user.full_name}</Text>
               </Fragment>
-            ) : (
-              <Button
-                variant="secondary"
-                onClick={() => netlifyIdentity.open()}
-              >
-                Login / Signup
-              </Button>
-            )} */}
+            ) : null}
           </div>
         </div>
       </header>

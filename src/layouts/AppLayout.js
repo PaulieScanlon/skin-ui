@@ -16,8 +16,8 @@ const AppLayout = ({ children }) => {
       <Identity>
         <Fragment>
           <Router basepath="/">
-            <EditorLayout path="/editor" props={children} />
             <TestLayout path="/test" />
+            <EditorLayout path="/editor" props={children} />
             <IndexLayout path="/" props={children} />
           </Router>
         </Fragment>

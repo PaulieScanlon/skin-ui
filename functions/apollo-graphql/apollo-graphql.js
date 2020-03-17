@@ -3,21 +3,21 @@ const { ApolloServer, gql } = require("apollo-server-lambda")
 const typeDefs = gql`
   type Query {
     hello: String
-    allAuthors: [Author!]
-    author(id: Int!): Author
-    authorByName(name: String!): Author
+    allUsers: [User!]
+    user(id: Int!): User
+    userByName(name: String!): User
   }
-  type Author {
+  type User {
     id: ID!
-    name: String!
-    married: Boolean!
+    full_name: String!
+    email: String!
   }
 `
 
-const authors = [
-  { id: 1, name: "Terry Pratchett", married: false },
-  { id: 2, name: "Stephen King", married: true },
-  { id: 3, name: "JK Rowling", married: false },
+const users = [
+  { id: 1, full_name: "Terry Pratchett", email: "terry@gmail.com" },
+  { id: 2, full_name: "Stephen King", email: "stephen@gmail.com" },
+  { id: 3, full_name: "JK Rowling", email: "j@gmail.com" },
 ]
 
 const resolvers = {
@@ -25,15 +25,15 @@ const resolvers = {
     hello: (root, args, context) => {
       return "Hello, world!"
     },
-    allAuthors: (root, args, context) => {
-      return authors
+    allUsers: (root, args, context) => {
+      return users
     },
-    author: (root, args, context) => {
+    user: (root, args, context) => {
       return
     },
-    authorByName: (root, args, context) => {
-      console.log("hihhihi", args.name)
-      return authors.find(x => x.name === args.name) || "NOTFOUND"
+    userByName: (root, args, context) => {
+      console.log("hi hi hi", args.full_name)
+      return users.find(x => x.full_name === args.full_name) || "NOTFOUND"
     },
   },
 }

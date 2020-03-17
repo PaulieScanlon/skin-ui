@@ -1,3 +1,7 @@
+const React = require("react")
+const { client } = require("./src/client")
+const { ApolloProvider } = require("@apollo/react-hooks")
+
 const anchorScroll = location => {
   // only get the anchors that aren't part of the nav. h5 is importatnt here, check the linked headings in mdx
   const anchor = document.querySelectorAll(`h5 > a[href="${location.hash}"]`)[0]
@@ -31,3 +35,7 @@ exports.onRouteUpdate = ({ location }) => {
   anchorScroll(location)
   return true
 }
+
+exports.wrapRootElement = ({ element }) => (
+  <ApolloProvider client={client}>{element}</ApolloProvider>
+)
