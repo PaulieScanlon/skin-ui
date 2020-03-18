@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from "react"
 
-// import defaultThemeObject from "../utils/defaultThemeObject"
+import defaultThemeObject from "../utils/defaultThemeObject"
 
 import {
   MARKDOWN,
@@ -17,8 +17,7 @@ import {
 } from "../utils/const"
 
 const initialState = {
-  // defaultThemeObject: defaultThemeObject,
-  defaultThemeObject: "",
+  defaultThemeObject: defaultThemeObject,
   user: null,
   isNavOpen: false,
   isFullScreen: false,

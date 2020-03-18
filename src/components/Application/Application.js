@@ -46,24 +46,27 @@ export const Application = memo(({ mdx }) => {
 
   const { state, dispatch } = useContext(SkinContext)
 
-  const urlQueryString =
-    typeof window !== `undefined`
-      ? queryString.parse(location.search).theme_id
-      : ""
+  const loading = false
+  const error = false
 
-  const { loading, error, data } = useQuery(GET_THEME_BY_ID, {
-    // TODO DEFAULT_THEME_DATABASE_REF is the default object from the database // should it be hardcoded?
-    variables: { theme_id: urlQueryString || DEFAULT_THEME_DATABASE_REF },
-  })
+  // const urlQueryString =
+  //   typeof window !== `undefined`
+  //     ? queryString.parse(location.search).theme_id
+  //     : ""
 
-  useEffect(() => {
-    if (!loading && !error && data) {
-      dispatch({
-        type: UPDATE_DEFAULT_THEME_OBJECT,
-        defaultThemeObject: JSON.parse(data.getThemeById.theme_object),
-      })
-    }
-  }, [data])
+  // const { loading, error, data } = useQuery(GET_THEME_BY_ID, {
+  //   // TODO DEFAULT_THEME_DATABASE_REF is the default object from the database // should it be hardcoded?
+  //   variables: { theme_id: urlQueryString || DEFAULT_THEME_DATABASE_REF },
+  // })
+
+  // useEffect(() => {
+  //   if (!loading && !error && data) {
+  //     dispatch({
+  //       type: UPDATE_DEFAULT_THEME_OBJECT,
+  //       defaultThemeObject: JSON.parse(data.getThemeById.theme_object),
+  //     })
+  //   }
+  // }, [data])
 
   const conditionalWidth = state.isFullScreen ? "100%" : "60%"
 
