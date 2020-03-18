@@ -10,9 +10,17 @@ const typeDefs = gql`
   type Query {
     hello: String
     getThemesByUser(user_id: String!): [User!]
+    getThemeById(theme_id: String!): ThemeObject
     user(id: Int!): User
     userByName(author: String!): User
   }
+
+  type ThemeObject {
+    user_id: String!
+    theme_is_private: Boolean!
+    theme_object: String!
+  }
+
   type User {
     ref: String!
     user_id: String!
@@ -20,8 +28,8 @@ const typeDefs = gql`
     theme_name: String!
     theme_description: String!
     theme_style: String!
-    theme_is_private: String!
-    theme_object: String!
+    theme_is_private: Boolean!
+    theme_object: String
   }
 `
 
@@ -63,10 +71,24 @@ const resolvers = {
           })
         )
       }
-
-      // console.log("//// results.data: ", results.data)
-      // return results
     },
+
+    getThemeById: async (root, args, context) => {
+      if (!args.theme_id) {
+        return []
+      } else {
+        const results = await client.query(
+          q.Get(q.Ref(q.Collection("skin-ui-themes"), args.theme_id))
+        )
+
+        return {
+          user_id: results.data.user_id,
+          theme_is_private: results.data.theme_is_private,
+          theme_object: JSON.stringify(results.data.theme_object),
+        }
+      }
+    },
+
     user: (root, args, context) => {
       return
     },

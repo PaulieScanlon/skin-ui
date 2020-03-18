@@ -3,7 +3,7 @@ module.exports = {
     title: `Skin UI`,
     description: `A Theme UI Live Preview and Code Editor`,
     keywords: [`gatsby`, `gatsbyjs`, `theme-ui`],
-    url: `https://skin-ui.com`,
+    url: `https://www.skin-ui.com`,
     ogImage: `images/skin-ui-open-graph-image.jpg`,
     bgImage: `images/skin-ui-background-image.jpg`,
     lang: `en`,

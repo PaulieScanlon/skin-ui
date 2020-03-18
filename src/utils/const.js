@@ -12,3 +12,5 @@ export const SET_IS_EDITOR_WIDTH_COLLAPSED = "setIsEditorWidthCollapsed"
 export const SET_IS_EDITOR_HEIGHT_COLLAPSED = "setIsEditorHeightCollapsed"
 
 export const SET_IS_SETTINGS_OPEN = "setIsSettingsOpen"
+
+export const DEFAULT_THEME_DATABASE_REF = "260230089713648130"

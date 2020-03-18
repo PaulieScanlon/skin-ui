@@ -90,6 +90,7 @@ const EditorLayout = ({ children }) => {
           <Header isEditorRoute={true} />
         </Fragment>
       )}
+
       <Application mdx={mdx} />
     </Fragment>
   )

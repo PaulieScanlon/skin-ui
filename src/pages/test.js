@@ -11,6 +11,7 @@ import {
   Button,
   Heading,
   Text,
+  Spinner,
 } from "@theme-ui/components"
 import netlifyIdentity from "netlify-identity-widget"
 
@@ -26,7 +27,7 @@ import { Header } from "../components/Header"
 import { useSiteMetadata } from "../data/useSiteMetadata"
 
 const GET_THEMES_BY_USER = gql`
-  query GetAllUsersQuery($user_id: String!) {
+  query GetThemesByUserQuery($user_id: String!) {
     getThemesByUser(user_id: $user_id) {
       ref
       user_id
@@ -95,8 +96,18 @@ const Test = () => {
             )}
           </Box>
 
-          {loading ? <Text>Loading</Text> : null}
-          {error ? <Text>{`${error}`}</Text> : null}
+          {loading && (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                p: 4,
+              }}
+            >
+              <Spinner />
+            </Box>
+          )}
+          {error && <Text>{`${error}`}</Text>}
           {!loading && !error && (
             <Flex
               sx={{
@@ -146,6 +157,15 @@ const Test = () => {
                             p: 3,
                           }}
                         >
+                          {item.theme_is_private ? (
+                            <Text
+                              sx={{
+                                color: "muted",
+                              }}
+                            >
+                              Is Private
+                            </Text>
+                          ) : null}
                           <Heading
                             as="h2"
                             variant="styles.h2"
@@ -156,8 +176,15 @@ const Test = () => {
                           <Text sx={{ color: "text" }}>
                             {item.theme_description}
                           </Text>
+                          <Text sx={{ color: "text", fontSize: 0 }}>
+                            {`ref: ${item.ref}`}
+                          </Text>
+                          <Text sx={{ color: "text", fontSize: 0 }}>
+                            {`theme_object: ${typeof item.theme_object}`}
+                          </Text>
                         </Box>
                         <Box sx={{ p: 3 }}>
+                          <Text sx={{ color: "text" }}>{item.theme_style}</Text>
                           <Text
                             sx={{
                               color: "secondary",

@@ -1,8 +1,9 @@
 /** @jsx jsx */
-import { useContext, memo } from "react"
+import { useContext, useState, useEffect } from "react"
 import { jsx } from "theme-ui"
 import { Box } from "@theme-ui/components"
-import CodeMirror from "react-codemirror"
+import { Controlled as CodeMirror } from "react-codemirror2"
+import { useDebounce } from "use-debounce"
 
 import { SkinContext } from "../../context"
 
@@ -17,22 +18,32 @@ if (typeof window !== `undefined`) {
 
 import { UPDATE_DEFAULT_THEME_OBJECT } from "../../utils/const"
 
-export const Editor = memo(() => {
+export const Editor = () => {
   const { state, dispatch } = useContext(SkinContext)
-  const conditionalHeight = state.isEditorHeightCollapsed ? "50vh" : "100%"
 
-  const handleChange = event => {
+  const [localThemeObject, setLocalThemeObject] = useState(
+    stringifyReplaceQuotes(state.defaultThemeObject)
+  )
+  const [debouncedLocalThemeObject] = useDebounce(localThemeObject, 300)
+
+  useEffect(() => {
+    setLocalThemeObject(stringifyReplaceQuotes(state.defaultThemeObject))
+  }, [state.defaultThemeObject])
+
+  useEffect(() => {
     try {
-      return dispatch({
+      dispatch({
         type: UPDATE_DEFAULT_THEME_OBJECT,
-        defaultThemeObject: parseAddQuotes(event),
+        defaultThemeObject: parseAddQuotes(debouncedLocalThemeObject),
       })
     } catch (e) {
-      // if (e instanceof SyntaxError) {
-      //   console.error("SyntaxError")
-      // }
+      // TODO handle errors with an alert or something
+      // console.error("SyntaxError")
     }
-  }
+  }, [debouncedLocalThemeObject])
+
+  const conditionalHeight = state.isEditorHeightCollapsed ? "50vh" : "100%"
+
   return (
     <ThemeWrapper>
       <Box
@@ -44,7 +55,7 @@ export const Editor = memo(() => {
             `${conditionalHeight}`,
             `calc(100vh - ${theme.sizes.doubleHeader}px)`,
           ],
-          ["> .ReactCodeMirror"]: {
+          ["> .react-codemirror2"]: {
             textarea: {
               opacity: 0,
             },
@@ -60,8 +71,8 @@ export const Editor = memo(() => {
         }}
       >
         <CodeMirror
-          value={stringifyReplaceQuotes(state.defaultThemeObject)}
-          onChange={event => handleChange(event)}
+          value={localThemeObject}
+          onBeforeChange={(editor, data, value) => setLocalThemeObject(value)}
           options={{
             mode: { name: "javascript", json: true },
             theme: "isotope",
@@ -73,4 +84,4 @@ export const Editor = memo(() => {
       </Box>
     </ThemeWrapper>
   )
-})
+}
