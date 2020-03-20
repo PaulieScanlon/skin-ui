@@ -3,7 +3,6 @@ import { useContext, useState, useEffect } from "react"
 import { jsx } from "theme-ui"
 import { Box } from "@theme-ui/components"
 import { Controlled as CodeMirror } from "react-codemirror2"
-import { useDebounce } from "use-debounce"
 
 import { SkinContext } from "../../context"
 
@@ -24,7 +23,6 @@ export const Editor = () => {
   const [localThemeObject, setLocalThemeObject] = useState(
     stringifyReplaceQuotes(state.defaultThemeObject)
   )
-  const [debouncedLocalThemeObject] = useDebounce(localThemeObject, 300)
 
   useEffect(() => {
     setLocalThemeObject(stringifyReplaceQuotes(state.defaultThemeObject))
@@ -32,29 +30,18 @@ export const Editor = () => {
 
   useEffect(() => {
     try {
-      // console.log("Dispatch Skin UI ok!")
-      parseAddQuotes(debouncedLocalThemeObject)
+      parseAddQuotes(localThemeObject)
       dispatch({
         type: UPDATE_DEFAULT_THEME_OBJECT,
-        defaultThemeObject: parseAddQuotes(debouncedLocalThemeObject),
+        defaultThemeObject: parseAddQuotes(localThemeObject),
       })
+      // console.log("Skin UI ok!")
     } catch (e) {
-      // TODO handle errors with an alert or something
-      console.error("Skin UI Dispatch Syntax Error")
+      if (e instanceof SyntaxError) {
+        console.error("Skin UI Syntax Error")
+      }
     }
-  }, [debouncedLocalThemeObject])
-
-  const handleBeforeChange = value => {
-    try {
-      // console.log("Handle Skin UI ok!")
-      setLocalThemeObject(value)
-    } catch (e) {
-      // TODO handle errors with an alert or something
-      console.error("Skin UI Syntax Error")
-    }
-  }
-
-  console.log(state.defaultThemeObject)
+  }, [localThemeObject])
 
   const conditionalHeight = state.isEditorHeightCollapsed ? "50vh" : "100%"
 
@@ -86,7 +73,18 @@ export const Editor = () => {
       >
         <CodeMirror
           value={localThemeObject}
-          onBeforeChange={(editor, data, value) => handleBeforeChange(value)}
+          onBeforeChange={(editor, data, value) => setLocalThemeObject(value)}
+          // onKeyDown={(editor, data, value) => {
+          //   console.log(value)
+          //   try {
+          //     dispatch({
+          //       type: UPDATE_DEFAULT_THEME_OBJECT,
+          //       defaultThemeObject: parseAddQuotes(value),
+          //     })
+          //   } catch (e) {
+          //     console.error("Skin UI Syntax Error")
+          //   }
+          // }}
           options={{
             mode: { name: "javascript", json: true },
             theme: "isotope",
