@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useContext, memo, Fragment } from "react"
+import { useContext, useState, memo, Fragment } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 
@@ -23,6 +23,7 @@ import { stringifyReplaceQuotes } from "../../utils/stringifyReplaceQuotes"
 import { COPY_ICON, DOWNLOAD_ICON } from "../../utils/iconPaths"
 
 import { useSiteMetadata } from "../../data/useSiteMetadata"
+import { SET_DATABASE_THEME_BY_ID } from "../../utils/const"
 
 const THEME_STYLE_LIGHT = "light"
 const THEME_STYLE_DARK = "dark"
@@ -34,9 +35,23 @@ export const Settings = memo(({ isElementVisible, data }) => {
     },
   } = useSiteMetadata()
 
-  const { state } = useContext(SkinContext)
+  const { state, dispatch } = useContext(SkinContext)
 
   // console.log(state.databaseThemeById.theme_style)
+
+  // const [useValue, setValue] = useState("")
+
+  // const handleThemeNameChange = event => {
+  //   dispatch({
+  //     type: SET_DATABASE_THEME_BY_ID,
+  //     databaseThemeById: {
+  //       ...state.databaseThemeById,
+  //       theme_name: event.target.value,
+  //     },
+  //   })
+  // }
+
+  console.log(state.databaseThemeById)
 
   return (
     <Fragment>
@@ -75,14 +90,30 @@ export const Settings = memo(({ isElementVisible, data }) => {
             <Label>Theme Name</Label>
             <Input
               tabIndex={isElementVisible ? 0 : -1}
-              // value={state.databaseThemeById.theme_name}
-              // onChange={() => {}}
+              value={state.databaseThemeById.theme_name}
+              onChange={event =>
+                dispatch({
+                  type: SET_DATABASE_THEME_BY_ID,
+                  databaseThemeById: {
+                    ...state.databaseThemeById,
+                    theme_name: event.target.value,
+                  },
+                })
+              }
             />
             <Label>Theme Description</Label>
             <Textarea
               tabIndex={isElementVisible ? 0 : -1}
-              // value={state.databaseThemeById.theme_description}
-              // onChange={() => {}}
+              value={state.databaseThemeById.theme_description}
+              onChange={event =>
+                dispatch({
+                  type: SET_DATABASE_THEME_BY_ID,
+                  databaseThemeById: {
+                    ...state.databaseThemeById,
+                    theme_description: event.target.value,
+                  },
+                })
+              }
             />
             <Text
               sx={{
