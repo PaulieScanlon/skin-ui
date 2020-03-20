@@ -17,8 +17,12 @@ const typeDefs = gql`
 
   type ThemeObject {
     user_id: String!
+    theme_author: String!
+    theme_name: String!
+    theme_description: String!
+    theme_style: String!
     theme_is_private: Boolean!
-    theme_object: String!
+    theme_object: String
   }
 
   type User {
@@ -35,12 +39,6 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    hello: (root, args, context) => {
-      return "Hello, world!"
-    },
-    // getAllUsers: (root, args, context) => {
-    //   return users
-    // },
     getThemesByUser: async (root, args, context) => {
       if (!args.user_id) {
         return []
@@ -81,20 +79,13 @@ const resolvers = {
           q.Get(q.Ref(q.Collection("skin-ui-themes"), args.theme_id))
         )
 
+        const { theme_object } = results.data
+
         return {
-          user_id: results.data.user_id,
-          theme_is_private: results.data.theme_is_private,
-          theme_object: JSON.stringify(results.data.theme_object),
+          ...results.data,
+          theme_object: JSON.stringify(theme_object),
         }
       }
-    },
-
-    user: (root, args, context) => {
-      return
-    },
-    userByName: (root, args, context) => {
-      console.log("hi hi hi", args.theme_author)
-      return users.find(x => x.theme_author === args.theme_author) || "NOTFOUND"
     },
   },
 }

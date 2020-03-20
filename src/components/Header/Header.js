@@ -14,11 +14,9 @@ import { TWITTER_ICON, GITHUB_ICON } from "../../utils/iconPaths"
 
 import { SET_IS_NAV_OPEN } from "../../utils/const"
 
-import * as packageJSON from "../../../package.json"
-
 import { useSiteMetadata } from "../../data/useSiteMetadata"
 
-export const Header = memo(({ isEditorRoute }) => {
+export const Header = memo(({ isEditorRoute, data }) => {
   const {
     site: {
       siteMetadata: {
@@ -28,6 +26,10 @@ export const Header = memo(({ isEditorRoute }) => {
   } = useSiteMetadata()
 
   const { state, dispatch } = useContext(SkinContext)
+
+  // console.log(data.getThemeById)
+
+  // const { theme_name, theme_description } = data.getThemeById || ""
 
   return (
     <ThemeWrapper>
@@ -94,32 +96,26 @@ export const Header = memo(({ isEditorRoute }) => {
           {sidebarWidth && (
             <div
               sx={{
-                alignItems: "center",
-                display: "flex",
+                display: ["none", "none", "none", "flex"],
+                flexDirection: "column",
               }}
             >
-              {isEditorRoute && (
+              {isEditorRoute && data && (
                 <Fragment>
                   <Text
                     sx={{
-                      display: ["none", "none", "none", "block"],
                       color: "muted",
-                      fontSize: 0,
-                      mr: 3,
                     }}
                   >
-                    theme-iu: {packageJSON.dependencies["theme-ui"]}
+                    {data.getThemeById.theme_name}
                   </Text>
                   <Text
                     sx={{
-                      display: ["none", "none", "none", "block"],
                       color: "muted",
                       fontSize: 0,
-                      mr: 3,
                     }}
                   >
-                    theme-iu/components:
-                    {packageJSON.dependencies["@theme-ui/components"]}
+                    {data.getThemeById.theme_description}
                   </Text>
                 </Fragment>
               )}
@@ -174,8 +170,12 @@ export const Header = memo(({ isEditorRoute }) => {
 
 Header.defaultProps = {
   isEditorRoute: false,
+  data: null,
 }
+
 Header.propTypes = {
   /** Boolean to control Menu Button and package text visibility */
   isEditorRoute: PropTypes.bool,
+  /** Database data object */
+  data: PropTypes.any,
 }

@@ -2,6 +2,7 @@
 import { useContext, useState, memo, Fragment } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
+import { Box, Text } from "@theme-ui/components"
 import VisibilitySensor from "react-visibility-sensor"
 
 import { SkinContext } from "../../context"
@@ -10,6 +11,8 @@ import { ThemeWrapper } from "../ThemeWrapper"
 import { Logo } from "../Logo"
 
 import { useSiteMetadata } from "../../data/useSiteMetadata"
+
+import * as packageJSON from "../../../package.json"
 
 export const Sidebar = memo(({ children }) => {
   const {
@@ -71,13 +74,44 @@ export const Sidebar = memo(({ children }) => {
             </div>
             <nav
               sx={{
-                height: theme => `calc(100% - ${theme.sizes.header}px)`,
+                height: theme => `calc(100% - ${theme.sizes.doubleHeader}px)`,
                 overflow: "auto",
                 p: theme => `0px ${theme.space[4]}px`,
               }}
             >
               {children(isElementVisible)}
             </nav>
+            <Box
+              sx={{
+                alignItems: "center",
+                borderTopStyle: 0,
+                borderTopColor: "gray",
+                borderTopWidth: 1,
+                display: "flex",
+                height: "header",
+                p: theme => `0px ${theme.space[4]}px`,
+              }}
+            >
+              <Box>
+                <Text
+                  sx={{
+                    color: "muted",
+                    fontSize: 0,
+                  }}
+                >
+                  theme-iu: {packageJSON.dependencies["theme-ui"]}
+                </Text>
+                <Text
+                  sx={{
+                    color: "muted",
+                    fontSize: 0,
+                  }}
+                >
+                  theme-iu/components:
+                  {packageJSON.dependencies["@theme-ui/components"]}
+                </Text>
+              </Box>
+            </Box>
           </Fragment>
         </VisibilitySensor>
       </div>

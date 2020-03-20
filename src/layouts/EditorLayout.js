@@ -1,8 +1,14 @@
 /** @jsx jsx */
-import { useContext, Fragment } from "react"
+import { useContext, useEffect, Fragment } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
+import { Box, Text, Spinner } from "@theme-ui/components"
+import queryString from "query-string"
 
+import { gql } from "apollo-boost"
+import { useQuery } from "@apollo/react-hooks"
+
+import { ThemeWrapper } from "../components/ThemeWrapper"
 import { Header } from "../components/Header"
 import { Sidebar } from "../components/Sidebar"
 import { Sidenav } from "../components/Sidenav"
@@ -21,6 +27,27 @@ if (typeof window !== `undefined`) {
   require("codemirror/lib/codemirror.css")
 }
 
+import {
+  UPDATE_DEFAULT_THEME_OBJECT,
+  DEFAULT_THEME_DATABASE_REF,
+  SET_IS_USER_OWNER,
+  SET_DATABASE_THEME_BY_ID,
+} from "../utils/const"
+
+const GET_THEME_BY_ID = gql`
+  query GetThemeByIdQuery($theme_id: String!) {
+    getThemeById(theme_id: $theme_id) {
+      user_id
+      theme_author
+      theme_name
+      theme_description
+      theme_style
+      theme_is_private
+      theme_object
+    }
+  }
+`
+
 const EditorLayout = ({ children }) => {
   const {
     site: {
@@ -36,7 +63,7 @@ const EditorLayout = ({ children }) => {
     },
   } = useSiteMetadata()
 
-  const { state } = useContext(SkinContext)
+  const { state, dispatch } = useContext(SkinContext)
 
   const mdx = children.filter(
     child => state.filterChildren[child.props.className]
@@ -58,8 +85,40 @@ const EditorLayout = ({ children }) => {
     return items
   }, [])
 
+  const urlQueryString =
+    typeof window !== `undefined`
+      ? queryString.parse(location.search).theme_id
+      : ""
+
+  const { loading, error, data } = useQuery(GET_THEME_BY_ID, {
+    // TODO DEFAULT_THEME_DATABASE_REF is the default object from the database // should it be hardcoded?
+    variables: { theme_id: urlQueryString || DEFAULT_THEME_DATABASE_REF },
+  })
+
+  useEffect(() => {
+    if (!loading && !error && data) {
+      dispatch({
+        type: SET_DATABASE_THEME_BY_ID,
+        databaseThemeById: data.getThemeById,
+      })
+
+      if (state.user) {
+        dispatch({
+          type: SET_IS_USER_OWNER,
+          isUserOwner:
+            data.getThemeById.user_id === state.user.id ? true : false,
+        })
+      }
+
+      dispatch({
+        type: UPDATE_DEFAULT_THEME_OBJECT,
+        defaultThemeObject: JSON.parse(data.getThemeById.theme_object),
+      })
+    }
+  }, [data])
+
   return (
-    <Fragment>
+    <ThemeWrapper>
       <Seo
         author={author}
         title={title}
@@ -71,28 +130,61 @@ const EditorLayout = ({ children }) => {
         keywords={keywords}
         lang={lang}
       />
+
       {!state.isFullScreen && (
         <Fragment>
-          <Sidebar>
-            {isElementVisible => (
-              <Sidenav
-                navItems={navItems}
-                isElementVisible={isElementVisible}
-              />
-            )}
-          </Sidebar>
-          <Drawer>
-            {isElementVisible => (
-              <Settings isElementVisible={isElementVisible} />
-            )}
-          </Drawer>
-          <Lightbox />
-          <Header isEditorRoute={true} />
+          {!loading && !error && (
+            <Fragment>
+              <Sidebar>
+                {isElementVisible => (
+                  <Sidenav
+                    navItems={navItems}
+                    isElementVisible={isElementVisible}
+                  />
+                )}
+              </Sidebar>
+
+              <Drawer>
+                {isElementVisible => (
+                  <Settings
+                    isElementVisible={isElementVisible}
+                    data={data ? data : ""}
+                  />
+                )}
+              </Drawer>
+
+              <Lightbox />
+            </Fragment>
+          )}
+          <Header isEditorRoute={true} data={data ? data : ""} />
         </Fragment>
       )}
-
-      <Application mdx={mdx} />
-    </Fragment>
+      {loading && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            // ml: [0, 0, 0, state.isFullScreen ? 0 : sidebarWidth],
+            p: 4,
+          }}
+        >
+          <Spinner />
+        </Box>
+      )}
+      {error && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            // ml: [0, 0, 0, state.isFullScreen ? 0 : sidebarWidth],
+            p: 4,
+          }}
+        >
+          <Text>{`${error}`}</Text>
+        </Box>
+      )}
+      {!loading && !error && <Application mdx={mdx} />}
+    </ThemeWrapper>
   )
 }
 

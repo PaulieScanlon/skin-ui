@@ -45,14 +45,20 @@ export const Sidenav = memo(({ navItems, isElementVisible }) => (
                         }}
                       >
                         {href == hash ? (
-                          <Text
+                          <NavLink
+                            tabIndex={isElementVisible ? 0 : -1}
+                            title={children}
+                            href={href}
                             sx={{
                               color: "primary",
                               textDecoration: "underline",
+                              ":active": {
+                                color: "primary",
+                              },
                             }}
                           >
                             {children}
-                          </Text>
+                          </NavLink>
                         ) : (
                           <NavLink
                             tabIndex={isElementVisible ? 0 : -1}
