@@ -26,7 +26,7 @@ export default {
     heading: "system-ui, sans-serif",
     monospace: "Menlo, monospace",
   },
-  fontSizes: ["0.75rem", "1rem", "1.25rem"],
+  fontSizes: ["0.75rem", "0.95rem", "1.25rem"],
   fontWeights: {
     body: 400,
     heading: 700,
@@ -58,7 +58,7 @@ export default {
   },
   styles: {
     root: {
-      //fontSize: "62.5%",
+      fontSize: 1,
       wordBreak: "break-all",
       fontFamily: "body",
       lineHeight: "body",

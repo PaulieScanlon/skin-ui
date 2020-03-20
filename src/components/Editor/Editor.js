@@ -32,15 +32,29 @@ export const Editor = () => {
 
   useEffect(() => {
     try {
+      // console.log("Dispatch Skin UI ok!")
+      parseAddQuotes(debouncedLocalThemeObject)
       dispatch({
         type: UPDATE_DEFAULT_THEME_OBJECT,
         defaultThemeObject: parseAddQuotes(debouncedLocalThemeObject),
       })
     } catch (e) {
       // TODO handle errors with an alert or something
-      // console.error("SyntaxError")
+      console.error("Skin UI Dispatch Syntax Error")
     }
   }, [debouncedLocalThemeObject])
+
+  const handleBeforeChange = value => {
+    try {
+      // console.log("Handle Skin UI ok!")
+      setLocalThemeObject(value)
+    } catch (e) {
+      // TODO handle errors with an alert or something
+      console.error("Skin UI Syntax Error")
+    }
+  }
+
+  console.log(state.defaultThemeObject)
 
   const conditionalHeight = state.isEditorHeightCollapsed ? "50vh" : "100%"
 
@@ -72,7 +86,7 @@ export const Editor = () => {
       >
         <CodeMirror
           value={localThemeObject}
-          onBeforeChange={(editor, data, value) => setLocalThemeObject(value)}
+          onBeforeChange={(editor, data, value) => handleBeforeChange(value)}
           options={{
             mode: { name: "javascript", json: true },
             theme: "isotope",

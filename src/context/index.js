@@ -14,11 +14,14 @@ import {
   SET_IS_EDITOR_WIDTH_COLLAPSED,
   SET_IS_EDITOR_HEIGHT_COLLAPSED,
   SET_IS_SETTINGS_OPEN,
+  SET_IS_USER_OWNER,
+  SET_DATABASE_THEME_BY_ID,
 } from "../utils/const"
 
 const initialState = {
   // defaultThemeObject: defaultThemeObject,
-  defaultThemeObject: "",
+  defaultThemeObject: {},
+  databaseThemeById: {},
   user: null,
   isNavOpen: false,
   isFullScreen: false,
@@ -30,6 +33,7 @@ const initialState = {
   isEditorWidthCollapsed: false,
   isEditorHeightCollapsed: true,
   isSettingsOpen: false,
+  isUserOwner: false,
 }
 
 const reducer = (state, actions) => {
@@ -73,6 +77,12 @@ const reducer = (state, actions) => {
 
     case SET_IS_SETTINGS_OPEN:
       return { ...state, isSettingsOpen: !actions.isSettingsOpen }
+
+    case SET_IS_USER_OWNER:
+      return { ...state, isUserOwner: actions.isUserOwner }
+
+    case SET_DATABASE_THEME_BY_ID:
+      return { ...state, databaseThemeById: actions.databaseThemeById }
 
     default:
       return

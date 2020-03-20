@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { useContext } from "react"
 import { jsx } from "theme-ui"
-import { Flex, Box } from "@theme-ui/components"
+import { Flex, Box, Button } from "@theme-ui/components"
 import copy from "clipboard-copy"
 
 import { SkinContext } from "../../context"
@@ -105,7 +105,7 @@ export const EditorToolbar = () => {
               color: "primary",
             }}
           />
-          {state.user && (
+          {state.user && state.isUserOwner ? (
             <IconButton
               title="Settings"
               onClick={() => {
@@ -120,7 +120,15 @@ export const EditorToolbar = () => {
                 ml: 2,
               }}
             />
-          )}
+          ) : null
+          // <Button
+          //   sx={{
+          //     ml: 2,
+          //   }}
+          // >
+          //   Fork
+          // </Button>
+          }
         </Box>
       </Flex>
     </Toolbar>
