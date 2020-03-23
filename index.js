@@ -6,9 +6,9 @@ const client = new faunadb.Client({ secret: process.env.FAUNA })
 
 async function run() {
   // get theme by id
-  const results = await client.query(
-    q.Get(q.Ref(q.Collection("skin-ui-themes"), "260230131177488898"))
-  )
+  // const results = await client.query(
+  //   q.Get(q.Ref(q.Collection("skin-ui-themes"), "260230131177488898"))
+  // )
 
   // get all public themes
   // the false string relates to the theme_is_private data value
@@ -32,11 +32,11 @@ async function run() {
   // )
 
   // update a value for a given id
-  // const results = await client.query(
-  //   q.Update(q.Ref(q.Collection("skin-ui-themes"), "260230131177488898"), {
-  //     data: { theme_name: "Pauls private theme" },
-  //   })
-  // )
+  const results = await client.query(
+    q.Update(q.Ref(q.Collection("skin-ui-themes"), "260230901859877387"), {
+      data: { theme_name: "Pauls test theme 1" },
+    })
+  )
 
   //   create a new theme / user
   // const results = await client.query(
@@ -51,7 +51,7 @@ async function run() {
   //     },
   //   })
   // )
-  console.log("results: ", results)
+  // console.log("results: ", results)
   //   console.log("results.ref: ", results.data)
 }
 

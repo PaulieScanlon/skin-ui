@@ -8,14 +8,22 @@ const client = new faunadb.Client({ secret: process.env.FAUNA })
 
 const typeDefs = gql`
   type Query {
-    hello: String
     getThemesByUser(user_id: String!): [User!]
     getThemeById(theme_id: String!): ThemeObject
-    user(id: Int!): User
-    userByName(author: String!): User
+  }
+
+  type Mutation {
+    updateThemeById(
+      theme_id: String!
+      theme_name: String!
+      theme_description: String!
+      theme_style: String!
+      theme_object: String!
+    ): ThemeObject
   }
 
   type ThemeObject {
+    ref: String
     user_id: String!
     theme_author: String!
     theme_name: String!
@@ -82,9 +90,31 @@ const resolvers = {
         const { theme_object } = results.data
 
         return {
+          ref: results.ref.id,
           ...results.data,
-          theme_object: JSON.stringify(theme_object),
+          theme_object: JSON.stringify(theme_object, null, 2),
         }
+      }
+    },
+  },
+  Mutation: {
+    updateThemeById: async (root, args, context) => {
+      const results = await client.query(
+        q.Update(q.Ref(q.Collection("skin-ui-themes"), args.theme_id), {
+          data: {
+            theme_name: args.theme_name,
+            theme_description: args.theme_description,
+            theme_style: args.theme_style,
+            theme_object: JSON.parse(args.theme_object),
+          },
+        })
+      )
+      const { theme_object } = results.data
+
+      return {
+        ref: results.ref.id,
+        ...results.data,
+        theme_object: JSON.stringify(theme_object, null, 2),
       }
     },
   },

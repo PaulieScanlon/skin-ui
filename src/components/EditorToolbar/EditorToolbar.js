@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { useContext } from "react"
 import { jsx } from "theme-ui"
-import { Flex, Box, Button } from "@theme-ui/components"
+import { Flex, Box } from "@theme-ui/components"
 import copy from "clipboard-copy"
 
 import { SkinContext } from "../../context"
@@ -9,7 +9,7 @@ import { SkinContext } from "../../context"
 import { Toolbar } from "../Toolbar"
 import { IconButton } from "../IconButton"
 
-import { stringifyReplaceQuotes } from "../../utils/stringifyReplaceQuotes"
+import { checkAndReplaceQuotes } from "../../utils/checkAndReplaceQuotes"
 
 import {
   EXPAND_ICON,
@@ -94,7 +94,7 @@ export const EditorToolbar = () => {
             title="Copy Theme UI object"
             onClick={() =>
               copy(
-                `export default \n${stringifyReplaceQuotes(
+                `export default \n${checkAndReplaceQuotes(
                   state.defaultThemeObject
                 )}`
               )

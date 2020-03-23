@@ -37,6 +37,7 @@ import {
 const GET_THEME_BY_ID = gql`
   query GetThemeByIdQuery($theme_id: String!) {
     getThemeById(theme_id: $theme_id) {
+      ref
       user_id
       theme_author
       theme_name
@@ -109,10 +110,9 @@ const EditorLayout = ({ children }) => {
             data.getThemeById.user_id === state.user.id ? true : false,
         })
       }
-
       dispatch({
         type: UPDATE_DEFAULT_THEME_OBJECT,
-        defaultThemeObject: JSON.parse(data.getThemeById.theme_object),
+        defaultThemeObject: data.getThemeById.theme_object,
       })
     }
   }, [data])
@@ -146,17 +146,14 @@ const EditorLayout = ({ children }) => {
 
               <Drawer>
                 {isElementVisible => (
-                  <Settings
-                    isElementVisible={isElementVisible}
-                    data={data ? data : ""}
-                  />
+                  <Settings isElementVisible={isElementVisible} />
                 )}
               </Drawer>
 
               <Lightbox />
             </Fragment>
           )}
-          <Header isEditorRoute={true} data={data ? data : ""} />
+          <Header isEditorRoute={true} />
         </Fragment>
       )}
       {loading && (
@@ -183,7 +180,7 @@ const EditorLayout = ({ children }) => {
           <Text>{`${error}`}</Text>
         </Box>
       )}
-      {!loading && !error && <Application mdx={mdx} />}
+      {!loading && !error && data && <Application mdx={mdx} />}
     </ThemeWrapper>
   )
 }
