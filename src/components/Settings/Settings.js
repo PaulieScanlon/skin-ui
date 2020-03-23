@@ -2,7 +2,6 @@
 import { useContext, useState, memo, Fragment, useEffect } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
-// import { Formik, Form } from "formik"
 
 import {
   Box,
@@ -28,7 +27,7 @@ import { stringifyReplaceQuotes } from "../../utils/stringifyReplaceQuotes"
 import { COPY_ICON, DOWNLOAD_ICON } from "../../utils/iconPaths"
 
 import { useSiteMetadata } from "../../data/useSiteMetadata"
-// import { SET_DATABASE_THEME_BY_ID } from "../../utils/const"
+import { SET_DATABASE_THEME_BY_ID } from "../../utils/const"
 
 const THEME_STYLE_LIGHT = "light"
 const THEME_STYLE_DARK = "dark"
@@ -60,12 +59,6 @@ const UPDATE_THEME_BY_ID = gql`
   }
 `
 
-// user_id
-// theme_author
-
-// theme_is_private
-// theme_object
-
 export const Settings = ({ isElementVisible }) => {
   const {
     site: {
@@ -79,7 +72,12 @@ export const Settings = ({ isElementVisible }) => {
     UPDATE_THEME_BY_ID,
     {
       onCompleted({ updateThemeById }) {
-        // console.log("updateThemeById: ", updateThemeById)
+        dispatch({
+          type: SET_DATABASE_THEME_BY_ID,
+          databaseThemeById: {
+            ...updateThemeById,
+          },
+        })
       },
     }
   )
@@ -89,10 +87,6 @@ export const Settings = ({ isElementVisible }) => {
     theme_description: "",
     theme_style: "",
   })
-
-  // console.log("themeByIdResponse: ", themeByIdResponse)
-  // console.log("loading: ", loading)
-  // console.log("error: ", error)
 
   useEffect(() => {
     setFormValues({
@@ -109,19 +103,10 @@ export const Settings = ({ isElementVisible }) => {
         theme_name: formValues.theme_name,
         theme_description: formValues.theme_description,
         theme_style: formValues.theme_style,
-        theme_object: JSON.stringify(state.defaultThemeObject),
+        theme_object: state.defaultThemeObject,
       },
     })
-    // dispatch({
-    //   type: SET_DATABASE_THEME_BY_ID,
-    //   databaseThemeById: {
-    //     ...state.databaseThemeById,
-    //     ...formValues,
-    //   },
-    // })
   }
-  // console.log(state)
-  // console.log(JSON.stringify(state.defaultThemeObject))
 
   return (
     <Fragment>
@@ -172,16 +157,6 @@ export const Settings = ({ isElementVisible }) => {
                 theme_name: event.target.value,
               })
             }
-            // value={state.databaseThemeById.theme_name}
-            // onChange={event =>
-            //   dispatch({
-            //     type: SET_DATABASE_THEME_BY_ID,
-            //     databaseThemeById: {
-            //       ...state.databaseThemeById,
-            //       theme_name: event.target.value,
-            //     },
-            //   })
-            // }
           />
           <Label>Theme Description</Label>
           <Textarea
@@ -194,16 +169,6 @@ export const Settings = ({ isElementVisible }) => {
                 theme_description: event.target.value,
               })
             }
-            // value={state.databaseThemeById.theme_description}
-            // onChange={event =>
-            //   dispatch({
-            //     type: SET_DATABASE_THEME_BY_ID,
-            //     databaseThemeById: {
-            //       ...state.databaseThemeById,
-            //       theme_description: event.target.value,
-            //     },
-            //   })
-            // }
           />
           <Text
             sx={{

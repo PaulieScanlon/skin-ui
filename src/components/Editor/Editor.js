@@ -14,6 +14,8 @@ if (typeof window !== `undefined`) {
 }
 
 import { UPDATE_DEFAULT_THEME_OBJECT } from "../../utils/const"
+import { checkAndReplaceQuotes } from "../../utils/checkAndReplaceQuotes"
+import { checkAndAddQuotes } from "../../utils/checkAndAddQuotes"
 
 export const Editor = () => {
   const { state, dispatch } = useContext(SkinContext)
@@ -54,8 +56,10 @@ export const Editor = () => {
         }}
       >
         <CodeMirror
-          value={state.defaultThemeObject}
-          onBeforeChange={(editor, data, value) => handleEditorChange(value)}
+          value={checkAndReplaceQuotes(state.defaultThemeObject)}
+          onBeforeChange={(editor, data, value) =>
+            handleEditorChange(checkAndAddQuotes(value))
+          }
           options={{
             mode: { name: "javascript", json: true },
             theme: "isotope",

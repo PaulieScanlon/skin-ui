@@ -16,7 +16,7 @@ import { SET_IS_NAV_OPEN } from "../../utils/const"
 
 import { useSiteMetadata } from "../../data/useSiteMetadata"
 
-export const Header = memo(({ isEditorRoute, data }) => {
+export const Header = memo(({ isEditorRoute }) => {
   const {
     site: {
       siteMetadata: {
@@ -100,14 +100,14 @@ export const Header = memo(({ isEditorRoute, data }) => {
                 flexDirection: "column",
               }}
             >
-              {isEditorRoute && data && (
+              {isEditorRoute && (
                 <Fragment>
                   <Text
                     sx={{
                       color: "muted",
                     }}
                   >
-                    {data.getThemeById.theme_name}
+                    {state.databaseThemeById.theme_name}
                   </Text>
                   <Text
                     sx={{
@@ -115,7 +115,7 @@ export const Header = memo(({ isEditorRoute, data }) => {
                       fontSize: 0,
                     }}
                   >
-                    {data.getThemeById.theme_description}
+                    {state.databaseThemeById.theme_description}
                   </Text>
                 </Fragment>
               )}
@@ -176,6 +176,4 @@ Header.defaultProps = {
 Header.propTypes = {
   /** Boolean to control Menu Button and package text visibility */
   isEditorRoute: PropTypes.bool,
-  /** Database data object */
-  data: PropTypes.any,
 }

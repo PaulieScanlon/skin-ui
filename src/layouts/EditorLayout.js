@@ -117,15 +117,6 @@ const EditorLayout = ({ children }) => {
     }
   }, [data])
 
-  useEffect(() => {
-    return () => {
-      dispatch({
-        type: SET_DATABASE_THEME_BY_ID,
-        databaseThemeById: {},
-      })
-    }
-  }, [])
-
   return (
     <ThemeWrapper>
       <Seo
@@ -162,7 +153,7 @@ const EditorLayout = ({ children }) => {
               <Lightbox />
             </Fragment>
           )}
-          <Header isEditorRoute={true} data={data ? data : ""} />
+          <Header isEditorRoute={true} />
         </Fragment>
       )}
       {loading && (

@@ -92,7 +92,6 @@ const resolvers = {
         return {
           ref: results.ref.id,
           ...results.data,
-          // theme_object: theme_object,
           theme_object: JSON.stringify(theme_object, null, 2),
         }
       }
@@ -100,10 +99,6 @@ const resolvers = {
   },
   Mutation: {
     updateThemeById: async (root, args, context) => {
-      // console.log("root: ", root)
-      // console.log("args: ", args)
-      // console.log("context: ", context)
-
       const results = await client.query(
         q.Update(q.Ref(q.Collection("skin-ui-themes"), args.theme_id), {
           data: {

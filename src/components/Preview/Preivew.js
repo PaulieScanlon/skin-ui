@@ -16,7 +16,7 @@ export const Preview = memo(({ children }) => {
 
   const checkBeforeProvider = () => {
     try {
-      console.log("Skin UI ok!")
+      // console.log("Skin UI ok!")
       return checkAndParse(state.defaultThemeObject)
     } catch (e) {
       if (e instanceof SyntaxError) {
