@@ -22,7 +22,7 @@ import { useMutation } from "@apollo/react-hooks"
 import { IconButton } from "../IconButton"
 import { SkinContext } from "../../context"
 
-import { stringifyReplaceQuotes } from "../../utils/stringifyReplaceQuotes"
+import { checkAndReplaceQuotes } from "../../utils/checkAndReplaceQuotes"
 
 import { COPY_ICON, DOWNLOAD_ICON } from "../../utils/iconPaths"
 
@@ -272,7 +272,7 @@ export const Settings = ({ isElementVisible }) => {
               iconPath={COPY_ICON}
               onClick={() =>
                 copy(
-                  `export default \n${stringifyReplaceQuotes(
+                  `export default \n${checkAndReplaceQuotes(
                     state.defaultThemeObject
                   )}`
                 )
