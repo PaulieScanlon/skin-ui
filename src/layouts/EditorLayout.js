@@ -37,6 +37,7 @@ import {
 const GET_THEME_BY_ID = gql`
   query GetThemeByIdQuery($theme_id: String!) {
     getThemeById(theme_id: $theme_id) {
+      ref
       user_id
       theme_author
       theme_name
@@ -117,6 +118,15 @@ const EditorLayout = ({ children }) => {
     }
   }, [data])
 
+  useEffect(() => {
+    return () => {
+      dispatch({
+        type: SET_DATABASE_THEME_BY_ID,
+        databaseThemeById: {},
+      })
+    }
+  }, [])
+
   return (
     <ThemeWrapper>
       <Seo
@@ -146,10 +156,7 @@ const EditorLayout = ({ children }) => {
 
               <Drawer>
                 {isElementVisible => (
-                  <Settings
-                    isElementVisible={isElementVisible}
-                    data={data ? data : ""}
-                  />
+                  <Settings isElementVisible={isElementVisible} />
                 )}
               </Drawer>
 
