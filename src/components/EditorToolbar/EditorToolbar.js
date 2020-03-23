@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { useContext } from "react"
 import { jsx } from "theme-ui"
-import { Flex, Box, Button } from "@theme-ui/components"
+import { Flex, Box } from "@theme-ui/components"
 import copy from "clipboard-copy"
 
 import { SkinContext } from "../../context"
@@ -92,18 +92,12 @@ export const EditorToolbar = () => {
         >
           <IconButton
             title="Copy Theme UI object"
-            onClick={
-              () =>
-                copy(
-                  `export default \n${checkAndReplaceQuotes(
-                    state.defaultThemeObject
-                  )}`
-                )
-              // copy(
-              //   `export default \n${stringifyReplaceQuotes(
-              //     state.defaultThemeObject
-              //   )}`
-              // )
+            onClick={() =>
+              copy(
+                `export default \n${checkAndReplaceQuotes(
+                  state.defaultThemeObject
+                )}`
+              )
             }
             aria-label="Copy Theme UI object"
             iconPath={COPY_ICON}
