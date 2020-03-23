@@ -9,7 +9,7 @@ import { SkinContext } from "../../context"
 import { Toolbar } from "../Toolbar"
 import { IconButton } from "../IconButton"
 
-import { stringifyReplaceQuotes } from "../../utils/stringifyReplaceQuotes"
+import { checkAndReplaceQuotes } from "../../utils/checkAndReplaceQuotes"
 
 import {
   EXPAND_ICON,
@@ -92,12 +92,18 @@ export const EditorToolbar = () => {
         >
           <IconButton
             title="Copy Theme UI object"
-            onClick={() =>
-              copy(
-                `export default \n${stringifyReplaceQuotes(
-                  state.defaultThemeObject
-                )}`
-              )
+            onClick={
+              () =>
+                copy(
+                  `export default \n${checkAndReplaceQuotes(
+                    state.defaultThemeObject
+                  )}`
+                )
+              // copy(
+              //   `export default \n${stringifyReplaceQuotes(
+              //     state.defaultThemeObject
+              //   )}`
+              // )
             }
             aria-label="Copy Theme UI object"
             iconPath={COPY_ICON}

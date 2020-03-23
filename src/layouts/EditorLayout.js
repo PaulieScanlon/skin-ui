@@ -110,10 +110,9 @@ const EditorLayout = ({ children }) => {
             data.getThemeById.user_id === state.user.id ? true : false,
         })
       }
-
       dispatch({
         type: UPDATE_DEFAULT_THEME_OBJECT,
-        defaultThemeObject: JSON.parse(data.getThemeById.theme_object),
+        defaultThemeObject: data.getThemeById.theme_object,
       })
     }
   }, [data])
@@ -190,7 +189,7 @@ const EditorLayout = ({ children }) => {
           <Text>{`${error}`}</Text>
         </Box>
       )}
-      {!loading && !error && <Application mdx={mdx} />}
+      {!loading && !error && data && <Application mdx={mdx} />}
     </ThemeWrapper>
   )
 }

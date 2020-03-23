@@ -38,8 +38,6 @@ const IndexLayout = () => {
     },
   } = useSiteMetadata()
 
-  console.log(url)
-
   return (
     <ThemeWrapper>
       <Seo

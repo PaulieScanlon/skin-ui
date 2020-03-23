@@ -20,7 +20,7 @@ import {
 
 const initialState = {
   // defaultThemeObject: defaultThemeObject,
-  defaultThemeObject: {},
+  defaultThemeObject: "",
   databaseThemeById: {},
   user: null,
   isNavOpen: false,

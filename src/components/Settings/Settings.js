@@ -79,7 +79,7 @@ export const Settings = ({ isElementVisible }) => {
     UPDATE_THEME_BY_ID,
     {
       onCompleted({ updateThemeById }) {
-        console.log("updateThemeById: ", updateThemeById)
+        // console.log("updateThemeById: ", updateThemeById)
       },
     }
   )
@@ -91,8 +91,8 @@ export const Settings = ({ isElementVisible }) => {
   })
 
   // console.log("themeByIdResponse: ", themeByIdResponse)
-  console.log("loading: ", loading)
-  console.log("error: ", error)
+  // console.log("loading: ", loading)
+  // console.log("error: ", error)
 
   useEffect(() => {
     setFormValues({

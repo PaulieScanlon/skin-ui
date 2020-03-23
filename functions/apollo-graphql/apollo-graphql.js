@@ -92,7 +92,8 @@ const resolvers = {
         return {
           ref: results.ref.id,
           ...results.data,
-          theme_object: JSON.stringify(theme_object),
+          // theme_object: theme_object,
+          theme_object: JSON.stringify(theme_object, null, 2),
         }
       }
     },
@@ -100,7 +101,7 @@ const resolvers = {
   Mutation: {
     updateThemeById: async (root, args, context) => {
       // console.log("root: ", root)
-      console.log("args: ", args)
+      // console.log("args: ", args)
       // console.log("context: ", context)
 
       const results = await client.query(
@@ -109,7 +110,7 @@ const resolvers = {
             theme_name: args.theme_name,
             theme_description: args.theme_description,
             theme_style: args.theme_style,
-            theme_object: args.theme_object,
+            theme_object: JSON.parse(args.theme_object),
           },
         })
       )
@@ -118,7 +119,7 @@ const resolvers = {
       return {
         ref: results.ref.id,
         ...results.data,
-        theme_object: theme_object,
+        theme_object: JSON.stringify(theme_object, null, 2),
       }
     },
   },
