@@ -27,10 +27,6 @@ export const Header = memo(({ isEditorRoute }) => {
 
   const { state, dispatch } = useContext(SkinContext)
 
-  // console.log(data.getThemeById)
-
-  // const { theme_name, theme_description } = data.getThemeById || ""
-
   return (
     <ThemeWrapper>
       <header
@@ -127,26 +123,51 @@ export const Header = memo(({ isEditorRoute }) => {
               display: "flex",
             }}
           >
-            <Link
-              href="https://twitter.com/PaulieScanlon"
-              target="_blank"
-              title="https://twitter.com/PaulieScanlon"
-              aria-label="Twitter Username"
-            >
-              <IconButton tabIndex={-1} iconPath={TWITTER_ICON} />
-            </Link>
-            <Link
-              href="https://github.com/PaulieScanlon/skin-ui"
-              target="_blank"
-              title="https://github.com/PaulieScanlon/skin-ui"
-              aria-label="GitHub Repo"
-              sx={{
-                ml: 2,
-              }}
-            >
-              <IconButton tabIndex={-1} iconPath={GITHUB_ICON} />
-            </Link>
-            {state.user ? (
+            {!isEditorRoute && (
+              <Fragment>
+                <Link
+                  href="https://twitter.com/PaulieScanlon"
+                  target="_blank"
+                  title="https://twitter.com/PaulieScanlon"
+                  aria-label="Twitter Username"
+                >
+                  <IconButton tabIndex={-1} iconPath={TWITTER_ICON} />
+                </Link>
+                <Link
+                  href="https://github.com/PaulieScanlon/skin-ui"
+                  target="_blank"
+                  title="https://github.com/PaulieScanlon/skin-ui"
+                  aria-label="GitHub Repo"
+                  sx={{
+                    ml: 2,
+                  }}
+                >
+                  <IconButton tabIndex={-1} iconPath={GITHUB_ICON} />
+                </Link>
+              </Fragment>
+            )}
+
+            {
+              <Fragment>
+                {state.user ? (
+                  <Button
+                    variant="ghost"
+                    onClick={() => netlifyIdentity.logout()}
+                  >
+                    Logout
+                  </Button>
+                ) : (
+                  <Button
+                    variant="secondary"
+                    onClick={() => netlifyIdentity.open()}
+                  >
+                    Login
+                  </Button>
+                )}
+              </Fragment>
+            }
+
+            {/* {state.user ? (
               <Fragment>
                 <Button
                   variant="ghost"
@@ -159,7 +180,7 @@ export const Header = memo(({ isEditorRoute }) => {
                 </Button>
                 <Text>{state.user.full_name}</Text>
               </Fragment>
-            ) : null}
+            ) : null} */}
           </div>
         </div>
       </header>
