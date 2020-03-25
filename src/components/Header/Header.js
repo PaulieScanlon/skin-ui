@@ -3,7 +3,14 @@ import { useContext, memo, Fragment } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 import netlifyIdentity from "netlify-identity-widget"
-import { MenuButton, Link, Text, Button } from "@theme-ui/components"
+import {
+  MenuButton,
+  NavLink,
+  Link,
+  Text,
+  Button,
+  Flex,
+} from "@theme-ui/components"
 
 import { SkinContext } from "../../context"
 
@@ -16,7 +23,7 @@ import { SET_IS_NAV_OPEN } from "../../utils/const"
 
 import { useSiteMetadata } from "../../data/useSiteMetadata"
 
-export const Header = memo(({ isEditorRoute }) => {
+export const Header = memo(({ isEditorRoute, isLoading }) => {
   const {
     site: {
       siteMetadata: {
@@ -96,7 +103,7 @@ export const Header = memo(({ isEditorRoute }) => {
                 flexDirection: "column",
               }}
             >
-              {isEditorRoute && (
+              {isEditorRoute && !isLoading && (
                 <Fragment>
                   <Text
                     sx={{
@@ -150,37 +157,33 @@ export const Header = memo(({ isEditorRoute }) => {
             {
               <Fragment>
                 {state.user ? (
-                  <Button
-                    variant="ghost"
-                    onClick={() => netlifyIdentity.logout()}
-                  >
-                    Logout
-                  </Button>
+                  <Flex as="nav">
+                    <NavLink href="/test" p={2}>
+                      Test
+                    </NavLink>
+                    <Button
+                      variant="ghost"
+                      onClick={() => netlifyIdentity.logout()}
+                      sx={{
+                        ml: 3,
+                      }}
+                    >
+                      Logout
+                    </Button>
+                  </Flex>
                 ) : (
                   <Button
                     variant="secondary"
                     onClick={() => netlifyIdentity.open()}
+                    sx={{
+                      ml: 3,
+                    }}
                   >
-                    Login
+                    Login / Sign up
                   </Button>
                 )}
               </Fragment>
             }
-
-            {/* {state.user ? (
-              <Fragment>
-                <Button
-                  variant="ghost"
-                  sx={{
-                    ml: 2,
-                  }}
-                  onClick={() => netlifyIdentity.logout()}
-                >
-                  Logout
-                </Button>
-                <Text>{state.user.full_name}</Text>
-              </Fragment>
-            ) : null} */}
           </div>
         </div>
       </header>
@@ -197,4 +200,6 @@ Header.defaultProps = {
 Header.propTypes = {
   /** Boolean to control Menu Button and package text visibility */
   isEditorRoute: PropTypes.bool,
+  /** Parent state, status of database collection */
+  isLoading: PropTypes.bool,
 }

@@ -24,7 +24,11 @@ import { SkinContext } from "../../context"
 
 import { checkAndReplaceQuotes } from "../../utils/checkAndReplaceQuotes"
 
-import { COPY_ICON, DOWNLOAD_ICON } from "../../utils/iconPaths"
+import {
+  COPY_ICON,
+  DOWNLOAD_ICON,
+  DELETE_THEME_ICON,
+} from "../../utils/iconPaths"
 
 import { useSiteMetadata } from "../../data/useSiteMetadata"
 import { SET_DATABASE_THEME_BY_ID } from "../../utils/const"
@@ -53,13 +57,20 @@ const UPDATE_THEME_BY_ID = gql`
       theme_name
       theme_description
       theme_style
-      theme_is_private
       theme_object
     }
   }
 `
 
-export const Settings = ({ isElementVisible }) => {
+const DELETE_THEME_BY_ID = gql`
+  mutation DeleteThemeByIdMutation($theme_id: String!) {
+    deleteThemeById(theme_id: $theme_id) {
+      ref
+    }
+  }
+`
+
+export const Settings = memo(({ isElementVisible }) => {
   const {
     site: {
       siteMetadata: { url },
@@ -82,6 +93,34 @@ export const Settings = ({ isElementVisible }) => {
     }
   )
 
+  const [deleteThemeById] = useMutation(DELETE_THEME_BY_ID, {
+    onCompleted({ deleteThemeById }) {
+      location.search = null
+    },
+  })
+
+  const handleSave = () => {
+    updateThemeById({
+      variables: {
+        theme_id: state.databaseThemeById.ref,
+        theme_name: formValues.theme_name,
+        theme_description: formValues.theme_description,
+        theme_style: formValues.theme_style,
+        theme_object: state.defaultThemeObject,
+      },
+    })
+  }
+
+  const handleDelete = () => {
+    console.log("handleDelete")
+    // console.log(state.databaseThemeById.ref)
+    deleteThemeById({
+      variables: {
+        theme_id: state.databaseThemeById.ref,
+      },
+    })
+  }
+
   const [formValues, setFormValues] = useState({
     theme_name: "",
     theme_description: "",
@@ -95,18 +134,6 @@ export const Settings = ({ isElementVisible }) => {
       theme_style: state.databaseThemeById.theme_style,
     })
   }, [state.databaseThemeById])
-
-  const handleSave = () => {
-    updateThemeById({
-      variables: {
-        theme_id: state.databaseThemeById.ref,
-        theme_name: formValues.theme_name,
-        theme_description: formValues.theme_description,
-        theme_style: formValues.theme_style,
-        theme_object: state.defaultThemeObject,
-      },
-    })
-  }
 
   return (
     <Fragment>
@@ -319,6 +346,35 @@ export const Settings = ({ isElementVisible }) => {
               Download source
             </Text>
           </Box>
+
+          <Divider />
+
+          <Box
+            sx={{
+              alignItems: "center",
+              display: "flex",
+            }}
+          >
+            <IconButton
+              tabIndex={isElementVisible ? 0 : -1}
+              onClick={() => handleDelete()}
+              variant="ghostIcon"
+              title="Delete Theme"
+              aria-label="Delete Theme"
+              iconPath={DELETE_THEME_ICON}
+              sx={{
+                mr: 1,
+              }}
+            />
+            <Text
+              sx={{
+                color: "muted",
+                fontSize: 0,
+              }}
+            >
+              Delete Theme
+            </Text>
+          </Box>
         </Box>
         <Box
           sx={{
@@ -342,7 +398,7 @@ export const Settings = ({ isElementVisible }) => {
       </Box>
     </Fragment>
   )
-}
+})
 
 Settings.propTypes = {
   /** parent state isElementVisible */

@@ -76,7 +76,6 @@ export const EditorToolbar = () => {
     FORK_THEME_WITH_ID,
     {
       onCompleted({ forkThemeWithId }) {
-        console.log(forkThemeWithId)
         location.search = `?theme_id=${forkThemeWithId.ref}`
 
         dispatch({
@@ -95,7 +94,7 @@ export const EditorToolbar = () => {
         user_id: state.user.id,
         theme_author: state.user.user_metadata.full_name,
         theme_name: uniqueNamesGenerator(nameConfig),
-        theme_description: "",
+        theme_description: "A fork of the default theme",
         theme_style: "light",
         theme_object: state.defaultThemeObject,
       },

@@ -153,7 +153,7 @@ const EditorLayout = ({ children }) => {
               <Lightbox />
             </Fragment>
           )}
-          <Header isEditorRoute={true} />
+          <Header isEditorRoute={true} isLoading={loading} />
         </Fragment>
       )}
       {loading && (

@@ -8,9 +8,8 @@ const client = new faunadb.Client({ secret: process.env.FAUNA })
 
 const typeDefs = gql`
   type Query {
-    getThemesByUser(user_id: String!): [User!]
+    getThemesByUser(user_id: String!): [UserObject!]
     getThemeById(theme_id: String!): ThemeObject
-    forkThemeWithId(user_id: String!): TestObject
   }
 
   type Mutation {
@@ -21,7 +20,8 @@ const typeDefs = gql`
       theme_description: String!
       theme_style: String!
       theme_object: String!
-    ): TestObject
+    ): ThemeObject
+
     updateThemeById(
       theme_id: String!
       theme_name: String!
@@ -29,16 +29,12 @@ const typeDefs = gql`
       theme_style: String!
       theme_object: String!
     ): ThemeObject
+
+    deleteThemeById(theme_id: String!): EmptyObject
   }
 
-  type TestObject {
+  type EmptyObject {
     ref: String
-    user_id: String!
-    theme_author: String!
-    theme_name: String!
-    theme_description: String!
-    theme_style: String!
-    theme_object: String!
   }
 
   type ThemeObject {
@@ -52,7 +48,7 @@ const typeDefs = gql`
     theme_object: String
   }
 
-  type User {
+  type UserObject {
     ref: String!
     user_id: String!
     theme_author: String!
@@ -116,14 +112,18 @@ const resolvers = {
       }
     },
   },
+
   Mutation: {
     updateThemeById: async (root, args, context) => {
       const results = await client.query(
         q.Update(q.Ref(q.Collection("skin-ui-themes"), args.theme_id), {
           data: {
+            user_id: args.user_id,
+            theme_author: args.theme_author,
             theme_name: args.theme_name,
             theme_description: args.theme_description,
             theme_style: args.theme_style,
+            theme_is_private: false,
             theme_object: JSON.parse(args.theme_object),
           },
         })
@@ -136,9 +136,8 @@ const resolvers = {
         theme_object: JSON.stringify(theme_object, null, 2),
       }
     },
-    forkThemeWithId: async (root, args, context) => {
-      console.log("args: ", args.user_id)
 
+    forkThemeWithId: async (root, args, context) => {
       const results = await client.query(
         q.Create(q.Collection("skin-ui-themes"), {
           data: {
@@ -154,12 +153,20 @@ const resolvers = {
       )
       const { theme_object } = results.data
 
-      console.log("//// results.ref", results.ref)
-
       return {
         ref: results.ref.id,
         ...results.data,
         theme_object: JSON.stringify(theme_object, null, 2),
+      }
+    },
+
+    deleteThemeById: async (root, args, context) => {
+      const results = await client.query(
+        q.Delete(q.Ref(q.Collection("skin-ui-themes"), args.theme_id))
+      )
+
+      return {
+        ref: results.ref.id,
       }
     },
   },
