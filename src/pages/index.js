@@ -1,8 +1,6 @@
 /** @jsx jsx */
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
-// import { MDXProvider } from "@mdx-js/react"
-// import * as themeUiComponents from "@theme-ui/components"
 import { transparentize } from "@theme-ui/color"
 import {
   Container,
@@ -18,6 +16,7 @@ import {
 import { ThemeWrapper } from "../components/ThemeWrapper"
 import { Seo } from "../components/Seo"
 import { Header } from "../components/Header"
+import { Footer } from "../components/Footer"
 import { SvgIcon } from "../components/SvgIcon"
 
 import { useSiteMetadata } from "../data/useSiteMetadata"
@@ -336,6 +335,7 @@ const IndexLayout = () => {
           @dynamicwang
         </Link>
       </Text>
+      <Footer />
     </ThemeWrapper>
   )
 }

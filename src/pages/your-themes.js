@@ -23,6 +23,7 @@ import { SkinContext } from "../context"
 import { ThemeWrapper } from "../components/ThemeWrapper"
 import { Seo } from "../components/Seo"
 import { Header } from "../components/Header"
+import { Footer } from "../components/Footer"
 
 import { useSiteMetadata } from "../data/useSiteMetadata"
 
@@ -87,6 +88,11 @@ const Test = () => {
           <Box sx={{ mb: 3 }}>
             {state.user && (
               <Fragment>
+                <Box sx={{ mb: 3 }}>
+                  <Link sx={{ color: "secondary" }} to="/editor">
+                    Create new theme
+                  </Link>
+                </Box>
                 <Heading as="h1" variant="styles.h1">
                   {`${state.user.user_metadata.full_name}'s Themes`}
                 </Heading>
@@ -205,18 +211,14 @@ const Test = () => {
             // </Box>
           )}
 
-          <Box sx={{ mb: 3 }}>
-            <Link sx={{ color: "secondary" }} to="/editor">
-              Go to Editor
-            </Link>
-          </Box>
-          <Box sx={{ mb: 3 }}>
+          {/* <Box sx={{ mb: 3 }}>
             <Button onClick={() => netlifyIdentity.open()} sx={{ mb: 4 }}>
               {`${state.user && state.user ? "Logout" : "Login"}`}
             </Button>
-          </Box>
+          </Box> */}
         </Container>
       </main>
+      <Footer />
     </ThemeWrapper>
   )
 }

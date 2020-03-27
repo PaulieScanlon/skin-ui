@@ -47,6 +47,7 @@ export default {
     header: 64,
     doubleHeader: 128,
     container: 1140,
+    dropdown: 90,
   },
   space: [0, 4, 8, 16, 24, 32, 48],
   zIndices: {
@@ -237,6 +238,14 @@ export default {
       mb: 4,
       ":focus": {
         ...commonFocus,
+      },
+    },
+    select: {
+      color: "text",
+      borderColor: "lighten",
+      borderRadius: 0,
+      ["svg"]: {
+        color: "primary",
       },
     },
     textarea: {
