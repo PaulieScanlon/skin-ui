@@ -21,6 +21,8 @@ import { TopNav } from "../components/TopNav"
 import { Footer } from "../components/Footer"
 import { SvgIcon } from "../components/SvgIcon"
 
+import { PREVIEW_ICON, SOURCE_ICON, SAVE_ICON } from "../utils/iconPaths"
+
 import { useSiteMetadata } from "../data/useSiteMetadata"
 
 const IndexLayout = () => {
@@ -140,7 +142,7 @@ const IndexLayout = () => {
                   </Text>
                 </Box>
                 <Flex>
-                  <Link href="/editor" sx={{ mr: 3, textDecoration: "none" }}>
+                  <Link href="/editor" sx={{ mr: 2, textDecoration: "none" }}>
                     <Button
                       title="Get Started"
                       tabIndex={-1}
@@ -174,6 +176,7 @@ const IndexLayout = () => {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
+                  my: 5,
                   p: theme => [
                     "0px",
                     "0px",
@@ -189,10 +192,7 @@ const IndexLayout = () => {
                   sx={{ display: "flex", alignItems: "center" }}
                 >
                   Live Preview
-                  <SvgIcon
-                    sx={{ ml: 3 }}
-                    iconPath="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
-                  />
+                  <SvgIcon sx={{ ml: 3 }} iconPath={SOURCE_ICON} />
                 </Heading>
                 <Box>
                   Skin UI provides a starting point to help you style markdown
@@ -243,6 +243,7 @@ const IndexLayout = () => {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
+                  my: 5,
                   p: theme => [
                     "0px",
                     "0px",
@@ -258,10 +259,7 @@ const IndexLayout = () => {
                   sx={{ display: "flex", alignItems: "center" }}
                 >
                   Source
-                  <SvgIcon
-                    sx={{ ml: 3 }}
-                    iconPath="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"
-                  />
+                  <SvgIcon sx={{ ml: 3 }} iconPath={PREVIEW_ICON} />
                 </Heading>
                 <Box>
                   Inspect the
@@ -296,7 +294,7 @@ const IndexLayout = () => {
                   >
                     Theme UI components
                   </Link>
-                  Use it for reference or{" "}
+                  Use it for reference or
                   <Text
                     as="span"
                     sx={{ display: "inline", color: "primary", ml: 2, mr: 2 }}
@@ -320,6 +318,70 @@ const IndexLayout = () => {
                   sx={{ boxShadow: 4 }}
                   alt="Skin UI Src"
                   src={`${url}/images/skin-ui-source-image.jpg`}
+                />
+              </Box>
+            </Flex>
+          </Container>
+        </Box>
+
+        <Box sx={{ backgroundColor: transparentize("gray", 0.6) }}>
+          <Container>
+            <Flex sx={{ flexWrap: "wrap" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  my: 5,
+                  p: theme => [
+                    "0px",
+                    "0px",
+                    `0px ${theme.space[5]}px`,
+                    `0px ${theme.space[5]}px`,
+                  ],
+                  width: ["100%", "100%", "50%", "50%"],
+                  wordBreak: "initial",
+                }}
+              >
+                <Heading
+                  variant="styles.h2"
+                  sx={{ display: "flex", alignItems: "center" }}
+                >
+                  Sign up to save!
+                  <SvgIcon sx={{ ml: 3 }} iconPath={SAVE_ICON} />
+                </Heading>
+                <Box>
+                  With a Sign up or Login you can
+                  <Text
+                    as="span"
+                    sx={{ display: "inline", color: "primary", ml: 2, mr: 2 }}
+                  >
+                    save
+                  </Text>
+                  your theme and come back to it later, or use the link to
+                  <Text
+                    as="span"
+                    sx={{ display: "inline", color: "accent", ml: 2, mr: 2 }}
+                  >
+                    share
+                  </Text>
+                  you theme around.
+                </Box>
+              </Box>
+
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  mb: [5, 5, 0, 0],
+                  width: ["100%", "100%", "50%", "50%"],
+                }}
+              >
+                <Image
+                  sx={{ boxShadow: 4 }}
+                  alt="Skin UI Editor"
+                  src={`${url}/images/skin-ui-save-image.jpg`}
                 />
               </Box>
             </Flex>

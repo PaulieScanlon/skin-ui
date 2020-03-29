@@ -141,7 +141,7 @@ export const Header = ({ isEditorRoute, left }) => {
                       variant="ghost"
                       onClick={() => netlifyIdentity.open("login")}
                       sx={{
-                        ml: 1,
+                        ml: 2,
                       }}
                     >
                       Login
