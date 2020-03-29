@@ -4,8 +4,8 @@ export const checkAndParse = object => {
   if (
     object &&
     typeof object === "string" &&
-    // Check each color is a valid hex '#123456'
-    Object.values(JSON.parse(object).colors).every(isValidHex)
+    Object.values(JSON.parse(object).colors).every(isValidHex) &&
+    JSON.parse(object)
   ) {
     return JSON.parse(object)
   }
