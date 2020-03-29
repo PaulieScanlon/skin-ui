@@ -9,18 +9,15 @@ async function run() {
   // const results = await client.query(
   //   q.Get(q.Ref(q.Collection("skin-ui-themes"), "260230131177488898"))
   // )
-
   // get all public themes
   // the false string relates to the theme_is_private data value
-  // const results = await client.query(
-  //   q.Paginate(q.Match(q.Index("get-all-public-themes"), "false"))
-  // )
-
+  const results = await client.query(
+    q.Paginate(q.Match(q.Index("get-all-themes"), false))
+  )
   // get light / dark themes
-  //   const results = await client.query(
-  //     q.Paginate(q.Match(q.Index("get-themes-by-style"), "dark"))
-  //   )
-
+  // const results = await client.query(
+  //   q.Paginate(q.Match(q.Index("get-themes-by-style"), "dark"))
+  // )
   // get themes by user
   // const results = await client.query(
   //   q.Paginate(
@@ -30,14 +27,12 @@ async function run() {
   //     )
   //   )
   // )
-
   // update a value for a given id
-  const results = await client.query(
-    q.Update(q.Ref(q.Collection("skin-ui-themes"), "260230901859877387"), {
-      data: { theme_name: "Pauls test theme 1" },
-    })
-  )
-
+  // const results = await client.query(
+  //   q.Update(q.Ref(q.Collection("skin-ui-themes"), "260230901859877387"), {
+  //     data: { theme_name: "Pauls test theme 1" },
+  //   })
+  // )
   //   create a new theme / user
   // const results = await client.query(
   //   q.Create(q.Collection("skin-ui-themes"), {
@@ -51,7 +46,13 @@ async function run() {
   //     },
   //   })
   // )
-  // console.log("results: ", results)
+
+  // delete theme by id
+  // const results = await client.query(
+  //   q.Delete(q.Ref(q.Collection("skin-ui-themes"), "260951562436739586"))
+  // )
+
+  console.log("results: ", JSON.stringify(results, null, 2))
   //   console.log("results.ref: ", results.data)
 }
 

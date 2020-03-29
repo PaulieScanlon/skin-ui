@@ -47,6 +47,7 @@ export default {
     header: 64,
     doubleHeader: 128,
     container: 1140,
+    dropdown: 90,
   },
   space: [0, 4, 8, 16, 24, 32, 48],
   zIndices: {
@@ -106,7 +107,6 @@ export default {
       borderRadius: 0,
       cursor: "pointer",
       fontSize: 1,
-      textTransform: "uppercase",
       transition: ".2s linear background-color",
       ":hover": {
         background: darken("primary", 0.05),
@@ -121,11 +121,23 @@ export default {
       cursor: "pointer",
       color: "gray",
       fontSize: 1,
-      textTransform: "uppercase",
       transition: ".2s linear background-color, .1s linear color",
       ":hover": {
         color: "text",
         background: darken("secondary", 0.05),
+      },
+      ":focus": {
+        ...commonFocus,
+      },
+    },
+    accent: {
+      backgroundColor: "accent",
+      borderRadius: 0,
+      cursor: "pointer",
+      fontSize: 1,
+      transition: ".2s linear background-color",
+      ":hover": {
+        background: darken("accent", 0.05),
       },
       ":focus": {
         ...commonFocus,
@@ -136,7 +148,6 @@ export default {
       borderRadius: 0,
       cursor: "pointer",
       fontSize: 1,
-      textTransform: "uppercase",
       transition: ".2s linear background-color",
       ":hover": {
         background: lighten("darken", 0.05),
@@ -237,6 +248,14 @@ export default {
       mb: 4,
       ":focus": {
         ...commonFocus,
+      },
+    },
+    select: {
+      color: "text",
+      borderColor: "lighten",
+      borderRadius: 0,
+      ["svg"]: {
+        color: "primary",
       },
     },
     textarea: {

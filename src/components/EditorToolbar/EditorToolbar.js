@@ -1,8 +1,18 @@
 /** @jsx jsx */
 import { useContext } from "react"
 import { jsx } from "theme-ui"
-import { Flex, Box } from "@theme-ui/components"
+import { Flex, Box, Button } from "@theme-ui/components"
 import copy from "clipboard-copy"
+
+import { gql } from "apollo-boost"
+import { useMutation } from "@apollo/react-hooks"
+
+import {
+  uniqueNamesGenerator,
+  adjectives,
+  colors,
+  animals,
+} from "unique-names-generator"
 
 import { SkinContext } from "../../context"
 
@@ -23,8 +33,73 @@ import {
   SET_IS_SETTINGS_OPEN,
 } from "../../utils/const"
 
+import { SET_DATABASE_THEME_BY_ID } from "../../utils/const"
+
+const nameConfig = {
+  dictionaries: [adjectives, colors, animals],
+  separator: "-",
+  length: 3,
+}
+
+const FORK_THEME_WITH_ID = gql`
+  mutation ForkThemeWithIdMutation(
+    $user_id: String!
+    $theme_author: String!
+    $theme_name: String!
+    $theme_description: String!
+    $theme_style: String!
+    $theme_object: String!
+  ) {
+    forkThemeWithId(
+      user_id: $user_id
+      theme_author: $theme_author
+      theme_name: $theme_name
+      theme_description: $theme_description
+      theme_style: $theme_style
+      theme_object: $theme_object
+    ) {
+      ref
+      user_id
+      theme_author
+      theme_name
+      theme_description
+      theme_style
+      theme_object
+    }
+  }
+`
+
 export const EditorToolbar = () => {
   const { state, dispatch } = useContext(SkinContext)
+
+  const [forkThemeWithId, { loading, error }] = useMutation(
+    FORK_THEME_WITH_ID,
+    {
+      onCompleted({ forkThemeWithId }) {
+        location.search = `?theme_id=${forkThemeWithId.ref}`
+
+        dispatch({
+          type: SET_DATABASE_THEME_BY_ID,
+          databaseThemeById: {
+            ...forkThemeWithId,
+          },
+        })
+      },
+    }
+  )
+
+  const handleFork = () => {
+    forkThemeWithId({
+      variables: {
+        user_id: state.user.id,
+        theme_author: state.user.user_metadata.full_name,
+        theme_name: uniqueNamesGenerator(nameConfig),
+        theme_description: "A fork of the default theme",
+        theme_style: "light",
+        theme_object: state.defaultThemeObject,
+      },
+    })
+  }
 
   return (
     <Toolbar>
@@ -105,30 +180,36 @@ export const EditorToolbar = () => {
               color: "primary",
             }}
           />
-          {state.user && state.isUserOwner ? (
-            <IconButton
-              title="Settings"
-              onClick={() => {
-                dispatch({
-                  type: SET_IS_SETTINGS_OPEN,
-                  isSettingsOpen: state.isSettingsOpen,
-                })
-              }}
-              aria-label="Settings"
-              iconPath={SETTINGS_ICON}
-              sx={{
-                ml: 2,
-              }}
-            />
-          ) : null
-          // <Button
-          //   sx={{
-          //     ml: 2,
-          //   }}
-          // >
-          //   Fork
-          // </Button>
-          }
+
+          {state.user ? (
+            <Box>
+              {state.isUserOwner ? (
+                <IconButton
+                  title="Settings"
+                  onClick={() => {
+                    dispatch({
+                      type: SET_IS_SETTINGS_OPEN,
+                      isSettingsOpen: state.isSettingsOpen,
+                    })
+                  }}
+                  aria-label="Settings"
+                  iconPath={SETTINGS_ICON}
+                  sx={{
+                    ml: 2,
+                  }}
+                />
+              ) : (
+                <Button
+                  onClick={() => handleFork()}
+                  sx={{
+                    ml: 2,
+                  }}
+                >
+                  Fork
+                </Button>
+              )}
+            </Box>
+          ) : null}
         </Box>
       </Flex>
     </Toolbar>

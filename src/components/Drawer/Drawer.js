@@ -73,7 +73,7 @@ export const Drawer = memo(({ children }) => {
               sx={{
                 height: theme => `calc(100% - ${theme.sizes.header}px)`,
                 color: "gray",
-                p: 3,
+                px: 3,
                 overflow: "auto",
               }}
             >

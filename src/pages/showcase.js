@@ -1,34 +1,32 @@
 /** @jsx jsx */
-import { Fragment } from "react"
-import { useContext } from "react"
 import { jsx } from "theme-ui"
 import { Link } from "gatsby"
 import {
   Container,
   Flex,
   Box,
-  Card,
   Button,
+  Card,
   Heading,
   Text,
   Spinner,
 } from "@theme-ui/components"
-import netlifyIdentity from "netlify-identity-widget"
 
 import { gql } from "apollo-boost"
 import { useQuery } from "@apollo/react-hooks"
 
-import { SkinContext } from "../context"
-
 import { ThemeWrapper } from "../components/ThemeWrapper"
 import { Seo } from "../components/Seo"
 import { Header } from "../components/Header"
+import { Logo } from "../components/Logo"
+import { TopNav } from "../components/TopNav"
+import { Footer } from "../components/Footer"
 
 import { useSiteMetadata } from "../data/useSiteMetadata"
 
-const GET_THEMES_BY_USER = gql`
-  query GetThemesByUserQuery($user_id: String!) {
-    getThemesByUser(user_id: $user_id) {
+const GET_ALL_THEMES = gql`
+  query GetAllThemesQuery($theme_is_private: Boolean!) {
+    getAllThemes(theme_is_private: $theme_is_private) {
       ref
       user_id
       theme_author
@@ -41,16 +39,14 @@ const GET_THEMES_BY_USER = gql`
   }
 `
 
-const Test = () => {
-  const { state } = useContext(SkinContext)
-
-  const { loading, error, data } = useQuery(GET_THEMES_BY_USER, {
-    variables: { user_id: (state.user && state.user.id) || "" },
+const showcase = () => {
+  const { loading, error, data } = useQuery(GET_ALL_THEMES, {
+    variables: { theme_is_private: false },
   })
 
-  // console.log("loading: ", loading)
-  // console.log("error: ", error)
-  // console.log("data: ", data.getThemesByUser)
+  //   console.log("loading: ", loading)
+  //   console.log("error: ", error)
+  //   console.log("data: ", data)
 
   const {
     site: {
@@ -71,31 +67,47 @@ const Test = () => {
       <Seo
         author={author}
         title={title}
-        titleTemplate="Test"
+        titleTemplate="showcase"
         description={description}
         url={url}
         ogImage={ogImage}
-        path="/test"
+        path="/showcase"
         keywords={keywords}
         lang={lang}
       />
 
-      <Header />
+      <Header
+        left={
+          <Flex>
+            <Logo />
+            <TopNav />
+          </Flex>
+        }
+      />
 
-      <main>
+      <main
+        sx={{
+          minHeight: theme => `calc(100vh - ${theme.sizes.doubleHeader}px)`,
+        }}
+      >
         <Container>
-          <Box sx={{ mb: 3 }}>
-            {state.user && (
-              <Fragment>
-                <Heading as="h1" variant="styles.h1">
-                  {`${state.user.user_metadata.full_name}'s Themes`}
-                </Heading>
-                <Text>id: {state.user.id}</Text>
-                <Text>email: {state.user.email}</Text>
-              </Fragment>
-            )}
-          </Box>
-
+          <Flex sx={{ flexWrap: "wrap", height: "100%" }}>
+            <Box
+              sx={{
+                mr: 3,
+                flex: "1 1 auto",
+              }}
+            >
+              <Heading as="h1" variant="styles.h1" sx={{ mb: 3 }}>
+                Showcase
+              </Heading>
+            </Box>
+            <Box sx={{ justifyContent: "flex-end", mb: 5 }}>
+              <Button as={Link} to="/editor">
+                Create new theme
+              </Button>
+            </Box>
+          </Flex>
           {loading && (
             <Box
               sx={{
@@ -116,7 +128,7 @@ const Test = () => {
                 mr: theme => `-${theme.space[2]}px`,
               }}
             >
-              {data.getThemesByUser.map((item, index) => {
+              {data.getAllThemes.map((item, index) => {
                 return (
                   <Box
                     key={index}
@@ -157,15 +169,9 @@ const Test = () => {
                             p: 3,
                           }}
                         >
-                          {item.theme_is_private ? (
-                            <Text
-                              sx={{
-                                color: "muted",
-                              }}
-                            >
-                              Is Private
-                            </Text>
-                          ) : null}
+                          <Text sx={{ color: "text", fontSize: 0, mb: 2 }}>
+                            {item.theme_author}
+                          </Text>
                           <Heading
                             as="h2"
                             variant="styles.h2"
@@ -176,15 +182,17 @@ const Test = () => {
                           <Text sx={{ color: "text" }}>
                             {item.theme_description}
                           </Text>
-                          <Text sx={{ color: "text", fontSize: 0 }}>
-                            {`ref: ${item.ref}`}
-                          </Text>
-                          <Text sx={{ color: "text", fontSize: 0 }}>
-                            {`theme_object: ${typeof item.theme_object}`}
-                          </Text>
                         </Box>
                         <Box sx={{ p: 3 }}>
-                          <Text sx={{ color: "text" }}>{item.theme_style}</Text>
+                          <Text
+                            sx={{
+                              color: "text",
+                              textTransform: "capitalize",
+                              mb: 4,
+                            }}
+                          >
+                            {item.theme_style}
+                          </Text>
                           <Text
                             sx={{
                               color: "secondary",
@@ -200,25 +208,12 @@ const Test = () => {
                 )
               })}
             </Flex>
-            // <Box sx={{ mb: 3 }}>
-            //   <pre>{JSON.stringify(data, null, 2)}</pre>
-            // </Box>
           )}
-
-          <Box sx={{ mb: 3 }}>
-            <Link sx={{ color: "secondary" }} to="/editor">
-              Go to Editor
-            </Link>
-          </Box>
-          <Box sx={{ mb: 3 }}>
-            <Button onClick={() => netlifyIdentity.open()} sx={{ mb: 4 }}>
-              {`${state.user && state.user ? "Logout" : "Login"}`}
-            </Button>
-          </Box>
         </Container>
       </main>
+      <Footer />
     </ThemeWrapper>
   )
 }
 
-export default Test
+export default showcase
