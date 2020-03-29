@@ -44,10 +44,6 @@ const showcase = () => {
     variables: { theme_is_private: false },
   })
 
-  //   console.log("loading: ", loading)
-  //   console.log("error: ", error)
-  //   console.log("data: ", data)
-
   const {
     site: {
       siteMetadata: {
