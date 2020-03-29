@@ -15,7 +15,7 @@ import {
 } from "@theme-ui/components"
 
 import { gql } from "apollo-boost"
-import { useQuery } from "@apollo/react-hooks"
+import { useQuery, useMutation } from "@apollo/react-hooks"
 
 import { SkinContext } from "../context"
 
@@ -23,9 +23,12 @@ import { ThemeWrapper } from "../components/ThemeWrapper"
 import { Seo } from "../components/Seo"
 import { Header } from "../components/Header"
 import { Logo } from "../components/Logo"
+import { IconButton } from "../components/IconButton"
 import { Footer } from "../components/Footer"
 
 import { useSiteMetadata } from "../data/useSiteMetadata"
+
+import { DELETE_THEME_ICON } from "../utils/iconPaths"
 
 const GET_THEMES_BY_USER = gql`
   query GetThemesByUserQuery($user_id: String!) {
@@ -38,6 +41,14 @@ const GET_THEMES_BY_USER = gql`
       theme_style
       theme_is_private
       theme_object
+    }
+  }
+`
+
+const DELETE_THEME_BY_ID = gql`
+  mutation DeleteThemeByIdMutation($theme_id: String!) {
+    deleteThemeById(theme_id: $theme_id) {
+      ref
     }
   }
 `
@@ -62,6 +73,20 @@ const YourThemes = () => {
       },
     },
   } = useSiteMetadata()
+
+  const [deleteThemeById] = useMutation(DELETE_THEME_BY_ID, {
+    onCompleted() {
+      location.reload()
+    },
+  })
+
+  const handleDelete = ref => {
+    deleteThemeById({
+      variables: {
+        theme_id: ref,
+      },
+    })
+  }
 
   return (
     <ThemeWrapper>
@@ -135,71 +160,77 @@ const YourThemes = () => {
                       display: "flex",
                       flex: "1 1 auto",
                       flexDirection: "column",
-                      mb: 3,
                       maxWidth: ["100%", "100%", "50%", "50%"],
                       width: ["100%", "100%", "50%", "50%"],
                     }}
                   >
-                    <Link
-                      to={`/editor?theme_id=${item.ref}`}
+                    <Card
                       sx={{
-                        textDecoration: "none",
+                        backgroundColor: "darken",
                         display: "flex",
                         flex: "1 1 auto",
                         flexDirection: "column",
-                        m: theme => `0px ${theme.space[2]}px`,
                         minHeight: "1px",
+                        mx: 2,
+                        mb: 3,
                       }}
                     >
-                      <Card
+                      <Box
                         sx={{
-                          backgroundColor: "darken",
                           display: "flex",
                           flex: "1 1 auto",
                           flexDirection: "column",
-                          minHeight: "1px",
+                          p: 3,
                         }}
                       >
-                        <Box
+                        <Heading
+                          as="h2"
+                          variant="styles.h2"
+                          sx={{ color: "text", mb: 2 }}
+                        >
+                          {item.theme_name}
+                        </Heading>
+                        <Text sx={{ color: "text" }}>
+                          {item.theme_description}
+                        </Text>
+                      </Box>
+                      <Box sx={{ p: 3 }}>
+                        <Text
                           sx={{
-                            display: "flex",
-                            flex: "1 1 auto",
-                            flexDirection: "column",
-                            p: 3,
+                            color: "text",
+                            textTransform: "capitalize",
+                            mb: 4,
                           }}
                         >
-                          <Heading
-                            as="h2"
-                            variant="styles.h2"
-                            sx={{ color: "text", mb: 2 }}
-                          >
-                            {item.theme_name}
-                          </Heading>
-                          <Text sx={{ color: "text" }}>
-                            {item.theme_description}
-                          </Text>
-                        </Box>
-                        <Box sx={{ p: 3 }}>
-                          <Text
-                            sx={{
-                              color: "text",
-                              textTransform: "capitalize",
-                              mb: 4,
-                            }}
-                          >
-                            {item.theme_style}
-                          </Text>
-                          <Text
+                          {item.theme_style}
+                        </Text>
+                        <Flex
+                          sx={{
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <Link
+                            to={`/editor?theme_id=${item.ref}`}
                             sx={{
                               color: "secondary",
-                              textDecoration: "underline",
                             }}
                           >
                             View Theme
-                          </Text>
-                        </Box>
-                      </Card>
-                    </Link>
+                          </Link>
+                          <IconButton
+                            onClick={() => handleDelete(item.ref)}
+                            variant="ghostIcon"
+                            title="Delete Theme"
+                            aria-label="Delete Theme"
+                            iconPath={DELETE_THEME_ICON}
+                            sx={{
+                              color: "muted",
+                            }}
+                          />
+                        </Flex>
+                      </Box>
+                    </Card>
                   </Box>
                 )
               })}

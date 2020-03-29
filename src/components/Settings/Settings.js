@@ -94,7 +94,7 @@ export const Settings = memo(({ isElementVisible }) => {
   )
 
   const [deleteThemeById] = useMutation(DELETE_THEME_BY_ID, {
-    onCompleted({ deleteThemeById }) {
+    onCompleted() {
       location.search = null
     },
   })
@@ -112,8 +112,6 @@ export const Settings = memo(({ isElementVisible }) => {
   }
 
   const handleDelete = () => {
-    console.log("handleDelete")
-    // console.log(state.databaseThemeById.ref)
     deleteThemeById({
       variables: {
         theme_id: state.databaseThemeById.ref,
