@@ -25,6 +25,8 @@ export const Preview = memo(({ children }) => {
     }
   }
 
+  checkAndParse(state.defaultThemeObject)
+
   return (
     <ThemeProvider theme={checkBeforeProvider()}>
       <Box sx={{ backgroundColor: "background", p: 3 }}>
