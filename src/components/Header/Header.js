@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useContext, memo } from "react"
+import { useContext, useState, useEffect, Fragment } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 import netlifyIdentity from "netlify-identity-widget"
@@ -15,7 +15,7 @@ import { ARROW_DOWN_ICON, ARROW_UP_ICON } from "../../utils/iconPaths"
 
 import { useSiteMetadata } from "../../data/useSiteMetadata"
 
-export const Header = memo(({ isEditorRoute, left }) => {
+export const Header = ({ isEditorRoute, left }) => {
   const {
     site: {
       siteMetadata: {
@@ -25,6 +25,14 @@ export const Header = memo(({ isEditorRoute, left }) => {
   } = useSiteMetadata()
 
   const { state } = useContext(SkinContext)
+
+  const [hasHeaderLoaded, setHasHeaderLoaded] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setHasHeaderLoaded(true)
+    }, 100)
+  }, [])
 
   return (
     <ThemeWrapper>
@@ -121,31 +129,34 @@ export const Header = memo(({ isEditorRoute, left }) => {
               </Dropdown>
             ) : (
               <Flex>
-                <Button
-                  variant="accent"
-                  onClick={() => netlifyIdentity.open("signup")}
-                >
-                  Sign up
-                </Button>
-                <Button
-                  variant="ghost"
-                  onClick={() => netlifyIdentity.open("login")}
-                  sx={{
-                    ml: 1,
-                  }}
-                >
-                  Login
-                </Button>
+                {hasHeaderLoaded && (
+                  <Fragment>
+                    <Button
+                      variant="accent"
+                      onClick={() => netlifyIdentity.open("signup")}
+                    >
+                      Sign up
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      onClick={() => netlifyIdentity.open("login")}
+                      sx={{
+                        ml: 1,
+                      }}
+                    >
+                      Login
+                    </Button>
+                  </Fragment>
+                )}
               </Flex>
             )}
           </Box>
         </Flex>
       </Box>
-
       <Box sx={{ height: "header" }} />
     </ThemeWrapper>
   )
-})
+}
 
 Header.defaultProps = {
   isEditorRoute: false,
@@ -154,7 +165,6 @@ Header.defaultProps = {
 Header.propTypes = {
   /** Boolean to control Menu Button and package text visibility */
   isEditorRoute: PropTypes.bool,
-
   /** Render content on the left */
   left: PropTypes.node,
 }
