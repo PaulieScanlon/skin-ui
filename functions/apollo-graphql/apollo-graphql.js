@@ -9,7 +9,7 @@ const client = new faunadb.Client({ secret: process.env.FAUNA })
 const typeDefs = gql`
   type Query {
     getAllThemes(theme_is_private: Boolean!): [ThemeObject]
-    getThemesByUser(user_id: String!): [UserObject!]
+    getThemesByUser(user_id: String!): [ThemeObject]
     getThemeById(theme_id: String!): ThemeObject
   }
 
@@ -40,17 +40,6 @@ const typeDefs = gql`
 
   type ThemeObject {
     ref: String
-    user_id: String!
-    theme_author: String!
-    theme_name: String!
-    theme_description: String!
-    theme_style: String!
-    theme_is_private: Boolean!
-    theme_object: String
-  }
-
-  type UserObject {
-    ref: String!
     user_id: String!
     theme_author: String!
     theme_name: String!
