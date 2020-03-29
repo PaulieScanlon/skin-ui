@@ -138,7 +138,6 @@ export const Settings = memo(({ isElementVisible }) => {
   return (
     <Fragment>
       <Box
-        className="temp-settings"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -152,27 +151,6 @@ export const Settings = memo(({ isElementVisible }) => {
             flex: "1 1 auto",
           }}
         >
-          <Box
-            sx={{
-              alignItems: "center",
-              display: "flex",
-              mb: 3,
-            }}
-          >
-            <Text
-              sx={{
-                color: "muted",
-                fontWeight: "bold",
-                fontSize: 0,
-                mr: 2,
-              }}
-            >
-              Theme author:
-            </Text>
-            <Text sx={{ color: "muted", fontSize: 0 }}>
-              {state.user && state.user.user_metadata.full_name}
-            </Text>
-          </Box>
           <Label>Theme Name</Label>
           <Input
             name="theme-name"
@@ -353,6 +331,7 @@ export const Settings = memo(({ isElementVisible }) => {
             sx={{
               alignItems: "center",
               display: "flex",
+              mb: 4,
             }}
           >
             <IconButton

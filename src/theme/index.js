@@ -107,7 +107,6 @@ export default {
       borderRadius: 0,
       cursor: "pointer",
       fontSize: 1,
-      textTransform: "uppercase",
       transition: ".2s linear background-color",
       ":hover": {
         background: darken("primary", 0.05),
@@ -122,11 +121,23 @@ export default {
       cursor: "pointer",
       color: "gray",
       fontSize: 1,
-      textTransform: "uppercase",
       transition: ".2s linear background-color, .1s linear color",
       ":hover": {
         color: "text",
         background: darken("secondary", 0.05),
+      },
+      ":focus": {
+        ...commonFocus,
+      },
+    },
+    accent: {
+      backgroundColor: "accent",
+      borderRadius: 0,
+      cursor: "pointer",
+      fontSize: 1,
+      transition: ".2s linear background-color",
+      ":hover": {
+        background: darken("accent", 0.05),
       },
       ":focus": {
         ...commonFocus,
@@ -137,7 +148,6 @@ export default {
       borderRadius: 0,
       cursor: "pointer",
       fontSize: 1,
-      textTransform: "uppercase",
       transition: ".2s linear background-color",
       ":hover": {
         background: lighten("darken", 0.05),

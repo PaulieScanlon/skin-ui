@@ -8,6 +8,7 @@ const client = new faunadb.Client({ secret: process.env.FAUNA })
 
 const typeDefs = gql`
   type Query {
+    getAllThemes(theme_is_private: Boolean!): [ThemeObject]
     getThemesByUser(user_id: String!): [UserObject!]
     getThemeById(theme_id: String!): ThemeObject
   }
@@ -62,6 +63,33 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
+    getAllThemes: async (root, args, context) => {
+      const results = await client.query(
+        q.Paginate(q.Match(q.Index("get-all-themes"), args.theme_is_private))
+      )
+      return results.data.map(
+        ([
+          ref,
+          user_id,
+          theme_author,
+          theme_name,
+          theme_description,
+          theme_style,
+          theme_is_private,
+          theme_object,
+        ]) => ({
+          ref: ref.id,
+          user_id,
+          theme_author,
+          theme_name,
+          theme_description,
+          theme_style,
+          theme_is_private,
+          theme_object,
+        })
+      )
+    },
+
     getThemesByUser: async (root, args, context) => {
       if (!args.user_id) {
         return []

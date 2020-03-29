@@ -16,6 +16,8 @@ import {
 import { ThemeWrapper } from "../components/ThemeWrapper"
 import { Seo } from "../components/Seo"
 import { Header } from "../components/Header"
+import { Logo } from "../components/Logo"
+import { TopNav } from "../components/TopNav"
 import { Footer } from "../components/Footer"
 import { SvgIcon } from "../components/SvgIcon"
 
@@ -63,7 +65,14 @@ const IndexLayout = () => {
         }}
       />
 
-      <Header />
+      <Header
+        left={
+          <Flex>
+            <Logo />
+            <TopNav />
+          </Flex>
+        }
+      />
       <main>
         <Box>
           <Container>
@@ -100,7 +109,7 @@ const IndexLayout = () => {
                 }}
               >
                 <Heading as="h1" variant="styles.h1">
-                  Skin UI A
+                  Skin UI
                 </Heading>
                 <Box
                   as="span"

@@ -2,7 +2,13 @@
 import { useContext, useEffect, Fragment } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
-import { Box, Text, Spinner } from "@theme-ui/components"
+import {
+  Flex,
+  Box,
+  Text,
+  Spinner,
+  MenuButton as BurgerMenu,
+} from "@theme-ui/components"
 import queryString from "query-string"
 
 import { gql } from "apollo-boost"
@@ -10,6 +16,7 @@ import { useQuery } from "@apollo/react-hooks"
 
 import { ThemeWrapper } from "../components/ThemeWrapper"
 import { Header } from "../components/Header"
+import { Logo } from "../components/Logo"
 import { Sidebar } from "../components/Sidebar"
 import { Sidenav } from "../components/Sidenav"
 import { Drawer } from "../components/Drawer"
@@ -32,6 +39,7 @@ import {
   DEFAULT_THEME_DATABASE_REF,
   SET_IS_USER_OWNER,
   SET_DATABASE_THEME_BY_ID,
+  SET_IS_NAV_OPEN,
 } from "../utils/const"
 
 const GET_THEME_BY_ID = gql`
@@ -133,17 +141,16 @@ const EditorLayout = ({ children }) => {
 
       {!state.isFullScreen && (
         <Fragment>
+          <Sidebar>
+            {isElementVisible => (
+              <Sidenav
+                navItems={!loading && !error && navItems}
+                isElementVisible={isElementVisible}
+              />
+            )}
+          </Sidebar>
           {!loading && !error && (
             <Fragment>
-              <Sidebar>
-                {isElementVisible => (
-                  <Sidenav
-                    navItems={navItems}
-                    isElementVisible={isElementVisible}
-                  />
-                )}
-              </Sidebar>
-
               <Drawer>
                 {isElementVisible => (
                   <Settings isElementVisible={isElementVisible} />
@@ -153,7 +160,34 @@ const EditorLayout = ({ children }) => {
               <Lightbox />
             </Fragment>
           )}
-          <Header isEditorRoute={true} isLoading={loading} />
+          <Header
+            isEditorRoute={true}
+            left={
+              <Flex>
+                <BurgerMenu
+                  title="Open Navigation"
+                  onClick={() =>
+                    dispatch({ type: SET_IS_NAV_OPEN, isNavOpen: true })
+                  }
+                  sx={{
+                    display: ["flex", "flex", "flex", "none"],
+                    mr: 2,
+                  }}
+                />
+                {!loading && !error && (
+                  <Text
+                    sx={{
+                      alignItems: "center",
+                      color: "muted",
+                      display: ["none", "none", "none", "flex"],
+                    }}
+                  >
+                    {state.databaseThemeById.theme_name}
+                  </Text>
+                )}
+              </Flex>
+            }
+          />
         </Fragment>
       )}
       {loading && (
@@ -161,7 +195,6 @@ const EditorLayout = ({ children }) => {
           sx={{
             display: "flex",
             justifyContent: "center",
-            // ml: [0, 0, 0, state.isFullScreen ? 0 : sidebarWidth],
             p: 4,
           }}
         >
@@ -173,7 +206,6 @@ const EditorLayout = ({ children }) => {
           sx={{
             display: "flex",
             justifyContent: "center",
-            // ml: [0, 0, 0, state.isFullScreen ? 0 : sidebarWidth],
             p: 4,
           }}
         >

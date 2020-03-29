@@ -1,14 +1,12 @@
 /** @jsx jsx */
-import { Fragment } from "react"
-import { useContext } from "react"
 import { jsx } from "theme-ui"
 import { Link } from "gatsby"
 import {
   Container,
   Flex,
   Box,
-  Card,
   Button,
+  Card,
   Heading,
   Text,
   Spinner,
@@ -17,19 +15,18 @@ import {
 import { gql } from "apollo-boost"
 import { useQuery } from "@apollo/react-hooks"
 
-import { SkinContext } from "../context"
-
 import { ThemeWrapper } from "../components/ThemeWrapper"
 import { Seo } from "../components/Seo"
 import { Header } from "../components/Header"
 import { Logo } from "../components/Logo"
+import { TopNav } from "../components/TopNav"
 import { Footer } from "../components/Footer"
 
 import { useSiteMetadata } from "../data/useSiteMetadata"
 
-const GET_THEMES_BY_USER = gql`
-  query GetThemesByUserQuery($user_id: String!) {
-    getThemesByUser(user_id: $user_id) {
+const GET_ALL_THEMES = gql`
+  query GetAllThemesQuery($theme_is_private: Boolean!) {
+    getAllThemes(theme_is_private: $theme_is_private) {
       ref
       user_id
       theme_author
@@ -42,12 +39,14 @@ const GET_THEMES_BY_USER = gql`
   }
 `
 
-const YourThemes = () => {
-  const { state } = useContext(SkinContext)
-
-  const { loading, error, data } = useQuery(GET_THEMES_BY_USER, {
-    variables: { user_id: (state.user && state.user.id) || "" },
+const showcase = () => {
+  const { loading, error, data } = useQuery(GET_ALL_THEMES, {
+    variables: { theme_is_private: false },
   })
+
+  //   console.log("loading: ", loading)
+  //   console.log("error: ", error)
+  //   console.log("data: ", data)
 
   const {
     site: {
@@ -68,16 +67,23 @@ const YourThemes = () => {
       <Seo
         author={author}
         title={title}
-        titleTemplate="Your Themes"
+        titleTemplate="showcase"
         description={description}
         url={url}
         ogImage={ogImage}
-        path="/your-themes"
+        path="/showcase"
         keywords={keywords}
         lang={lang}
       />
 
-      <Header left={<Logo />} />
+      <Header
+        left={
+          <Flex>
+            <Logo />
+            <TopNav />
+          </Flex>
+        }
+      />
 
       <main
         sx={{
@@ -86,27 +92,22 @@ const YourThemes = () => {
       >
         <Container>
           <Flex sx={{ flexWrap: "wrap", height: "100%" }}>
-            {state.user && (
-              <Fragment>
-                <Box
-                  sx={{
-                    mr: 3,
-                    flex: "1 1 auto",
-                  }}
-                >
-                  <Heading as="h1" variant="styles.h1" sx={{ mb: 3 }}>
-                    {`${state.user.user_metadata.full_name}'s Themes`}
-                  </Heading>
-                </Box>
-                <Box sx={{ justifyContent: "flex-end", mb: 5 }}>
-                  <Button as={Link} to="/editor">
-                    Create new theme
-                  </Button>
-                </Box>
-              </Fragment>
-            )}
+            <Box
+              sx={{
+                mr: 3,
+                flex: "1 1 auto",
+              }}
+            >
+              <Heading as="h1" variant="styles.h1" sx={{ mb: 3 }}>
+                Showcase
+              </Heading>
+            </Box>
+            <Box sx={{ justifyContent: "flex-end", mb: 5 }}>
+              <Button as={Link} to="/editor">
+                Create new theme
+              </Button>
+            </Box>
           </Flex>
-
           {loading && (
             <Box
               sx={{
@@ -127,7 +128,7 @@ const YourThemes = () => {
                 mr: theme => `-${theme.space[2]}px`,
               }}
             >
-              {data.getThemesByUser.map((item, index) => {
+              {data.getAllThemes.map((item, index) => {
                 return (
                   <Box
                     key={index}
@@ -168,6 +169,9 @@ const YourThemes = () => {
                             p: 3,
                           }}
                         >
+                          <Text sx={{ color: "text", fontSize: 0, mb: 2 }}>
+                            {item.theme_author}
+                          </Text>
                           <Heading
                             as="h2"
                             variant="styles.h2"
@@ -212,4 +216,4 @@ const YourThemes = () => {
   )
 }
 
-export default YourThemes
+export default showcase
