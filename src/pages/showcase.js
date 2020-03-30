@@ -182,12 +182,15 @@ const showcase = () => {
                         <Box sx={{ p: 3 }}>
                           <Text
                             sx={{
-                              color: "text",
+                              color: "muted",
                               textTransform: "capitalize",
                               mb: 4,
                             }}
                           >
-                            {item.theme_style}
+                            Theme Style:{" "}
+                            <Box as="span" sx={{ color: "text" }}>
+                              {item.theme_style}
+                            </Box>
                           </Text>
                           <Text
                             sx={{

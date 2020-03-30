@@ -88,8 +88,6 @@ const YourThemes = () => {
     })
   }
 
-  console.log(state)
-
   return (
     <ThemeWrapper>
       <Seo
