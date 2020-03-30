@@ -88,6 +88,8 @@ const YourThemes = () => {
     })
   }
 
+  console.log(state)
+
   return (
     <ThemeWrapper>
       <Seo
@@ -119,9 +121,15 @@ const YourThemes = () => {
                     flex: "1 1 auto",
                   }}
                 >
-                  <Heading as="h1" variant="styles.h1" sx={{ mb: 3 }}>
+                  <Heading as="h1" variant="styles.h1" sx={{ mb: 1 }}>
                     {`${state.user.user_metadata.full_name}'s Themes`}
                   </Heading>
+                  <Text sx={{ mb: 3, fontSize: 0 }}>
+                    User ID:{" "}
+                    <Box as="span" sx={{ color: "muted", fontSize: 0 }}>
+                      {state.user.id}
+                    </Box>
+                  </Text>
                 </Box>
                 <Box sx={{ justifyContent: "flex-end", mb: 5 }}>
                   <Button as={Link} to="/editor">
@@ -190,6 +198,12 @@ const YourThemes = () => {
                         >
                           {item.theme_name}
                         </Heading>
+                        <Text sx={{ mb: 3, fontSize: 0 }}>
+                          Theme ID:{" "}
+                          <Box as="span" sx={{ color: "muted", fontSize: 0 }}>
+                            {item.ref}
+                          </Box>
+                        </Text>
                         <Text sx={{ color: "text" }}>
                           {item.theme_description}
                         </Text>
@@ -197,12 +211,15 @@ const YourThemes = () => {
                       <Box sx={{ p: 3 }}>
                         <Text
                           sx={{
-                            color: "text",
+                            color: "muted",
                             textTransform: "capitalize",
                             mb: 4,
                           }}
                         >
-                          {item.theme_style}
+                          Theme Style:{" "}
+                          <Box as="span" sx={{ color: "text" }}>
+                            {item.theme_style}
+                          </Box>
                         </Text>
                         <Flex
                           sx={{
