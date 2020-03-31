@@ -1,5 +1,4 @@
 export default {
-  // theme-spec
   borders: ["1px"],
   borderStyles: ["solid", "dashed"],
   borderWidths: [1, 4],
@@ -12,7 +11,7 @@ export default {
     highlight: "#E1E4E8",
     gray: "#808080",
     accent: "#F1F8FF",
-    darken: "#24292E",
+    darken: "#DEDEDE",
   },
   fonts: {
     body: "system-ui, sans-serif",
@@ -41,11 +40,11 @@ export default {
   },
   radii: [],
   shadows: [
-    `0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)`,
-    `0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)`,
-    `0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)`,
-    `0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)`,
-    `0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)`,
+    "0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)",
+    "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
+    "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
+    "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)",
+    "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
   ],
   sizes: {
     container: 1140,
@@ -53,8 +52,6 @@ export default {
   space: [0, 4, 8, 16, 24, 32],
   zIndices: [],
   breakpoints: [],
-
-  // styles
   styles: {
     root: {
       fontSize: 1,
@@ -184,6 +181,7 @@ export default {
     },
     em: {},
     table: {
+      color: "text",
       border: 0,
       borderStyle: 0,
       borderColor: "gray",
@@ -233,22 +231,17 @@ export default {
       },
     },
   },
-
-  // variant groups
   box: {},
   flex: {},
   grids: {},
   buttons: {
-    //default
     backgroundColor: "primary",
     secondary: {
+      color: "background",
       backgroundColor: "secondary",
     },
-    // referenced by Close component
     close: {},
-    // referenced by IconButon component
     icon: {},
-    // referenced by MenuButton component
     menu: {},
   },
   text: {
@@ -256,24 +249,20 @@ export default {
     heading: {},
   },
   links: {
-    // referenced by NavLink
     nav: {
       color: "secondary",
     },
   },
   images: {
-    // referenced by Avatar
     avatar: {},
   },
   cards: {
-    // default
     primary: {
       boxShadow: 0,
       backgroundColor: "background",
     },
   },
   layout: {
-    // referenced by Container
     container: {},
   },
   forms: {
@@ -283,7 +272,9 @@ export default {
       marginBottom: 2,
     },
     input: {},
-    select: {},
+    select: {
+      color: "text",
+    },
     textarea: {},
     slider: {
       color: "primary",
@@ -310,10 +301,12 @@ export default {
   },
   messages: {
     primary: {
+      color: "text",
       backgroundColor: "muted",
       borderLeftColor: "primary",
     },
     secondary: {
+      color: "text",
       backgroundColor: "muted",
       borderLeftColor: "secondary",
     },
