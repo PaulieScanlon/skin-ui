@@ -126,89 +126,96 @@ const showcase = () => {
               }}
             >
               {data.getAllThemes.map((item, index) => {
-                return (
-                  <Box
-                    key={index}
-                    sx={{
-                      display: "flex",
-                      flex: "1 1 auto",
-                      flexDirection: "column",
-                      mb: 3,
-                      maxWidth: ["100%", "100%", "50%", "50%"],
-                      width: ["100%", "100%", "50%", "50%"],
-                    }}
-                  >
-                    <Link
-                      to={`/editor?theme_id=${item.ref}`}
+                try {
+                  JSON.parse(item.theme_object)
+                  return (
+                    <Box
+                      key={index}
                       sx={{
-                        textDecoration: "none",
                         display: "flex",
                         flex: "1 1 auto",
                         flexDirection: "column",
-                        m: theme => `0px ${theme.space[2]}px`,
-                        minHeight: "1px",
+                        mb: 3,
+                        maxWidth: ["100%", "100%", "50%", "50%"],
+                        width: ["100%", "100%", "50%", "50%"],
                       }}
                     >
-                      <Card
+                      <Link
+                        to={`/editor?theme_id=${item.ref}`}
                         sx={{
-                          backgroundColor: "darken",
+                          textDecoration: "none",
                           display: "flex",
                           flex: "1 1 auto",
                           flexDirection: "column",
+                          m: theme => `0px ${theme.space[2]}px`,
                           minHeight: "1px",
                         }}
                       >
-                        <ThemeThumbnail
-                          colors={JSON.parse(item.theme_object).colors}
-                        />
-                        <Box
+                        <Card
                           sx={{
+                            backgroundColor: "darken",
                             display: "flex",
                             flex: "1 1 auto",
                             flexDirection: "column",
-                            p: 3,
+                            minHeight: "1px",
                           }}
                         >
-                          <Text sx={{ color: "text", fontSize: 0, mb: 2 }}>
-                            {item.theme_author}
-                          </Text>
-                          <Heading
-                            as="h2"
-                            variant="styles.h2"
-                            sx={{ color: "text", mb: 2 }}
-                          >
-                            {item.theme_name}
-                          </Heading>
-                          <Text sx={{ color: "text" }}>
-                            {item.theme_description}
-                          </Text>
-                        </Box>
-                        <Box sx={{ p: 3 }}>
-                          <Text
+                          <ThemeThumbnail
+                            colors={JSON.parse(item.theme_object).colors}
+                          />
+                          <Box
                             sx={{
-                              color: "muted",
-                              textTransform: "capitalize",
-                              mb: 4,
+                              display: "flex",
+                              flex: "1 1 auto",
+                              flexDirection: "column",
+                              p: 3,
                             }}
                           >
-                            Theme Style:{" "}
-                            <Box as="span" sx={{ color: "text" }}>
-                              {item.theme_style}
-                            </Box>
-                          </Text>
-                          <Text
-                            sx={{
-                              color: "secondary",
-                              textDecoration: "underline",
-                            }}
-                          >
-                            View Theme
-                          </Text>
-                        </Box>
-                      </Card>
-                    </Link>
-                  </Box>
-                )
+                            <Text sx={{ color: "text", fontSize: 0, mb: 2 }}>
+                              {item.theme_author}
+                            </Text>
+                            <Heading
+                              as="h2"
+                              variant="styles.h2"
+                              sx={{ color: "text", mb: 2 }}
+                            >
+                              {item.theme_name}
+                            </Heading>
+                            <Text sx={{ color: "text" }}>
+                              {item.theme_description}
+                            </Text>
+                          </Box>
+                          <Box sx={{ p: 3 }}>
+                            <Text
+                              sx={{
+                                color: "muted",
+                                textTransform: "capitalize",
+                                mb: 4,
+                              }}
+                            >
+                              Theme Style:{" "}
+                              <Box as="span" sx={{ color: "text" }}>
+                                {item.theme_style}
+                              </Box>
+                            </Text>
+                            <Text
+                              sx={{
+                                color: "secondary",
+                                textDecoration: "underline",
+                              }}
+                            >
+                              View Theme
+                            </Text>
+                          </Box>
+                        </Card>
+                      </Link>
+                    </Box>
+                  )
+                } catch (e) {
+                  if (e instanceof SyntaxError) {
+                    console.error("Syntax Error with ref: ", item.ref)
+                  }
+                }
               })}
             </Flex>
           )}
