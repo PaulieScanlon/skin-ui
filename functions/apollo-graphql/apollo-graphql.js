@@ -124,7 +124,7 @@ const resolvers = {
         return {
           ref: results.ref.id,
           ...results.data,
-          theme_object: JSON.stringify(theme_object, null, 2),
+          theme_object: theme_object,
         }
       }
     },
@@ -141,7 +141,7 @@ const resolvers = {
             theme_description: args.theme_description,
             theme_style: args.theme_style,
             theme_is_private: false,
-            theme_object: JSON.parse(args.theme_object),
+            theme_object: args.theme_object,
           },
         })
       )
@@ -150,7 +150,7 @@ const resolvers = {
       return {
         ref: results.ref.id,
         ...results.data,
-        theme_object: JSON.stringify(theme_object, null, 2),
+        theme_object: theme_object,
       }
     },
 
@@ -164,7 +164,7 @@ const resolvers = {
             theme_description: args.theme_description,
             theme_style: args.theme_style,
             theme_is_private: false,
-            theme_object: JSON.parse(args.theme_object),
+            theme_object: args.theme_object,
           },
         })
       )
@@ -173,7 +173,7 @@ const resolvers = {
       return {
         ref: results.ref.id,
         ...results.data,
-        theme_object: JSON.stringify(theme_object, null, 2),
+        theme_object: theme_object,
       }
     },
 

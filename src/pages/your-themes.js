@@ -23,6 +23,7 @@ import { ThemeWrapper } from "../components/ThemeWrapper"
 import { Seo } from "../components/Seo"
 import { Header } from "../components/Header"
 import { Logo } from "../components/Logo"
+import { ThemeThumbnail } from "../components/ThemeThumbnail"
 import { IconButton } from "../components/IconButton"
 import { Footer } from "../components/Footer"
 
@@ -181,6 +182,9 @@ const YourThemes = () => {
                         mb: 3,
                       }}
                     >
+                      <ThemeThumbnail
+                        colors={JSON.parse(item.theme_object).colors}
+                      />
                       <Box
                         sx={{
                           display: "flex",

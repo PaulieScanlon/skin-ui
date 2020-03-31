@@ -19,6 +19,7 @@ import { ThemeWrapper } from "../components/ThemeWrapper"
 import { Seo } from "../components/Seo"
 import { Header } from "../components/Header"
 import { Logo } from "../components/Logo"
+import { ThemeThumbnail } from "../components/ThemeThumbnail"
 import { TopNav } from "../components/TopNav"
 import { Footer } from "../components/Footer"
 
@@ -157,6 +158,9 @@ const showcase = () => {
                           minHeight: "1px",
                         }}
                       >
+                        <ThemeThumbnail
+                          colors={JSON.parse(item.theme_object).colors}
+                        />
                         <Box
                           sx={{
                             display: "flex",
