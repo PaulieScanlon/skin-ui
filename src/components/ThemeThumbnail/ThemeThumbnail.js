@@ -3,90 +3,149 @@ import { memo } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 
-import { Flex, Box } from "@theme-ui/components"
+import validateKeys from "object-key-validator"
+
+import { Flex, Box, Text } from "@theme-ui/components"
 import { ThemeWrapper } from "../ThemeWrapper"
 
 export const ThemeThumbnail = memo(({ colors }) => {
-  const {
-    text,
-    background,
-    primary,
-    secondary,
-    muted,
-    highlight,
-    gray,
-    accent,
-    darken,
-  } = colors
+  const rule = {
+    $and: [
+      "text",
+      "background",
+      "primary",
+      "secondary",
+      "muted",
+      "highlight",
+      "gray",
+      "accent",
+      "darken",
+    ],
+  }
 
   return (
     <ThemeWrapper>
-      <Flex sx={{ backgroundColor: background, p: 3, width: "100%" }}>
+      {colors && validateKeys(rule, colors) ? (
         <Box
           sx={{
-            backgroundColor: text,
-            display: "inline-flex",
-            flex: "1 1 auto",
+            backgroundColor: colors.background,
             p: 3,
+            width: "100%",
           }}
-        />
-        <Box
-          sx={{
-            backgroundColor: primary,
-            display: "inline-flex",
-            flex: "1 1 auto",
-            p: 3,
-          }}
-        />
-        <Box
-          sx={{
-            backgroundColor: secondary,
-            display: "inline-flex",
-            flex: "1 1 auto",
-            p: 3,
-          }}
-        />
-        <Box
-          sx={{
-            backgroundColor: muted,
-            display: "inline-flex",
-            flex: "1 1 auto",
-            p: 3,
-          }}
-        />
-        <Box
-          sx={{
-            backgroundColor: highlight,
-            display: "inline-flex",
-            flex: "1 1 auto",
-            p: 3,
-          }}
-        />
-        <Box
-          sx={{
-            backgroundColor: gray,
-            display: "inline-flex",
-            flex: "1 1 auto",
-            p: 3,
-          }}
-        />
-        <Box
-          sx={{
-            backgroundColor: accent,
-            display: "inline-flex",
-            flex: "1 1 auto",
-            p: 3,
-          }}
-        />
-        <Box
-          sx={{
-            backgroundColor: darken,
-            display: "inline-flex",
-            flex: "1 1 auto",
-            p: 3,
-          }}
-        />
-      </Flex>
+        >
+          <Box
+            sx={{
+              backgroundColor: colors.highlight,
+              p: 1,
+              mb: 2,
+              width: "25%",
+            }}
+          />
+          <Box
+            sx={{
+              backgroundColor: colors.text,
+              p: 2,
+              mb: 3,
+            }}
+          />
+          <Box
+            sx={{
+              backgroundColor: colors.text,
+              p: 1,
+              mb: 1,
+              width: "75%",
+            }}
+          />
+          <Box
+            sx={{
+              backgroundColor: colors.text,
+              p: 1,
+              mb: 1,
+              width: "50%",
+            }}
+          />
+          <Box
+            sx={{
+              backgroundColor: colors.text,
+              p: 1,
+              mb: 3,
+              width: "33%",
+            }}
+          />
+
+          <Box
+            sx={{
+              backgroundColor: colors.muted,
+              p: 4,
+              mb: 6,
+              width: "100%",
+            }}
+          />
+          <Flex
+            sx={{
+              alignItems: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <Box
+              sx={{
+                backgroundColor: colors.primary,
+                color: colors.primary,
+                p: 3,
+                mr: 2,
+                width: 120,
+              }}
+            />
+            <Box
+              sx={{
+                backgroundColor: colors.secondary,
+                color: colors.secondary,
+                p: 3,
+                mr: 2,
+                width: 120,
+              }}
+            />
+
+            <Box
+              sx={{
+                backgroundColor: colors.accent,
+                borderRadius: "100%",
+                ml: "auto",
+                width: 24,
+                height: 24,
+              }}
+            />
+            <Box
+              sx={{
+                backgroundColor: colors.gray,
+                borderRadius: "100%",
+                ml: 2,
+                width: 24,
+                height: 24,
+              }}
+            />
+          </Flex>
+        </Box>
+      ) : (
+        <Flex sx={{ backgroundColor: "gray", p: 3, width: "100%" }}>
+          <Box
+            sx={{
+              p: 3,
+              width: "100%",
+            }}
+          >
+            <Text
+              sx={{
+                color: "muted",
+                textAlign: "center",
+                m: "0 auto",
+              }}
+            >
+              No colors not found
+            </Text>
+          </Box>
+        </Flex>
+      )}
     </ThemeWrapper>
   )
 })

@@ -11,3 +11,10 @@ The front-end is now running on `http://localhost:8888/`
 and
 
 The back-end is now running on `http://localhost:8888/.netlify/functions/apollo-graphql`
+
+Admin User / Skin UI theme_author
+
+Allows you to amend the Default Skin UI theme
+
+email: fatbannerpaul@googlemail.com
+pass: Sc8nn3r1
