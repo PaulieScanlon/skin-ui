@@ -91,18 +91,20 @@ export const ThemeThumbnail = memo(({ colors }) => {
               sx={{
                 backgroundColor: colors.primary,
                 color: colors.primary,
+                flex: "1 1 auto",
+                maxWidth: 120,
                 p: 3,
                 mr: 2,
-                width: 120,
               }}
             />
             <Box
               sx={{
                 backgroundColor: colors.secondary,
                 color: colors.secondary,
+                flex: "1 1 auto",
+                maxWidth: 120,
                 p: 3,
                 mr: 2,
-                width: 120,
               }}
             />
 

@@ -18,6 +18,7 @@ import { SkinContext } from "../../context"
 
 import { Toolbar } from "../Toolbar"
 import { IconButton } from "../IconButton"
+import { SvgIcon } from "../SvgIcon"
 
 import { checkAndReplaceQuotes } from "../../utils/checkAndReplaceQuotes"
 
@@ -184,20 +185,31 @@ export const EditorToolbar = () => {
           {state.user ? (
             <Box>
               {state.isUserOwner ? (
-                <IconButton
-                  title="Settings"
+                <Button
+                  title="Theme Settings"
+                  aria-label="Theme Settings"
                   onClick={() => {
                     dispatch({
                       type: SET_IS_SETTINGS_OPEN,
                       isSettingsOpen: state.isSettingsOpen,
                     })
                   }}
-                  aria-label="Settings"
-                  iconPath={SETTINGS_ICON}
                   sx={{
+                    alignItems: "center",
+                    display: "flex",
+                    flexDirecton: "coloumn",
+                    pl: 2,
                     ml: 2,
                   }}
-                />
+                >
+                  <SvgIcon
+                    iconPath={SETTINGS_ICON}
+                    sx={{
+                      mr: 2,
+                    }}
+                  />
+                  Settings
+                </Button>
               ) : (
                 <Button
                   onClick={() => handleFork()}
