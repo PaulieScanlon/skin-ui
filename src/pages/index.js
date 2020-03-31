@@ -365,7 +365,7 @@ const IndexLayout = () => {
                   >
                     share
                   </Text>
-                  you theme around.
+                  your theme around.
                 </Box>
               </Box>
 
