@@ -111,7 +111,7 @@ const YourThemes = () => {
         }}
       >
         <Container>
-          <Flex sx={{ flexWrap: "wrap", height: "100%" }}>
+          <Flex sx={{ flexWrap: "wrap", height: "100%", mb: 5 }}>
             {state.user && (
               <Fragment>
                 <Box
@@ -124,7 +124,7 @@ const YourThemes = () => {
                     {`${state.user.user_metadata.full_name}'s Themes`}
                   </Heading>
                   <Text sx={{ mb: 3, fontSize: 0 }}>
-                    User ID:{" "}
+                    Id:{" "}
                     <Box as="span" sx={{ color: "muted", fontSize: 0 }}>
                       {state.user.id}
                     </Box>
@@ -160,105 +160,99 @@ const YourThemes = () => {
               }}
             >
               {data.getThemesByUser.map((item, index) => {
-                try {
-                  JSON.parse(item.theme_object)
-                  return (
-                    <Box
-                      key={index}
+                return (
+                  <Box
+                    key={index}
+                    sx={{
+                      display: "flex",
+                      flex: "1 1 auto",
+                      flexDirection: "column",
+                      maxWidth: ["100%", "100%", "50%", "50%"],
+                      width: ["100%", "100%", "50%", "50%"],
+                    }}
+                  >
+                    <Card
                       sx={{
+                        backgroundColor: "darken",
                         display: "flex",
                         flex: "1 1 auto",
                         flexDirection: "column",
-                        maxWidth: ["100%", "100%", "50%", "50%"],
-                        width: ["100%", "100%", "50%", "50%"],
+                        minHeight: "1px",
+                        mx: 2,
+                        mb: 3,
                       }}
                     >
-                      <Card
+                      <ThemeThumbnail
+                        themeObject={item.theme_object}
+                        themeRef={item.ref}
+                      />
+                      <Box
                         sx={{
-                          backgroundColor: "darken",
                           display: "flex",
                           flex: "1 1 auto",
                           flexDirection: "column",
-                          minHeight: "1px",
-                          mx: 2,
-                          mb: 3,
+                          p: 3,
                         }}
                       >
-                        <ThemeThumbnail
-                          colors={JSON.parse(item.theme_object).colors}
-                        />
-                        <Box
+                        <Text sx={{ mb: 2, fontSize: 0 }}>
+                          Id:{" "}
+                          <Box as="span" sx={{ color: "muted", fontSize: 0 }}>
+                            {item.ref}
+                          </Box>
+                        </Text>
+                        <Heading
+                          as="h2"
+                          variant="styles.h2"
+                          sx={{ color: "text", mb: 2 }}
+                        >
+                          {item.theme_name}
+                        </Heading>
+                        <Text sx={{ color: "lighten" }}>
+                          {item.theme_description}
+                        </Text>
+                      </Box>
+                      <Box sx={{ p: 3 }}>
+                        <Text
                           sx={{
-                            display: "flex",
-                            flex: "1 1 auto",
-                            flexDirection: "column",
-                            p: 3,
+                            color: "muted",
+                            textTransform: "capitalize",
+                            mb: 4,
                           }}
                         >
-                          <Heading
-                            as="h2"
-                            variant="styles.h2"
-                            sx={{ color: "text", mb: 2 }}
+                          Style:{" "}
+                          <Box as="span" sx={{ color: "text" }}>
+                            {item.theme_style}
+                          </Box>
+                        </Text>
+                        <Flex
+                          sx={{
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <Link
+                            to={`/editor?theme_id=${item.ref}`}
+                            sx={{
+                              color: "secondary",
+                            }}
                           >
-                            {item.theme_name}
-                          </Heading>
-                          <Text sx={{ mb: 3, fontSize: 0 }}>
-                            Theme ID:{" "}
-                            <Box as="span" sx={{ color: "muted", fontSize: 0 }}>
-                              {item.ref}
-                            </Box>
-                          </Text>
-                          <Text sx={{ color: "text" }}>
-                            {item.theme_description}
-                          </Text>
-                        </Box>
-                        <Box sx={{ p: 3 }}>
-                          <Text
+                            View Theme
+                          </Link>
+                          <IconButton
+                            onClick={() => handleDelete(item.ref)}
+                            variant="ghostIcon"
+                            title="Delete Theme"
+                            aria-label="Delete Theme"
+                            iconPath={DELETE_THEME_ICON}
                             sx={{
                               color: "muted",
-                              textTransform: "capitalize",
-                              mb: 4,
                             }}
-                          >
-                            Theme Style:{" "}
-                            <Box as="span" sx={{ color: "text" }}>
-                              {item.theme_style}
-                            </Box>
-                          </Text>
-                          <Flex
-                            sx={{
-                              alignItems: "center",
-                              justifyContent: "space-between",
-                            }}
-                          >
-                            <Link
-                              to={`/editor?theme_id=${item.ref}`}
-                              sx={{
-                                color: "secondary",
-                              }}
-                            >
-                              View Theme
-                            </Link>
-                            <IconButton
-                              onClick={() => handleDelete(item.ref)}
-                              variant="ghostIcon"
-                              title="Delete Theme"
-                              aria-label="Delete Theme"
-                              iconPath={DELETE_THEME_ICON}
-                              sx={{
-                                color: "muted",
-                              }}
-                            />
-                          </Flex>
-                        </Box>
-                      </Card>
-                    </Box>
-                  )
-                } catch (e) {
-                  if (e instanceof SyntaxError) {
-                    console.error("Syntax Error with ref: ", item.ref)
-                  }
-                }
+                          />
+                        </Flex>
+                      </Box>
+                    </Card>
+                  </Box>
+                )
               })}
             </Flex>
           )}

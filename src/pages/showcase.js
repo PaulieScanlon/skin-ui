@@ -88,7 +88,7 @@ const showcase = () => {
         }}
       >
         <Container>
-          <Flex sx={{ flexWrap: "wrap", height: "100%" }}>
+          <Flex sx={{ flexWrap: "wrap", height: "100%", mb: 5 }}>
             <Box
               sx={{
                 mr: 3,
@@ -126,6 +126,7 @@ const showcase = () => {
               }}
             >
               {data.getAllThemes.map((item, index) => {
+                // Different to your-themes. Dont render the card if there's errors
                 try {
                   JSON.parse(item.theme_object)
                   return (
@@ -161,7 +162,8 @@ const showcase = () => {
                           }}
                         >
                           <ThemeThumbnail
-                            colors={JSON.parse(item.theme_object).colors}
+                            themeObject={item.theme_object}
+                            themeRef={item.ref}
                           />
                           <Box
                             sx={{
@@ -181,7 +183,7 @@ const showcase = () => {
                             >
                               {item.theme_name}
                             </Heading>
-                            <Text sx={{ color: "text" }}>
+                            <Text sx={{ color: "lighten" }}>
                               {item.theme_description}
                             </Text>
                           </Box>
@@ -193,7 +195,7 @@ const showcase = () => {
                                 mb: 4,
                               }}
                             >
-                              Theme Style:{" "}
+                              Style:{" "}
                               <Box as="span" sx={{ color: "text" }}>
                                 {item.theme_style}
                               </Box>
@@ -213,7 +215,7 @@ const showcase = () => {
                   )
                 } catch (e) {
                   if (e instanceof SyntaxError) {
-                    console.error("Syntax Error with ref: ", item.ref)
+                    // console.error("Skin UI syntax error with ref: ", item.ref)
                   }
                 }
               })}

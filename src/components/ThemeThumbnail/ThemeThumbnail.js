@@ -1,14 +1,32 @@
 /** @jsx jsx */
-import { memo } from "react"
+import { memo, useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
-
 import validateKeys from "object-key-validator"
-
 import { Flex, Box, Text } from "@theme-ui/components"
-import { ThemeWrapper } from "../ThemeWrapper"
 
-export const ThemeThumbnail = memo(({ colors }) => {
+import { ThemeWrapper } from "../ThemeWrapper"
+import { SvgIcon } from "../SvgIcon"
+import { WARNING_ICON, ERROR_ICON } from "../../utils/iconPaths"
+
+export const ThemeThumbnail = memo(({ themeObject, themeRef }) => {
+  const [colors, setColors] = useState({})
+  const [syntaxError, setSyntaxError] = useState("")
+  const colorError = "Incomplete colors object"
+
+  useEffect(() => {
+    try {
+      JSON.parse(themeObject)
+      setColors(JSON.parse(themeObject).colors)
+      return
+    } catch (e) {
+      if (e instanceof SyntaxError) {
+        // console.error(`Skin UI syntax error with ref: ${themeRef}`)
+        setSyntaxError("This theme has syntax errors!")
+      }
+    }
+  }, [themeObject])
+
   const rule = {
     $and: [
       "text",
@@ -129,23 +147,25 @@ export const ThemeThumbnail = memo(({ colors }) => {
           </Flex>
         </Box>
       ) : (
-        <Flex sx={{ backgroundColor: "gray", p: 3, width: "100%" }}>
-          <Box
+        <Flex
+          sx={{
+            alignItems: "center",
+            backgroundColor: "highlight",
+            p: 5,
+            width: "100%",
+          }}
+        >
+          <SvgIcon
+            iconPath={syntaxError ? ERROR_ICON : WARNING_ICON}
+            sx={{ color: "primary", mr: 2 }}
+          />
+          <Text
             sx={{
-              p: 3,
-              width: "100%",
+              color: "darken",
             }}
           >
-            <Text
-              sx={{
-                color: "muted",
-                textAlign: "center",
-                m: "0 auto",
-              }}
-            >
-              No colors not found
-            </Text>
-          </Box>
+            {syntaxError ? syntaxError : colorError}
+          </Text>
         </Flex>
       )}
     </ThemeWrapper>
@@ -153,16 +173,8 @@ export const ThemeThumbnail = memo(({ colors }) => {
 })
 
 ThemeThumbnail.propTypes = {
-  /** colors Object from database theme_object */
-  colors: PropTypes.shape({
-    text: PropTypes.string,
-    background: PropTypes.string,
-    primary: PropTypes.string,
-    secondary: PropTypes.string,
-    muted: PropTypes.string,
-    highlight: PropTypes.string,
-    gray: PropTypes.string,
-    accent: PropTypes.string,
-    darken: PropTypes.string,
-  }),
+  /** theme_object */
+  themeObject: PropTypes.any,
+  /** ref */
+  themeRef: PropTypes.string,
 }

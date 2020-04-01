@@ -102,6 +102,10 @@ export const EditorToolbar = () => {
     })
   }
 
+  // TODO Netlify env vars are undefined, dunno why
+  // console.log("SKIN_UI_USER_ID: ", process.env.SKIN_UI_USER_ID)
+  // console.log(state.user && state.user.id)
+
   return (
     <Toolbar>
       <Flex
@@ -184,7 +188,8 @@ export const EditorToolbar = () => {
 
           {state.user ? (
             <Box>
-              {state.isUserOwner ? (
+              {state.isUserOwner ||
+              state.user.id === process.env.SKIN_UI_USER_ID ? (
                 <Button
                   title="Theme Settings"
                   aria-label="Theme Settings"

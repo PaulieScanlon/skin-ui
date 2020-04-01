@@ -41,3 +41,8 @@ export const ARROW_DOWN_ICON =
   "M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
 
 export const ARROW_UP_ICON = "M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"
+
+export const WARNING_ICON = "M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"
+
+export const ERROR_ICON =
+  "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
