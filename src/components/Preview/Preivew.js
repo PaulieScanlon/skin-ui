@@ -27,7 +27,7 @@ export const Preview = memo(({ children }) => {
 
   return (
     <ThemeProvider theme={checkBeforeProvider()}>
-      <Box sx={{ backgroundColor: "background", p: 3 }}>
+      <Box sx={{ backgroundColor: "background", color: "text", p: 3 }}>
         <MDXProvider components={themeUiComponents}>{children}</MDXProvider>
       </Box>
     </ThemeProvider>
