@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { useContext } from "react"
 import { jsx } from "theme-ui"
-import { Flex, Box, Button } from "@theme-ui/components"
+import { Flex, Box, Button, Spinner } from "@theme-ui/components"
 import copy from "clipboard-copy"
 
 import { gql } from "apollo-boost"
@@ -27,6 +27,7 @@ import {
   COLLAPSE_ICON,
   SETTINGS_ICON,
   COPY_ICON,
+  SAVE_ICON,
 } from "../../utils/iconPaths"
 import {
   SET_IS_EDITOR_WIDTH_COLLAPSED,
@@ -41,6 +42,32 @@ const nameConfig = {
   separator: "-",
   length: 3,
 }
+
+const UPDATE_THEME_BY_ID = gql`
+  mutation UpdateThemeByIdMutation(
+    $theme_id: String!
+    $theme_name: String!
+    $theme_description: String!
+    $theme_style: String!
+    $theme_object: String!
+  ) {
+    updateThemeById(
+      theme_id: $theme_id
+      theme_name: $theme_name
+      theme_description: $theme_description
+      theme_style: $theme_style
+      theme_object: $theme_object
+    ) {
+      ref
+      user_id
+      theme_author
+      theme_name
+      theme_description
+      theme_style
+      theme_object
+    }
+  }
+`
 
 const FORK_THEME_WITH_ID = gql`
   mutation ForkThemeWithIdMutation(
@@ -73,21 +100,44 @@ const FORK_THEME_WITH_ID = gql`
 export const EditorToolbar = () => {
   const { state, dispatch } = useContext(SkinContext)
 
-  const [forkThemeWithId, { loading, error }] = useMutation(
-    FORK_THEME_WITH_ID,
+  const [updateThemeById, { loading, error }] = useMutation(
+    UPDATE_THEME_BY_ID,
     {
-      onCompleted({ forkThemeWithId }) {
-        location.search = `?theme_id=${forkThemeWithId.ref}`
-
+      onCompleted({ updateThemeById }) {
         dispatch({
           type: SET_DATABASE_THEME_BY_ID,
           databaseThemeById: {
-            ...forkThemeWithId,
+            ...updateThemeById,
           },
         })
       },
     }
   )
+
+  const [forkThemeWithId] = useMutation(FORK_THEME_WITH_ID, {
+    onCompleted({ forkThemeWithId }) {
+      location.search = `?theme_id=${forkThemeWithId.ref}`
+
+      dispatch({
+        type: SET_DATABASE_THEME_BY_ID,
+        databaseThemeById: {
+          ...forkThemeWithId,
+        },
+      })
+    },
+  })
+
+  const handleSave = () => {
+    updateThemeById({
+      variables: {
+        theme_id: state.databaseThemeById.ref,
+        theme_name: state.databaseThemeById.theme_name,
+        theme_description: state.databaseThemeById.theme_description,
+        theme_style: state.databaseThemeById.theme_style,
+        theme_object: state.defaultThemeObject,
+      },
+    })
+  }
 
   const handleFork = () => {
     forkThemeWithId({
@@ -164,7 +214,7 @@ export const EditorToolbar = () => {
             }
           />
         </Box>
-        <Box
+        <Flex
           sx={{
             alignItems: "center",
             display: "flex",
@@ -185,6 +235,20 @@ export const EditorToolbar = () => {
               color: "primary",
             }}
           />
+
+          {loading ? (
+            <Spinner sx={{ color: "primary", width: 32, height: 32 }} />
+          ) : (
+            <IconButton
+              title="Save"
+              onClick={() => handleSave()}
+              aria-label="Save"
+              iconPath={SAVE_ICON}
+              sx={{
+                color: "primary",
+              }}
+            />
+          )}
 
           {state.user ? (
             <Box>
@@ -227,7 +291,7 @@ export const EditorToolbar = () => {
               )}
             </Box>
           ) : null}
-        </Box>
+        </Flex>
       </Flex>
     </Toolbar>
   )

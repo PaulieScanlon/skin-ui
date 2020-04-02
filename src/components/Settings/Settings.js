@@ -4,6 +4,7 @@ import PropTypes from "prop-types"
 import { jsx } from "theme-ui"
 
 import {
+  Flex,
   Box,
   Text,
   Button,
@@ -361,7 +362,17 @@ export const Settings = memo(({ isElementVisible }) => {
           }}
         >
           {loading ? (
-            <Spinner sx={{ margin: "0 auto" }} />
+            <Flex
+              sx={{
+                alignItems: "center",
+                backgroundColor: "primary",
+                justifyContent: "center",
+                opacity: 0.5,
+                p: 1,
+              }}
+            >
+              <Spinner sx={{ color: "text", width: 30, height: 30 }} />
+            </Flex>
           ) : (
             <Button
               tabIndex={isElementVisible ? 0 : -1}
