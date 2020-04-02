@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useContext } from "react"
+import { useContext, Fragment } from "react"
 import { jsx } from "theme-ui"
 import { Flex, Box, Button, Spinner } from "@theme-ui/components"
 import copy from "clipboard-copy"
@@ -182,19 +182,24 @@ export const EditorToolbar = () => {
             }}
           />
 
-          {loading ? (
-            <Spinner sx={{ color: "primary", width: 32, height: 32 }} />
-          ) : (
-            <IconButton
-              title="Save"
-              onClick={() => handleSave()}
-              aria-label="Save"
-              iconPath={SAVE_ICON}
-              sx={{
-                color: "primary",
-              }}
-            />
-          )}
+          {state.isUserOwner ||
+            (state.user.id === process.env.SKIN_UI_USER_ID && (
+              <Fragment>
+                {loading ? (
+                  <Spinner sx={{ color: "primary", width: 32, height: 32 }} />
+                ) : (
+                  <IconButton
+                    title="Save"
+                    onClick={() => handleSave()}
+                    aria-label="Save"
+                    iconPath={SAVE_ICON}
+                    sx={{
+                      color: "primary",
+                    }}
+                  />
+                )}
+              </Fragment>
+            ))}
 
           {state.user ? (
             <Box>
