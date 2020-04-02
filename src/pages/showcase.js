@@ -12,7 +12,6 @@ import {
   Spinner,
 } from "@theme-ui/components"
 
-import { gql } from "apollo-boost"
 import { useQuery } from "@apollo/react-hooks"
 
 import { ThemeWrapper } from "../components/ThemeWrapper"
@@ -25,20 +24,7 @@ import { Footer } from "../components/Footer"
 
 import { useSiteMetadata } from "../data/useSiteMetadata"
 
-const GET_ALL_THEMES = gql`
-  query GetAllThemesQuery($theme_is_private: Boolean!) {
-    getAllThemes(theme_is_private: $theme_is_private) {
-      ref
-      user_id
-      theme_author
-      theme_name
-      theme_description
-      theme_style
-      theme_is_private
-      theme_object
-    }
-  }
-`
+import { GET_ALL_THEMES } from "../utils/graphql"
 
 const showcase = () => {
   const { loading, error, data } = useQuery(GET_ALL_THEMES, {

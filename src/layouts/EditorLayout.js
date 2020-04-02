@@ -12,7 +12,6 @@ import {
 } from "@theme-ui/components"
 import queryString from "query-string"
 
-import { gql } from "apollo-boost"
 import { useQuery } from "@apollo/react-hooks"
 
 import { ThemeWrapper } from "../components/ThemeWrapper"
@@ -43,20 +42,7 @@ import {
   SET_IS_NAV_OPEN,
 } from "../utils/const"
 
-const GET_THEME_BY_ID = gql`
-  query GetThemeByIdQuery($theme_id: String!) {
-    getThemeById(theme_id: $theme_id) {
-      ref
-      user_id
-      theme_author
-      theme_name
-      theme_description
-      theme_style
-      theme_is_private
-      theme_object
-    }
-  }
-`
+import { GET_THEME_BY_ID } from "../utils/graphql"
 
 const EditorLayout = ({ children }) => {
   const {

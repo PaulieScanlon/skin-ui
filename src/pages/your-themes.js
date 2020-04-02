@@ -14,7 +14,6 @@ import {
   Spinner,
 } from "@theme-ui/components"
 
-import { gql } from "apollo-boost"
 import { useQuery, useMutation } from "@apollo/react-hooks"
 
 import { SkinContext } from "../context"
@@ -31,29 +30,7 @@ import { Footer } from "../components/Footer"
 import { useSiteMetadata } from "../data/useSiteMetadata"
 
 import { DELETE_THEME_ICON } from "../utils/iconPaths"
-
-const GET_THEMES_BY_USER = gql`
-  query GetThemesByUserQuery($user_id: String!) {
-    getThemesByUser(user_id: $user_id) {
-      ref
-      user_id
-      theme_author
-      theme_name
-      theme_description
-      theme_style
-      theme_is_private
-      theme_object
-    }
-  }
-`
-
-const DELETE_THEME_BY_ID = gql`
-  mutation DeleteThemeByIdMutation($theme_id: String!) {
-    deleteThemeById(theme_id: $theme_id) {
-      ref
-    }
-  }
-`
+import { GET_THEMES_BY_USER, DELETE_THEME_BY_ID } from "../utils/graphql"
 
 const YourThemes = () => {
   const { state } = useContext(SkinContext)

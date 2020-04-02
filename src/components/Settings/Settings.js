@@ -17,7 +17,6 @@ import {
 } from "@theme-ui/components"
 import copy from "clipboard-copy"
 
-import { gql } from "apollo-boost"
 import { useMutation } from "@apollo/react-hooks"
 
 import { IconButton } from "../IconButton"
@@ -33,43 +32,10 @@ import {
 
 import { useSiteMetadata } from "../../data/useSiteMetadata"
 import { SET_DATABASE_THEME_BY_ID } from "../../utils/const"
+import { UPDATE_THEME_BY_ID, DELETE_THEME_BY_ID } from "../../utils/graphql"
 
 const THEME_STYLE_LIGHT = "light"
 const THEME_STYLE_DARK = "dark"
-
-const UPDATE_THEME_BY_ID = gql`
-  mutation UpdateThemeByIdMutation(
-    $theme_id: String!
-    $theme_name: String!
-    $theme_description: String!
-    $theme_style: String!
-    $theme_object: String!
-  ) {
-    updateThemeById(
-      theme_id: $theme_id
-      theme_name: $theme_name
-      theme_description: $theme_description
-      theme_style: $theme_style
-      theme_object: $theme_object
-    ) {
-      ref
-      user_id
-      theme_author
-      theme_name
-      theme_description
-      theme_style
-      theme_object
-    }
-  }
-`
-
-const DELETE_THEME_BY_ID = gql`
-  mutation DeleteThemeByIdMutation($theme_id: String!) {
-    deleteThemeById(theme_id: $theme_id) {
-      ref
-    }
-  }
-`
 
 export const Settings = memo(({ isElementVisible }) => {
   const {

@@ -4,7 +4,6 @@ import { jsx } from "theme-ui"
 import { Flex, Box, Button, Spinner } from "@theme-ui/components"
 import copy from "clipboard-copy"
 
-import { gql } from "apollo-boost"
 import { useMutation } from "@apollo/react-hooks"
 
 import {
@@ -36,66 +35,13 @@ import {
 } from "../../utils/const"
 
 import { SET_DATABASE_THEME_BY_ID } from "../../utils/const"
+import { UPDATE_THEME_BY_ID, FORK_THEME_WITH_ID } from "../../utils/graphql"
 
 const nameConfig = {
   dictionaries: [adjectives, colors, animals],
   separator: "-",
   length: 3,
 }
-
-const UPDATE_THEME_BY_ID = gql`
-  mutation UpdateThemeByIdMutation(
-    $theme_id: String!
-    $theme_name: String!
-    $theme_description: String!
-    $theme_style: String!
-    $theme_object: String!
-  ) {
-    updateThemeById(
-      theme_id: $theme_id
-      theme_name: $theme_name
-      theme_description: $theme_description
-      theme_style: $theme_style
-      theme_object: $theme_object
-    ) {
-      ref
-      user_id
-      theme_author
-      theme_name
-      theme_description
-      theme_style
-      theme_object
-    }
-  }
-`
-
-const FORK_THEME_WITH_ID = gql`
-  mutation ForkThemeWithIdMutation(
-    $user_id: String!
-    $theme_author: String!
-    $theme_name: String!
-    $theme_description: String!
-    $theme_style: String!
-    $theme_object: String!
-  ) {
-    forkThemeWithId(
-      user_id: $user_id
-      theme_author: $theme_author
-      theme_name: $theme_name
-      theme_description: $theme_description
-      theme_style: $theme_style
-      theme_object: $theme_object
-    ) {
-      ref
-      user_id
-      theme_author
-      theme_name
-      theme_description
-      theme_style
-      theme_object
-    }
-  }
-`
 
 export const EditorToolbar = () => {
   const { state, dispatch } = useContext(SkinContext)
