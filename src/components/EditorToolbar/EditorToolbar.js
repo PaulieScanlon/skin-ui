@@ -182,24 +182,30 @@ export const EditorToolbar = () => {
             }}
           />
 
-          {state.isUserOwner ||
-            (state.user.id === process.env.SKIN_UI_USER_ID && (
-              <Fragment>
-                {loading ? (
-                  <Spinner sx={{ color: "primary", width: 32, height: 32 }} />
-                ) : (
-                  <IconButton
-                    title="Save"
-                    onClick={() => handleSave()}
-                    aria-label="Save"
-                    iconPath={SAVE_ICON}
-                    sx={{
-                      color: "primary",
-                    }}
-                  />
-                )}
-              </Fragment>
-            ))}
+          {state.user ? (
+            <Fragment>
+              {state.isUserOwner ||
+                (state.user.id === process.env.SKIN_UI_USER_ID && (
+                  <Fragment>
+                    {loading ? (
+                      <Spinner
+                        sx={{ color: "primary", width: 32, height: 32 }}
+                      />
+                    ) : (
+                      <IconButton
+                        title="Save"
+                        onClick={() => handleSave()}
+                        aria-label="Save"
+                        iconPath={SAVE_ICON}
+                        sx={{
+                          color: "primary",
+                        }}
+                      />
+                    )}
+                  </Fragment>
+                ))}
+            </Fragment>
+          ) : null}
 
           {state.user ? (
             <Box>
