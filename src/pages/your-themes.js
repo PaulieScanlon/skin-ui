@@ -23,8 +23,9 @@ import { ThemeWrapper } from "../components/ThemeWrapper"
 import { Seo } from "../components/Seo"
 import { Header } from "../components/Header"
 import { Logo } from "../components/Logo"
-import { ThemeThumbnail } from "../components/ThemeThumbnail"
 import { IconButton } from "../components/IconButton"
+import { ThemeThumbnail } from "../components/ThemeThumbnail"
+import { TopNav } from "../components/TopNav"
 import { Footer } from "../components/Footer"
 
 import { useSiteMetadata } from "../data/useSiteMetadata"
@@ -103,7 +104,14 @@ const YourThemes = () => {
         lang={lang}
       />
 
-      <Header left={<Logo />} />
+      <Header
+        left={
+          <Flex>
+            <Logo />
+            <TopNav />
+          </Flex>
+        }
+      />
 
       <main
         sx={{
