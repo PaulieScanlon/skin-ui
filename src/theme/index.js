@@ -212,9 +212,12 @@ export default {
     nav: {
       color: "muted",
       fontWeight: "body",
+      px: 3,
+      py: 2,
       transition: ".2s linear color",
       ":hover": {
         color: "text",
+        backgroundColor: "darken",
       },
       ":focus": {
         outline: "none",

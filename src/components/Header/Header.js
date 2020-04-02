@@ -97,7 +97,7 @@ export const Header = ({ isEditorRoute, left }) => {
                   </Button>
                 )}
               >
-                <Box
+                <Flex
                   sx={{
                     backgroundColor: "background",
                     borderStyle: 0,
@@ -105,27 +105,37 @@ export const Header = ({ isEditorRoute, left }) => {
                     borderWidth: 1,
                     display: "flex",
                     flexDirection: "column",
+                    justifyContent: "space-between",
                     minWidth: "dropdown",
-                    width: 140,
+                    width: 180,
+                    a: {
+                      display: "flex",
+                      flex: "1 1 auto",
+                      justifyContent: "flex-end",
+                    },
                   }}
                 >
-                  <NavLink href="/your-themes" sx={{ px: 3, py: 2 }}>
-                    Your Themes
-                  </NavLink>
-                  <NavLink href="/editor" sx={{ px: 3, py: 2 }}>
-                    Code Editor
-                  </NavLink>
-                  <NavLink href="/showcase" sx={{ px: 3, py: 2 }}>
-                    Showcase
-                  </NavLink>
-                  <Divider sx={{ m: 0, color: "gray" }} />
-                  <Button
-                    variant="ghost"
-                    onClick={() => netlifyIdentity.logout()}
-                  >
-                    Log out
-                  </Button>
-                </Box>
+                  <Box>
+                    <NavLink href="/your-themes">Your Themes</NavLink>
+                    <Divider sx={{ color: "darken", m: 0 }} />
+                    <NavLink href="/editor">Code Editor</NavLink>
+                    <Divider sx={{ color: "darken", m: 0 }} />
+                    <NavLink href="/showcase">Showcase</NavLink>
+                    <Divider sx={{ color: "darken", m: 0 }} />
+                  </Box>
+                  <Box>
+                    <Divider sx={{ color: "gray", m: 0 }} />
+                    <Button
+                      variant="ghost"
+                      onClick={() => netlifyIdentity.logout()}
+                      sx={{
+                        width: "100%",
+                      }}
+                    >
+                      Log out
+                    </Button>
+                  </Box>
+                </Flex>
               </Dropdown>
             ) : (
               <Flex>
