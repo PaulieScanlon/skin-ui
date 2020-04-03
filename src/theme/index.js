@@ -96,6 +96,7 @@ export default {
         },
       },
     },
+
     hr: {
       mt: 3,
       mb: 3,

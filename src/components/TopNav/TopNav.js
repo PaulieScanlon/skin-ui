@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import { Flex, NavLink } from "@theme-ui/components"
+import { Link } from "gatsby"
 
 import { ThemeWrapper } from "../ThemeWrapper"
 
@@ -12,10 +13,28 @@ export const TopNav = () => {
         sx={{
           ml: 2,
           display: ["none", "flex", "flex", "flex"],
+
+          ["& .nav-active-class"]: {
+            span: {
+              color: "primary",
+            },
+          },
         }}
       >
-        <NavLink href="/editor">Code Editor</NavLink>
-        <NavLink href="/showcase">Showcase</NavLink>
+        <Link
+          activeClassName="nav-active-class"
+          partiallyActive={true}
+          to="/editor/"
+        >
+          <NavLink as="span">Code Editor</NavLink>
+        </Link>
+        <Link
+          activeClassName="nav-active-class"
+          partiallyActive={true}
+          to="/showcase/"
+        >
+          <NavLink as="span">Showcase</NavLink>
+        </Link>
       </Flex>
     </ThemeWrapper>
   )

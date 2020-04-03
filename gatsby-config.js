@@ -9,7 +9,7 @@ module.exports = {
     lang: `en`,
     author: `@pauliescanlon`,
     config: {
-      sidebarWidth: 210,
+      sidebarWidth: 220,
       drawerWidth: 320,
       editorCollapseWidth: 60,
     },

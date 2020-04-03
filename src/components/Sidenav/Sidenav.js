@@ -14,7 +14,7 @@ export const Sidenav = memo(({ navItems, isElementVisible }) => (
         const { hash } = location
         return Object.keys(navItems).map((heading, index) => {
           return (
-            <div key={index} sx={{ mb: 4 }}>
+            <div key={index} sx={{ mb: 2 }}>
               <div
                 sx={{
                   color: "text",
@@ -31,7 +31,8 @@ export const Sidenav = memo(({ navItems, isElementVisible }) => (
                   fontFamily: "body",
                   listStyle: "none",
                   margin: 0,
-                  p: theme => `0px ${theme.space[2]}px`,
+                  px: 0,
+                  m: 0,
                 }}
               >
                 {navItems[heading].map(item => {
@@ -44,7 +45,7 @@ export const Sidenav = memo(({ navItems, isElementVisible }) => (
                           mb: 1,
                         }}
                       >
-                        {href == hash ? (
+                        {href === hash ? (
                           <NavLink
                             tabIndex={isElementVisible ? 0 : -1}
                             title={children}
@@ -52,7 +53,8 @@ export const Sidenav = memo(({ navItems, isElementVisible }) => (
                             sx={{
                               color: "primary",
                               textDecoration: "underline",
-                              ":active": {
+                              width: "100%",
+                              ":active, :hover": {
                                 color: "primary",
                               },
                             }}
@@ -64,6 +66,9 @@ export const Sidenav = memo(({ navItems, isElementVisible }) => (
                             tabIndex={isElementVisible ? 0 : -1}
                             title={children}
                             href={href}
+                            sx={{
+                              width: "100%",
+                            }}
                           >
                             {children}
                           </NavLink>
