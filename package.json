@@ -14,7 +14,7 @@
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
     "clipboard-copy": "^3.1.0",
-    "codemirror": "^5.52.0",
+    "codemirror": "^5.58.2",
     "faunadb": "^2.13.0",
     "gatsby": "^2.19.40",
     "gatsby-plugin-google-analytics": "^2.1.37",
